@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{35048FB5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus.RabbitMq", "BuildingBlocks\EventBus\EventBus.RabbitMq\EventBus.RabbitMq.csproj", "{173DC7D1-A5F0-4338-8CD5-6C58D352A47F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus.Tests", "BuildingBlocks\EventBus\EventBus.Tests\EventBus.Tests.csproj", "{7A007C20-F7FE-4515-9414-81BCD8E74B90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{173DC7D1-A5F0-4338-8CD5-6C58D352A47F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{173DC7D1-A5F0-4338-8CD5-6C58D352A47F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{173DC7D1-A5F0-4338-8CD5-6C58D352A47F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A007C20-F7FE-4515-9414-81BCD8E74B90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A007C20-F7FE-4515-9414-81BCD8E74B90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A007C20-F7FE-4515-9414-81BCD8E74B90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A007C20-F7FE-4515-9414-81BCD8E74B90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{2E97055C-1FAE-464D-AA1D-203B7F4558BE} = {115C2ED5-F3ED-437C-AB0B-883B7204D2FD}
 		{35048FB5-0BB8-4345-993A-259132798909} = {2E97055C-1FAE-464D-AA1D-203B7F4558BE}
 		{173DC7D1-A5F0-4338-8CD5-6C58D352A47F} = {2E97055C-1FAE-464D-AA1D-203B7F4558BE}
+		{7A007C20-F7FE-4515-9414-81BCD8E74B90} = {35048FB5-0BB8-4345-993A-259132798909}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F3D4D1B3-2881-4E73-BAB2-00D5C0CC3BC9}
