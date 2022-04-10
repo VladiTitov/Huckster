@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{37341CBB-5012-4CB9-BCA8-6A939A288C71}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateway", "ApiGateway", "{985F3A69-BE13-4CAF-9599-E3DFED002732}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{115C2ED5-F3ED-437C-AB0B-883B7204D2FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{3A9B8219-FA16-44EF-A2EB-0E7EAF0BAA7A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApp", "WebApp", "{76940EC5-2DEB-4C8B-84BF-EFDFCC7A9807}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{CFBE4E79-2007-4B0B-8882-B1A53397C52A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceTests", "ServiceTests", "{BB753C18-83EE-4DFC-B629-B26BF192BA53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huckster.FunctionalTests", "Tests\Services\Huckster.FunctionalTests\Huckster.FunctionalTests.csproj", "{259CD534-1C63-4942-9412-FC6695236C18}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{259CD534-1C63-4942-9412-FC6695236C18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{259CD534-1C63-4942-9412-FC6695236C18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{259CD534-1C63-4942-9412-FC6695236C18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{259CD534-1C63-4942-9412-FC6695236C18}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{985F3A69-BE13-4CAF-9599-E3DFED002732} = {37341CBB-5012-4CB9-BCA8-6A939A288C71}
+		{115C2ED5-F3ED-437C-AB0B-883B7204D2FD} = {37341CBB-5012-4CB9-BCA8-6A939A288C71}
+		{3A9B8219-FA16-44EF-A2EB-0E7EAF0BAA7A} = {37341CBB-5012-4CB9-BCA8-6A939A288C71}
+		{76940EC5-2DEB-4C8B-84BF-EFDFCC7A9807} = {37341CBB-5012-4CB9-BCA8-6A939A288C71}
+		{BB753C18-83EE-4DFC-B629-B26BF192BA53} = {CFBE4E79-2007-4B0B-8882-B1A53397C52A}
+		{259CD534-1C63-4942-9412-FC6695236C18} = {BB753C18-83EE-4DFC-B629-B26BF192BA53}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F3D4D1B3-2881-4E73-BAB2-00D5C0CC3BC9}
+	EndGlobalSection
+EndGlobal
