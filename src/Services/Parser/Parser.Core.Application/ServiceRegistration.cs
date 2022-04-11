@@ -1,5 +1,5 @@
-﻿using Parser.Core.Application.Services;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Parser.Core.Application.Features.Parser;
 
 namespace Parser.Core.Application
 {
@@ -7,6 +7,6 @@ namespace Parser.Core.Application
     {
         public static IServiceCollection AddApplicationInfrastructure(this IServiceCollection services)
             => services
-            .AddSingleton<ParserWorkerService>();
+            .AddSingleton<ParserBackgroundServiceManager>();
     }
 }
