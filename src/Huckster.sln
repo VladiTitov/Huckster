@@ -37,11 +37,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{9A10C0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{20F96425-9103-4B23-868F-5875897E65F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.API", "Services\Parser\Parser.API\Parser.API.csproj", "{11F1DF0B-739F-4686-B23E-7E18A3839C14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parser.API", "Services\Parser\Parser.API\Parser.API.csproj", "{11F1DF0B-739F-4686-B23E-7E18A3839C14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Infrastructure.HtmlAgilityPackService", "Services\Parser\Parser.Infrastructure.ParserService\Parser.Infrastructure.HtmlAgilityPackService.csproj", "{4C6245A6-1E73-437D-A7BA-E23FD6C57C9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parser.Infrastructure.HtmlAgilityPackService", "Services\Parser\Parser.Infrastructure.ParserService\Parser.Infrastructure.HtmlAgilityPackService.csproj", "{4C6245A6-1E73-437D-A7BA-E23FD6C57C9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Core.Domain", "Services\Parser\Parser.Core.Domain\Parser.Core.Domain.csproj", "{56800F6C-B47C-44B4-B389-C52004480562}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parser.Core.Domain", "Services\Parser\Parser.Core.Domain\Parser.Core.Domain.csproj", "{56800F6C-B47C-44B4-B389-C52004480562}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Core.Application", "Services\Parser\Parser.Core.Application\Parser.Core.Application.csproj", "{AAF485EF-1D44-4418-9237-9B276657E3A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +75,10 @@ Global
 		{56800F6C-B47C-44B4-B389-C52004480562}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56800F6C-B47C-44B4-B389-C52004480562}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56800F6C-B47C-44B4-B389-C52004480562}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAF485EF-1D44-4418-9237-9B276657E3A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAF485EF-1D44-4418-9237-9B276657E3A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAF485EF-1D44-4418-9237-9B276657E3A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAF485EF-1D44-4418-9237-9B276657E3A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +102,7 @@ Global
 		{11F1DF0B-739F-4686-B23E-7E18A3839C14} = {9A10C0A8-C72C-4A52-A283-B37D6E494967}
 		{4C6245A6-1E73-437D-A7BA-E23FD6C57C9B} = {21212645-D182-484E-A6FB-6A12998057CC}
 		{56800F6C-B47C-44B4-B389-C52004480562} = {61E3F8FD-048B-4DEF-A5AA-E9F7464B9EFA}
+		{AAF485EF-1D44-4418-9237-9B276657E3A5} = {61E3F8FD-048B-4DEF-A5AA-E9F7464B9EFA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F3D4D1B3-2881-4E73-BAB2-00D5C0CC3BC9}

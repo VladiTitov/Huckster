@@ -6,7 +6,7 @@ namespace Parser.Infrastructure.HtmlAgilityPackService
 {
     public static class ServiceRegistration
     {
-        public static IServiceCollection AddHtmlAgilityPackParserInfrastructure(this IServiceCollection services)
+        public static IServiceCollection AddParserInfrastructure(this IServiceCollection services)
             => services
                 .AddSingleton<IParserService, ParserService>();
     }
