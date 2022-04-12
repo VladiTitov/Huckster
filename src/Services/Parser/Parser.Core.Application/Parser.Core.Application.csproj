@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Parser.Infrastructure.DataAccess\Parser.Infrastructure.DataAccess.csproj" />
     <ProjectReference Include="..\Parser.Infrastructure.ParserService\Parser.Infrastructure.HtmlAgilityPackService.csproj" />
   </ItemGroup>
 
