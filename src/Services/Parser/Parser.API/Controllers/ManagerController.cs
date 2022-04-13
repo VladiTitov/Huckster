@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Parser.Core.Application.Features.Parser;
 
-namespace Huckster.Bot.WebApi.Controllers
+namespace Parser.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

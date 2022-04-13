@@ -1,7 +1,7 @@
 ﻿using Parser.API.Configuration.Ioc;
 using Parser.API.Configuration.Swagger;
 
-namespace Huckster.Bot.WebApi
+namespace Parser.WebApi
 {
     public class Startup
     {

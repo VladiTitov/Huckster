@@ -1,4 +1,4 @@
-namespace Huckster.Bot.WebApi
+namespace Parser.WebApi
 {
     public class Program
     {
