@@ -1,10 +1,12 @@
 ﻿using System.Text.Json;
+using EventBus.RabbitMq.Interfaces;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using Parser.Infrastructure.DataAccess.Interfaces;
 using Parser.Infrastructure.HtmlAgilityPackService.Models;
 using Parser.Infrastructure.HtmlAgilityPackService.Interfaces;
 using Parser.Core.Domain.Models;
+using Microsoft.Extensions.Hosting;
 
 namespace Parser.Core.Application.Features.Parser
 {
@@ -12,17 +14,23 @@ namespace Parser.Core.Application.Features.Parser
     {
         private readonly ILogger<ParserBackgroundServiceManager> _logger;
         private readonly IEnumerable<SiteDescription> _siteDescriptions;
+        private readonly IRabbitMqPublisher _rabbitMqPublisher;
         private readonly IServiceProvider _serviceProvider;
         private readonly IParserService _parserService;
+        private readonly string _environmentName;
 
         public ParserBackgroundServiceManager(ILogger<ParserBackgroundServiceManager> logger,
-            IServiceProvider serviceProvider,
             IEnumerable<SiteDescription> siteDescriptions,
+            IHostEnvironment hostEnvironment,
+            IRabbitMqPublisher rabbitMqPublisher,
+            IServiceProvider serviceProvider,
             IParserService parserService) : base(logger)
         {
             _logger = logger;
-            _serviceProvider = serviceProvider;
             _siteDescriptions = siteDescriptions;
+            _environmentName = hostEnvironment.EnvironmentName;
+            _rabbitMqPublisher = rabbitMqPublisher;
+            _serviceProvider = serviceProvider;
             _parserService = parserService;
         }
 
@@ -48,11 +56,17 @@ namespace Parser.Core.Application.Features.Parser
                     if (ad.IsNull()) continue;
                     if (await repository.GetAdById(ad.UrlId) != null) continue;
                     repository.CreateAd(ad);
-                    Console.WriteLine(ad);
-                    var jsonMessage = JsonSerializer.Serialize(ad);
                     await repository.SaveChangesAsync();
+                    SendMessageInEventBus(ad);
                 }
             }
+        }
+
+        private async void SendMessageInEventBus(AdModel ad)
+        {
+            if (_environmentName.Equals("Development")) _logger.LogInformation(ad.ToString());
+            var jsonMessage = JsonSerializer.Serialize(ad);
+            await _rabbitMqPublisher.SendMessage(jsonMessage);
         }
     }
 }

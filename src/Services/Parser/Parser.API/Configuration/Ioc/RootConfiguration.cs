@@ -1,4 +1,5 @@
-﻿using Parser.Core.Application;
+﻿using EventBus.RabbitMq;
+using Parser.Core.Application;
 using Parser.API.Configuration.Swagger;
 using Parser.API.Configuration.AppSettings;
 using Parser.Infrastructure.HtmlAgilityPackService;
@@ -14,6 +15,7 @@ namespace Parser.API.Configuration.Ioc
             .AddDataAccessInfrastructure()
             .AddApplicationInfrastructure()
             .AddParserInfrastructure()
+            .AddEventBusBuildingBlock()
             .RegisterSwagger();
     }
 }

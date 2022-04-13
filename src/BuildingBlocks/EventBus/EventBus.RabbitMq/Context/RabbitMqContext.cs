@@ -23,16 +23,27 @@ namespace EventBus.RabbitMq.Context
 
         public IConnection CreateNewRabbitConnection()
         {
-            var factory = new ConnectionFactory()
-            {
-                UserName = _rabbitMqConfiguration.UserName,
-                Password = _rabbitMqConfiguration.Password,
-                Port = _rabbitMqConfiguration.Port,
-                VirtualHost = _rabbitMqConfiguration.VirtualHost,
-                HostName = _rabbitMqConfiguration.Hostname
-            };
+            IConnection connection;
 
-            return factory.CreateConnection();
+            try
+            {
+                var factory = new ConnectionFactory()
+                {
+                    UserName = _rabbitMqConfiguration.UserName,
+                    Password = _rabbitMqConfiguration.Password,
+                    Port = _rabbitMqConfiguration.Port,
+                    VirtualHost = _rabbitMqConfiguration.VirtualHost,
+                    HostName = _rabbitMqConfiguration.Hostname
+                };
+
+                connection = factory.CreateConnection();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return connection;
         }
     }
 }
