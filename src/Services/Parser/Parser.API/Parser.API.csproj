@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>acb55756-eeda-4b95-aa52-f77cc1ff18ff</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\EventBus\EventBus.RabbitMq\EventBus.RabbitMq.csproj" />
     <ProjectReference Include="..\Parser.Core.Application\Parser.Core.Application.csproj" />
   </ItemGroup>
 
