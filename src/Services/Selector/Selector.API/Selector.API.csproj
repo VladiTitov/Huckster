@@ -14,4 +14,8 @@
     <Folder Include="Configuration\AppSettings\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Selector.Core.Application\Selector.Core.Application.csproj" />
+  </ItemGroup>
+
 </Project>

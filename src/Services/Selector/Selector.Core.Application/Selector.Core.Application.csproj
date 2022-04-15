@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Features\" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\BackgroundService\BackgroundService.Manager\CustomBackgroundService.Manager.csproj" />
+    <ProjectReference Include="..\Selector.Infrastructure.TelagramWorker\Selector.Infrastructure.TelagramWorker.csproj" />
   </ItemGroup>
 
 </Project>
