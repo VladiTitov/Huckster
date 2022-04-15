@@ -1,6 +1,7 @@
 ﻿using Parser.API.Constants;
 using Microsoft.AspNetCore.Mvc;
 using Parser.Core.Application.Features.Parser;
+using Parser.Core.Application.Features.Parser.Interfaces;
 
 namespace Huckster.Bot.WebApi.Controllers
 {
@@ -9,7 +10,7 @@ namespace Huckster.Bot.WebApi.Controllers
     public class ManagerController : ControllerBase
     {
         private readonly ILogger<ManagerController> _logger;
-        private readonly ParserBackgroundServiceManager _parserBackgroundServiceManager;
+        private readonly IParserBackgroundServiceManager _parserBackgroundServiceManager;
 
 
         public ManagerController(ILogger<ManagerController> logger,

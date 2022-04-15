@@ -7,10 +7,12 @@ using Parser.Infrastructure.HtmlAgilityPackService.Models;
 using Parser.Infrastructure.HtmlAgilityPackService.Interfaces;
 using Parser.Core.Domain.Models;
 using Microsoft.Extensions.Hosting;
+using CustomBackgroundService.Manager;
+using Parser.Core.Application.Features.Parser.Interfaces;
 
 namespace Parser.Core.Application.Features.Parser
 {
-    public class ParserBackgroundServiceManager : CustomBackgroundService
+    public class ParserBackgroundServiceManager : BackgroundServiceManager, IParserBackgroundServiceManager
     {
         private readonly ILogger<ParserBackgroundServiceManager> _logger;
         private readonly IEnumerable<SiteDescription> _siteDescriptions;
