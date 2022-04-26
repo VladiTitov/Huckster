@@ -20,8 +20,4 @@
     <ProjectReference Include="..\Parser.Infrastructure.ParserService\Parser.Infrastructure.HtmlAgilityPackService.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\" />
-  </ItemGroup>
-
 </Project>

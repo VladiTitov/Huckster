@@ -1,7 +1,10 @@
-﻿namespace Parser.Core.Domain.Models
+﻿using MediatR;
+
+namespace Parser.Core.Application.Features.SiteDescriptions.Commands.CreateSiteDescription
 {
-    public class SiteDescription : BaseEntity
+    public class CreateSiteDescriptionCommand : IRequest<Guid>
     {
+        public Guid Id { get; set; }
         public string? SiteName { get; set; }
         public string? Description { get; set; }
         public string? SiteUrl { get; set; }
