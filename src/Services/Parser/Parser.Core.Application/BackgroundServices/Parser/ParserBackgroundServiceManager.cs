@@ -1,26 +1,25 @@
 ﻿using System.Text.Json;
+using Parser.Core.Domain.Models;
 using EventBus.RabbitMq.Interfaces;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using Parser.Infrastructure.DataAccess.Interfaces;
-using Parser.Infrastructure.HtmlAgilityPackService.Models;
 using Parser.Infrastructure.HtmlAgilityPackService.Interfaces;
-using Parser.Core.Domain.Models;
-using Microsoft.Extensions.Hosting;
 
-namespace Parser.Core.Application.Features.Parser
+namespace Parser.Core.Application.BackgroundServices.Parser
 {
     public class ParserBackgroundServiceManager : CustomBackgroundService
     {
         private readonly ILogger<ParserBackgroundServiceManager> _logger;
-        private readonly IEnumerable<SiteDescription> _siteDescriptions;
+        private readonly IEnumerable<Infrastructure.HtmlAgilityPackService.Models.SiteDescription> _siteDescriptions;
         private readonly IRabbitMqPublisher _rabbitMqPublisher;
         private readonly IServiceProvider _serviceProvider;
         private readonly IParserService _parserService;
         private readonly string _environmentName;
 
         public ParserBackgroundServiceManager(ILogger<ParserBackgroundServiceManager> logger,
-            IEnumerable<SiteDescription> siteDescriptions,
+            IEnumerable<Infrastructure.HtmlAgilityPackService.Models.SiteDescription> siteDescriptions,
             IHostEnvironment hostEnvironment,
             IRabbitMqPublisher rabbitMqPublisher,
             IServiceProvider serviceProvider,
