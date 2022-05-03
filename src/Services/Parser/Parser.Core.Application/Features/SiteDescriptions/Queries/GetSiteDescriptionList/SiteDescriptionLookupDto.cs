@@ -9,7 +9,7 @@ namespace Parser.Core.Application.Features.SiteDescriptions.Queries.GetSiteDescr
         public Guid Id { get; set; }
         public string? SiteName { get; set; }
         public string? Description { get; set; }
-        public string? SiteUrl { get; set; }
+        public string SiteUrl { get; set; }
 
         public void Mapping(Profile profile)
         {

@@ -2,6 +2,6 @@
 {
     public class SiteDescriptionListViewModel
     {
-        public IList<SiteDescriptionLookupDto>? SiteDescriptions { get; set; }
+        public IList<SiteDescriptionLookupDto> SiteDescriptions { get; set; }
     }
 }
