@@ -4,6 +4,9 @@ using Parser.API.Configuration.Swagger;
 using Parser.API.Configuration.AppSettings;
 using Parser.Infrastructure.HtmlAgilityPackService;
 using Parser.Infrastructure.DataAccess;
+using Parser.Infrastructure.Persistence;
+using Parser.API.Configuration.AutoMapper;
+using Parser.API.Configuration.Cors;
 
 namespace Parser.API.Configuration.Ioc
 {
@@ -12,6 +15,9 @@ namespace Parser.API.Configuration.Ioc
         public static IServiceCollection ConfigureServices(this IServiceCollection services, IConfiguration configuration)
             => services
             .AppSettingsSectionsRegister(configuration)
+            .AddPersistenceInfrastructure(configuration)
+            .RegisterAutoMapper()
+            .RegisterCors()
             .AddDataAccessInfrastructure()
             .AddApplicationInfrastructure()
             .AddParserInfrastructure()
