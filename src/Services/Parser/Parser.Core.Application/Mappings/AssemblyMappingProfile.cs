@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace Parser.Core.Application.Mappings
 {

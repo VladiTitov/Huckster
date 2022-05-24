@@ -1,4 +1,6 @@
-﻿namespace Parser.Core.Domain.Models
+﻿using System.Text.Json.Serialization;
+
+namespace Parser.Core.Domain.Models
 {
     public class SiteDescription : BaseEntity
     {
@@ -8,5 +10,9 @@
         public string? SiteSelector { get; set; }
         public string? SiteModelTypeName { get; set; }
         public string? SiteModelSolutionName { get; set; }
+
+        [JsonIgnore]
+        public Type SiteModelType => 
+            Type.GetType($"{SiteModelSolutionName}.{SiteModelTypeName}, {SiteModelSolutionName}");
     }
 }

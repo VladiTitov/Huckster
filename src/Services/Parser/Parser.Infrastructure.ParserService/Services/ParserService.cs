@@ -1,11 +1,12 @@
 ﻿using HtmlAgilityPack;
+using Parser.Core.Domain.Models;
 using Parser.Infrastructure.HtmlAgilityPackService.Interfaces;
 
 namespace Parser.Infrastructure.HtmlAgilityPackService.Services
 {
     public class ParserService : IParserService
     {
-        public IEnumerable<T> GetData<T>(ISiteDescription siteDescription)
+        public IEnumerable<T> GetData<T>(SiteDescription siteDescription)
         {
             var htmlNodes = GetHtmlNodes(siteDescription);
 
@@ -19,7 +20,7 @@ namespace Parser.Infrastructure.HtmlAgilityPackService.Services
                             args: htmlNode));
         }
 
-        private IEnumerable<HtmlNode> GetHtmlNodes(ISiteDescription siteDescription)
+        private IEnumerable<HtmlNode> GetHtmlNodes(SiteDescription siteDescription)
             => new HtmlWeb()
                 .Load(siteDescription.SiteUrl)
                 .DocumentNode

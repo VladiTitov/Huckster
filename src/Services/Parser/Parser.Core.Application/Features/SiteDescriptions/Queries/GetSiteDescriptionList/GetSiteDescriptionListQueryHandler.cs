@@ -6,14 +6,17 @@
         private readonly ISiteDescriptionDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public GetSiteDescriptionListQueryHandler(ISiteDescriptionDbContext dbContext,
+        public GetSiteDescriptionListQueryHandler(
+            ISiteDescriptionDbContext dbContext,
             IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;
         }
 
-        public async Task<SiteDescriptionListViewModel> Handle(GetSiteDescriptionListQuery request, CancellationToken cancellationToken)
+        public async Task<SiteDescriptionListViewModel> Handle(
+            GetSiteDescriptionListQuery request, 
+            CancellationToken cancellationToken)
         {
             var siteDescriptionQuery = await _dbContext.SitesDescriptions
                 .ProjectTo<SiteDescriptionLookupDto>(_mapper.ConfigurationProvider)

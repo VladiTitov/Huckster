@@ -1,6 +1,4 @@
-﻿using MediatR;
-using FluentValidation;
-using System.Reflection;
+﻿using System.Reflection;
 using Parser.Core.Application.Behaviors;
 using Microsoft.Extensions.DependencyInjection;
 using Parser.Core.Application.BackgroundServices.Parser;
