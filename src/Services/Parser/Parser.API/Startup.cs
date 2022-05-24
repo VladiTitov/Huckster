@@ -1,8 +1,4 @@
-﻿using Parser.API.Configuration.Cors;
-using Parser.API.Configuration.Ioc;
-using Parser.API.Configuration.Swagger;
-
-namespace Huckster.Bot.WebApi
+﻿namespace Huckster.Bot.WebApi
 {
     public class Startup
     {

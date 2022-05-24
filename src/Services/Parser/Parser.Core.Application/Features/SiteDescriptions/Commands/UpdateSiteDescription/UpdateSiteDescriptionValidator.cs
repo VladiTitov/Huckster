@@ -1,9 +1,9 @@
-﻿namespace Parser.Core.Application.Features.SiteDescriptions.Commands.CreateSiteDescription
+﻿namespace Parser.Core.Application.Features.SiteDescriptions.Commands.UpdateSiteDescription
 {
-    public class CreateSiteDescriptionValidator 
-        : AbstractValidator<CreateSiteDescriptionCommand>
+    public class UpdateSiteDescriptionValidator
+        : AbstractValidator<UpdateSiteDescriptionCommand>
     {
-        public CreateSiteDescriptionValidator()
+        public UpdateSiteDescriptionValidator()
         {
             RuleFor(_ => _.Id)
                 .NotEqual(Guid.Empty);
@@ -15,7 +15,6 @@
                 .NotEmpty();
             RuleFor(_ => _.SiteModelSolutionName)
                 .NotEmpty();
-
         }
     }
 }

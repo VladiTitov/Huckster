@@ -1,11 +1,4 @@
-﻿using MediatR;
-using AutoMapper;
-using Microsoft.EntityFrameworkCore;
-using Parser.Core.Domain.Models;
-using Parser.Core.Application.Exceptions;
-using Parser.Core.Application.Interfaces;
-
-namespace Parser.Core.Application.Features.SiteDescriptions.Queries.GetSiteDescriptionDetails
+﻿namespace Parser.Core.Application.Features.SiteDescriptions.Queries.GetSiteDescriptionDetails
 {
     public class GetSiteDescriptionDetailsQueryHandler
         : IRequestHandler<GetSiteDescriptionDetailsQuery, SiteDescriptionViewModel>

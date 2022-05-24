@@ -1,17 +1,18 @@
-﻿namespace Parser.Core.Application.Features.SiteDescriptions.Commands.CreateSiteDescription
+﻿namespace Parser.Core.Application.Features.SiteDescriptions.Commands.UpdateSiteDescription
 {
-    public class CreateSiteDescriptionCommandHandler
-        : IRequestHandler<CreateSiteDescriptionCommand, Guid>
+    public class UpdateSiteDescriptionCommandHandler
+        : IRequestHandler<UpdateSiteDescriptionCommand, SiteDescription>
     {
         private readonly ISiteDescriptionDbContext _dbContext;
 
-        public CreateSiteDescriptionCommandHandler(ISiteDescriptionDbContext dbContext)
+        public UpdateSiteDescriptionCommandHandler(ISiteDescriptionDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<Guid> Handle(CreateSiteDescriptionCommand request,
-            CancellationToken cancellationToken)
+        public async Task<SiteDescription> Handle(
+            UpdateSiteDescriptionCommand request,
+            CancellationToken cancellationToken = default(CancellationToken))
         {
             var siteDescription = new SiteDescription
             {
@@ -24,10 +25,10 @@
                 SiteModelTypeName = request.SiteModelTypeName
             };
 
-            await _dbContext.SitesDescriptions.AddAsync(siteDescription, cancellationToken);
+            _dbContext.SitesDescriptions.Update(siteDescription);
             await _dbContext.SaveChangesAsync(cancellationToken);
 
-            return siteDescription.Id;
+            return siteDescription;
         }
     }
 }

@@ -1,9 +1,4 @@
-﻿using MediatR;
-using Parser.Core.Domain.Models;
-using Parser.Core.Application.Exceptions;
-using Parser.Core.Application.Interfaces;
-
-namespace Parser.Core.Application.Features.SiteDescriptions.Commands.DeleteSiteDescriptionCommand
+﻿namespace Parser.Core.Application.Features.SiteDescriptions.Commands.DeleteSiteDescription
 {
     public class DeleteSiteDescriptionCommandHandler
         : IRequestHandler<DeleteSiteDescriptionCommand>

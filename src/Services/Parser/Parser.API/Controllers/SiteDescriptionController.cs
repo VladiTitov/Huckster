@@ -1,14 +1,12 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using Parser.API.Models;
-using Parser.Core.Application.Features.SiteDescriptions.Commands.CreateSiteDescription;
-using Parser.Core.Application.Features.SiteDescriptions.Commands.DeleteSiteDescriptionCommand;
+﻿using Parser.Core.Application.Features.SiteDescriptions.Commands.CreateSiteDescription;
+using Parser.Core.Application.Features.SiteDescriptions.Commands.DeleteSiteDescription;
+using Parser.Core.Application.Features.SiteDescriptions.Commands.UpdateSiteDescription;
 using Parser.Core.Application.Features.SiteDescriptions.Queries.GetSiteDescriptionDetails;
 using Parser.Core.Application.Features.SiteDescriptions.Queries.GetSiteDescriptionList;
+using Parser.Core.Domain.Models;
 
 namespace Parser.API.Controllers
 {
-    [Route("api/[controller]")]
     public class SiteDescriptionController : BaseController
     {
         private readonly IMapper _mapper;
@@ -19,34 +17,44 @@ namespace Parser.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<SiteDescriptionListViewModel>> GetAll()
+        public async Task<IActionResult> GetAll()
         {
             var query = new GetSiteDescriptionListQuery();
-            var viewModel = await Mediator.Send(query);
-            return Ok(viewModel);
+            return await Mediator.Send(query) is SiteDescriptionListViewModel entities
+                ? Ok(entities)
+                : NotFound();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<SiteDescriptionViewModel>> GetById(Guid id)
+        public async Task<IActionResult> GetById(Guid id)
         {
             var query = new GetSiteDescriptionDetailsQuery
             {
                 Id = id
             };
-            var viewModel = await Mediator.Send(query);
-            return Ok(viewModel);
+            return await Mediator.Send(query) is SiteDescriptionViewModel entities
+                ? Ok(entities)
+                : NotFound();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateSiteDescriptionCommand command)
+        {
+            return await Mediator.Send(command) is SiteDescription entity
+                ? Ok(entity)
+                : BadRequest();
         }
 
         [HttpPost]
-        public async Task<ActionResult<Guid>> Create([FromBody] CreateSiteDescriptionDto createSiteDescriptionDto)
+        public async Task<IActionResult> Create([FromBody] CreateSiteDescriptionCommand command)
         {
-            var command = _mapper.Map<CreateSiteDescriptionCommand>(createSiteDescriptionDto);
-            var siteDescription = await Mediator.Send(command);
-            return Ok(siteDescription);
+            return await Mediator.Send(command) is Guid entityId
+                ? Ok(entityId)
+                : BadRequest();
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             var command = new DeleteSiteDescriptionCommand
             {

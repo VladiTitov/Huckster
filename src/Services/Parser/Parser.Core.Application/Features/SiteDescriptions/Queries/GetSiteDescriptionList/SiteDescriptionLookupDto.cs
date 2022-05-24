@@ -1,8 +1,4 @@
-﻿using AutoMapper;
-using Parser.Core.Domain.Models;
-using Parser.Core.Application.Mappings;
-
-namespace Parser.Core.Application.Features.SiteDescriptions.Queries.GetSiteDescriptionList
+﻿namespace Parser.Core.Application.Features.SiteDescriptions.Queries.GetSiteDescriptionList
 {
     public class SiteDescriptionLookupDto : IMapWith<SiteDescription>
     {

@@ -1,6 +1,4 @@
-﻿using Parser.API.Constants;
-using Microsoft.AspNetCore.Mvc;
-using Parser.Core.Application.BackgroundServices.Parser;
+﻿using Parser.Core.Application.BackgroundServices.Parser;
 
 namespace Huckster.Bot.WebApi.Controllers
 {
