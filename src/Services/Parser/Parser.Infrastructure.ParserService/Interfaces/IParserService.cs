@@ -1,6 +1,4 @@
-﻿using Parser.Core.Domain.Models;
-
-namespace Parser.Infrastructure.HtmlAgilityPackService.Interfaces
+﻿namespace Parser.Infrastructure.HtmlAgilityPackService.Interfaces
 {
     public interface IParserService
     {

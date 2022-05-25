@@ -1,8 +1,6 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Parser.Core.Domain.Models
+﻿namespace Parser.Core.Domain.Models
 {
-    public class SiteDescription : BaseEntity
+    public class SiteDescription : BaseEntity, ISiteDescription
     {
         public string? SiteName { get; set; }
         public string? Description { get; set; }

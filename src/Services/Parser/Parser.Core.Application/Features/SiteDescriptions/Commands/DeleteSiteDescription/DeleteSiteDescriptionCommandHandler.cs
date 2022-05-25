@@ -3,28 +3,29 @@
     public class DeleteSiteDescriptionCommandHandler
         : IRequestHandler<DeleteSiteDescriptionCommand>
     {
-        private readonly ISiteDescriptionDbContext _dbContext;
+        private readonly ISiteDescriptionRepositoryAsync _repository;
 
-        public DeleteSiteDescriptionCommandHandler(ISiteDescriptionDbContext dbContext)
+        public DeleteSiteDescriptionCommandHandler(ISiteDescriptionRepositoryAsync repository)
         {
-            _dbContext = dbContext;
+            _repository = repository;
         }
 
         public async Task<Unit> Handle(DeleteSiteDescriptionCommand request,
             CancellationToken cancellationToken)
         {
-            var entity = await _dbContext.SitesDescriptions
-                .FindAsync(new object[] { request.Id }, cancellationToken);
-
-            if (entity == null)
-            {
-                throw new NotFoundException(nameof(SiteDescription), request.Id);
-            }
-
-            _dbContext.SitesDescriptions.Remove(entity);
-            await _dbContext.SaveChangesAsync(cancellationToken);
-
+            var entityForDelete = await GetItemForDeleteAsync(request.Id, cancellationToken);
+            await _repository.DeleteAsync(entityForDelete, cancellationToken);
             return Unit.Value;
+        }
+
+        private async Task<SiteDescription> GetItemForDeleteAsync(
+            Guid id,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return await _repository
+                .GetByIdAsync(id, cancellationToken) is SiteDescription entity
+                ? entity
+                : throw new NotFoundException(nameof(SiteDescription), id.ToString());
         }
     }
 }

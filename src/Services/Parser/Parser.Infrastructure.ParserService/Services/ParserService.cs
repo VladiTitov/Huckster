@@ -1,8 +1,4 @@
-﻿using HtmlAgilityPack;
-using Parser.Core.Domain.Models;
-using Parser.Infrastructure.HtmlAgilityPackService.Interfaces;
-
-namespace Parser.Infrastructure.HtmlAgilityPackService.Services
+﻿namespace Parser.Infrastructure.HtmlAgilityPackService.Services
 {
     public class ParserService : IParserService
     {
@@ -10,7 +6,7 @@ namespace Parser.Infrastructure.HtmlAgilityPackService.Services
         {
             var htmlNodes = GetHtmlNodes(siteDescription);
 
-            if (htmlNodes == null) return Enumerable.Empty<T>();
+            if (htmlNodes is null) return Enumerable.Empty<T>();
 
             return htmlNodes
                 .Select(htmlNode

@@ -1,6 +1,4 @@
-﻿using System.Text.RegularExpressions;
-
-namespace Parser.Core.Domain.Models
+﻿namespace Parser.Core.Domain.Models
 {
     public class AdModel : BaseEntity
     {

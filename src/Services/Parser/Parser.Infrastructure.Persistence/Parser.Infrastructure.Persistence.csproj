@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Parser.Core.Application\Parser.Core.Application.csproj" />
+    <ProjectReference Include="..\Parser.Core.Domain\Parser.Core.Domain.csproj" />
   </ItemGroup>
 
 </Project>

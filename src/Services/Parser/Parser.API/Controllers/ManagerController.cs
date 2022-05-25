@@ -1,14 +1,12 @@
-﻿using Parser.Core.Application.BackgroundServices.Parser;
+﻿using Parser.API.Controllers;
+using Parser.Core.Application.BackgroundServices.Parser;
 
 namespace Huckster.Bot.WebApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ManagerController : ControllerBase
+    public class ManagerController : BaseController
     {
         private readonly ILogger<ManagerController> _logger;
         private readonly ParserBackgroundServiceManager _parserBackgroundServiceManager;
-
 
         public ManagerController(ILogger<ManagerController> logger,
             ParserBackgroundServiceManager parserWorkerService)

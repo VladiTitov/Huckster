@@ -5,5 +5,5 @@ global using Parser.Core.Application.Mappings;
 global using MediatR;
 global using AutoMapper.QueryableExtensions;
 global using Microsoft.EntityFrameworkCore;
-global using Parser.Core.Application.Interfaces;
 global using Parser.Core.Application.Exceptions;
+global using Parser.Infrastructure.Persistence.Interfaces;

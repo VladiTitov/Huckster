@@ -3,14 +3,15 @@
     public class CreateSiteDescriptionCommandHandler
         : IRequestHandler<CreateSiteDescriptionCommand, Guid>
     {
-        private readonly ISiteDescriptionDbContext _dbContext;
+        private readonly ISiteDescriptionRepositoryAsync _repository;
 
-        public CreateSiteDescriptionCommandHandler(ISiteDescriptionDbContext dbContext)
+        public CreateSiteDescriptionCommandHandler(ISiteDescriptionRepositoryAsync repository)
         {
-            _dbContext = dbContext;
+            _repository = repository;
         }
 
-        public async Task<Guid> Handle(CreateSiteDescriptionCommand request,
+        public async Task<Guid> Handle(
+            CreateSiteDescriptionCommand request,
             CancellationToken cancellationToken)
         {
             var siteDescription = new SiteDescription
@@ -23,9 +24,7 @@
                 SiteModelSolutionName = request.SiteModelSolutionName,
                 SiteModelTypeName = request.SiteModelTypeName
             };
-
-            await _dbContext.SitesDescriptions.AddAsync(siteDescription, cancellationToken);
-            await _dbContext.SaveChangesAsync(cancellationToken);
+            await _repository.AddAsync(siteDescription, cancellationToken);
 
             return siteDescription.Id;
         }

@@ -1,30 +1,25 @@
 ﻿namespace Parser.Core.Application.Features.SiteDescriptions.Queries.GetSiteDescriptionDetails
 {
     public class GetSiteDescriptionDetailsQueryHandler
-        : IRequestHandler<GetSiteDescriptionDetailsQuery, SiteDescriptionViewModel>
+        : IRequestHandler<GetSiteDescriptionDetailsQuery, SiteDescription>
     {
-        private readonly ISiteDescriptionDbContext _dbContext;
         private readonly IMapper _mapper;
-
-        public GetSiteDescriptionDetailsQueryHandler(ISiteDescriptionDbContext dbContext,
-            IMapper mapper)
+        private readonly ISiteDescriptionRepositoryAsync _repository;
+        
+        public GetSiteDescriptionDetailsQueryHandler(
+            IMapper mapper,
+            ISiteDescriptionRepositoryAsync repository)
         {
-            _dbContext = dbContext;
+            _repository = repository;
             _mapper = mapper;
         }
 
-        public async Task<SiteDescriptionViewModel> Handle(GetSiteDescriptionDetailsQuery request,
+        public async Task<SiteDescription> Handle(
+            GetSiteDescriptionDetailsQuery request,
             CancellationToken cancellationToken)
-        {
-            var entity = await _dbContext.SitesDescriptions
-                .FirstOrDefaultAsync(siteDescription =>
-                siteDescription.Id.Equals(request.Id),
-                cancellationToken);
-
-            if (entity == null) 
-                throw new NotFoundException(nameof(SiteDescription), request.Id);
-
-            return _mapper.Map<SiteDescriptionViewModel>(entity);
-        }
+            => await _repository
+                .GetByIdAsync(request.Id, cancellationToken) is SiteDescription entity
+                ? entity
+                : throw new NotFoundException(nameof(SiteDescription), request.Id);
     }
 }

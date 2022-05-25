@@ -1,26 +1,18 @@
 ﻿using Parser.Core.Application.Features.SiteDescriptions.Commands.CreateSiteDescription;
 using Parser.Core.Application.Features.SiteDescriptions.Commands.DeleteSiteDescription;
 using Parser.Core.Application.Features.SiteDescriptions.Commands.UpdateSiteDescription;
-using Parser.Core.Application.Features.SiteDescriptions.Queries.GetSiteDescriptionDetails;
 using Parser.Core.Application.Features.SiteDescriptions.Queries.GetSiteDescriptionList;
-using Parser.Core.Domain.Models;
+using Parser.Core.Application.Features.SiteDescriptions.Queries.GetSiteDescriptionDetails;
 
 namespace Parser.API.Controllers
 {
     public class SiteDescriptionController : BaseController
     {
-        private readonly IMapper _mapper;
-
-        public SiteDescriptionController(IMapper mapper)
-        {
-            _mapper = mapper;
-        }
-
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             var query = new GetSiteDescriptionListQuery();
-            return await Mediator.Send(query) is SiteDescriptionListViewModel entities
+            return await Mediator.Send(query) is IReadOnlyList<SiteDescription> entities
                 ? Ok(entities)
                 : NotFound();
         }
@@ -32,7 +24,7 @@ namespace Parser.API.Controllers
             {
                 Id = id
             };
-            return await Mediator.Send(query) is SiteDescriptionViewModel entities
+            return await Mediator.Send(query) is SiteDescription entities
                 ? Ok(entities)
                 : NotFound();
         }

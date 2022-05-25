@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Parser.Infrastructure.Persistence.Repository;
 
 namespace Parser.Infrastructure.Persistence
 {
@@ -11,10 +12,10 @@ namespace Parser.Infrastructure.Persistence
             var connectionString = configuration.GetConnectionString("MyWebApiConection");
 
             return services
-                .AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(connectionString))
-                .AddScoped<ISiteDescriptionDbContext>(provider =>
-                provider.GetService<ApplicationDbContext>());
+                .AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString))
+                .AddScoped(typeof(IGenericBaseRepositoryAsync<>), typeof(GenericBaseRepositoryAsync<>))
+                .AddScoped<ISiteDescriptionRepositoryAsync, SiteDescriptionRepositoryAsync>()
+                .AddScoped<IAdsRepositoryAsync, AdsRepositoryAsync>();
         }
     }
 }

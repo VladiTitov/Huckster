@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using Parser.Core.Application.Mappings;
-using Parser.Core.Application.Interfaces;
 
 namespace Parser.API.Configuration.AutoMapper
 {
@@ -10,7 +9,6 @@ namespace Parser.API.Configuration.AutoMapper
             => services.AddAutoMapper(config =>
             {
                 config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
-                config.AddProfile(new AssemblyMappingProfile(typeof(ISiteDescriptionDbContext).Assembly));
             });
     }
 }

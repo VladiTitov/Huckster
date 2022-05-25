@@ -3,11 +3,11 @@
     public class UpdateSiteDescriptionCommandHandler
         : IRequestHandler<UpdateSiteDescriptionCommand, SiteDescription>
     {
-        private readonly ISiteDescriptionDbContext _dbContext;
+        private readonly ISiteDescriptionRepositoryAsync _repository;
 
-        public UpdateSiteDescriptionCommandHandler(ISiteDescriptionDbContext dbContext)
+        public UpdateSiteDescriptionCommandHandler(ISiteDescriptionRepositoryAsync repository)
         {
-            _dbContext = dbContext;
+            _repository = repository;
         }
 
         public async Task<SiteDescription> Handle(
@@ -25,8 +25,7 @@
                 SiteModelTypeName = request.SiteModelTypeName
             };
 
-            _dbContext.SitesDescriptions.Update(siteDescription);
-            await _dbContext.SaveChangesAsync(cancellationToken);
+            await _repository.UpdateAsync(siteDescription, cancellationToken);
 
             return siteDescription;
         }

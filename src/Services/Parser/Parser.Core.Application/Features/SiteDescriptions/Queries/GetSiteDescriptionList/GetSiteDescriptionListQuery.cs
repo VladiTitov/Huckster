@@ -1,6 +1,7 @@
 ﻿namespace Parser.Core.Application.Features.SiteDescriptions.Queries.GetSiteDescriptionList
 {
-    public class GetSiteDescriptionListQuery : IRequest<SiteDescriptionListViewModel>
+    public class GetSiteDescriptionListQuery 
+        : IRequest<IReadOnlyList<SiteDescription>>
     {
     }
 }

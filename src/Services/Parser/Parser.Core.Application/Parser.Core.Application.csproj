@@ -8,8 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
-    <PackageReference Include="FluentValidation" Version="11.0.0" />
-    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.0.0" />
+    <PackageReference Include="FluentValidation" Version="11.0.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.0.1" />
     <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
@@ -18,8 +18,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\EventBus\EventBus.RabbitMq\EventBus.RabbitMq.csproj" />
-    <ProjectReference Include="..\Parser.Infrastructure.DataAccess\Parser.Infrastructure.DataAccess.csproj" />
     <ProjectReference Include="..\Parser.Infrastructure.ParserService\Parser.Infrastructure.HtmlAgilityPackService.csproj" />
+    <ProjectReference Include="..\Parser.Infrastructure.Persistence\Parser.Infrastructure.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

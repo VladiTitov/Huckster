@@ -3,7 +3,6 @@ using EventBus.RabbitMq.Interfaces;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
-using Parser.Infrastructure.DataAccess.Interfaces;
 using Parser.Infrastructure.HtmlAgilityPackService.Interfaces;
 
 namespace Parser.Core.Application.BackgroundServices.Parser
@@ -15,7 +14,7 @@ namespace Parser.Core.Application.BackgroundServices.Parser
         private readonly IRabbitMqPublisher _rabbitMqPublisher;
         private readonly IServiceProvider _serviceProvider;
         private readonly IParserService _parserService;
-        private readonly string _environmentName;
+        private readonly IHostEnvironment _hostEnvironment;
 
         public ParserBackgroundServiceManager(
             ILogger<ParserBackgroundServiceManager> logger,
@@ -26,18 +25,18 @@ namespace Parser.Core.Application.BackgroundServices.Parser
             : base(logger)
         {
             _logger = logger;
-            _environmentName = hostEnvironment.EnvironmentName;
+            _hostEnvironment = hostEnvironment;
             _rabbitMqPublisher = rabbitMqPublisher;
             _serviceProvider = serviceProvider;
             _parserService = parserService;
-            _siteDescriptions = GetSiteDescriptions();
+            _siteDescriptions = GetSiteDescriptions().Result;
         }
 
-        private IEnumerable<SiteDescription> GetSiteDescriptions()
+        private async Task<IEnumerable<SiteDescription>> GetSiteDescriptions()
         {
             using var scope = _serviceProvider.CreateScope();
-            var repository = scope.ServiceProvider.GetRequiredService<ISiteDescriptionDbContext>();
-            return repository.SitesDescriptions.ToList();
+            var repository = scope.ServiceProvider.GetRequiredService<ISiteDescriptionRepositoryAsync>();
+            return await repository.GetAllAsync();
         }
 
         protected override void Execute(CancellationToken cancellationToken)
@@ -59,10 +58,8 @@ namespace Parser.Core.Application.BackgroundServices.Parser
                 var repository = scope.ServiceProvider.GetRequiredService<IAdsRepositoryAsync>();
                 foreach (var ad in adModels)
                 {
-                    if (ad.IsNull()) continue;
-                    if (await repository.GetAdById(ad.UrlId) != null) continue;
-                    repository.CreateAd(ad);
-                    await repository.SaveChangesAsync();
+                    if (ad.IsNull() || await repository.IsContainsAsync(ad)) continue;
+                    await repository.AddAsync(ad);
                     SendMessageInEventBus(ad);
                 }
             }
@@ -70,7 +67,7 @@ namespace Parser.Core.Application.BackgroundServices.Parser
 
         private async void SendMessageInEventBus(AdModel ad)
         {
-            if (_environmentName.Equals("Development")) 
+            if (_hostEnvironment.IsDevelopment())
                 _logger.LogInformation(ad.ToString());
             var jsonMessage = JsonSerializer.Serialize(ad);
             await _rabbitMqPublisher.SendMessage(jsonMessage);

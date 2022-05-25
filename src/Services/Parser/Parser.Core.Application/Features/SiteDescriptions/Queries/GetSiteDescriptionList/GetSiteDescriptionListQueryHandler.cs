@@ -1,28 +1,26 @@
 ﻿namespace Parser.Core.Application.Features.SiteDescriptions.Queries.GetSiteDescriptionList
 {
     public class GetSiteDescriptionListQueryHandler
-        : IRequestHandler<GetSiteDescriptionListQuery, SiteDescriptionListViewModel>
+        : IRequestHandler<GetSiteDescriptionListQuery, IReadOnlyList<SiteDescription>>
     {
-        private readonly ISiteDescriptionDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly ISiteDescriptionRepositoryAsync _repository;
 
         public GetSiteDescriptionListQueryHandler(
-            ISiteDescriptionDbContext dbContext,
-            IMapper mapper)
+            IMapper mapper,
+            ISiteDescriptionRepositoryAsync repository)
         {
-            _dbContext = dbContext;
             _mapper = mapper;
+            _repository = repository;
         }
 
-        public async Task<SiteDescriptionListViewModel> Handle(
+        public async Task<IReadOnlyList<SiteDescription>> Handle(
             GetSiteDescriptionListQuery request, 
             CancellationToken cancellationToken)
         {
-            var siteDescriptionQuery = await _dbContext.SitesDescriptions
-                .ProjectTo<SiteDescriptionLookupDto>(_mapper.ConfigurationProvider)
-                .ToListAsync(cancellationToken);
-
-            return new SiteDescriptionListViewModel { SiteDescriptions = siteDescriptionQuery };
+            return await _repository.GetAllAsync(cancellationToken) is IReadOnlyList<SiteDescription> data
+                ? data
+                : throw new NotFoundException(nameof(SiteDescription), request);
         }
     }
 }

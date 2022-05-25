@@ -1,9 +1,9 @@
 ﻿namespace Parser.Infrastructure.Persistence.EntityTypeConfigurations
 {
-    internal class SiteDescriptionConfiguration 
-        : IEntityTypeConfiguration<SiteDescription>
+    public class AdModelConfiguration 
+        : IEntityTypeConfiguration<AdModel>
     {
-        public void Configure(EntityTypeBuilder<SiteDescription> builder)
+        public void Configure(EntityTypeBuilder<AdModel> builder)
         {
             builder
                 .HasKey(_ => _.Id);

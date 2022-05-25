@@ -1,8 +1,4 @@
-﻿using HtmlAgilityPack;
-using Parser.Core.Domain.Models;
-using Parser.Infrastructure.HtmlAgilityPackService.Constants;
-
-namespace Parser.Infrastructure.HtmlAgilityPackService.Models
+﻿namespace Parser.Infrastructure.HtmlAgilityPackService.Models
 {
     public class OnlinerAdModel : AdModel
     {

@@ -3,7 +3,7 @@
 namespace Parser.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]/action")]
+    [Route("api/[controller]/[action]")]
     public abstract class BaseController : ControllerBase
     {
         private IMediator _mediator;
