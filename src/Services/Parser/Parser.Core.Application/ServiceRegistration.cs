@@ -2,6 +2,8 @@
 using Parser.Core.Application.Behaviors;
 using Microsoft.Extensions.DependencyInjection;
 using Parser.Core.Application.BackgroundServices.Parser;
+using Parser.Core.Application.Interfaces;
+using Parser.Core.Application.Services;
 
 namespace Parser.Core.Application
 {
@@ -11,6 +13,8 @@ namespace Parser.Core.Application
             => services
             .AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>))
             .AddSingleton<ParserBackgroundServiceManager>()
+            .AddSingleton<IMessageBusService, MessageBusService>()
+            .AddSingleton<IAdHandlerService, AdHandlerService>()
             .AddMediatR(Assembly.GetExecutingAssembly())
             .AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
     }

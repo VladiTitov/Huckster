@@ -16,8 +16,7 @@ namespace Huckster.Bot.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("Start")]
-        public async Task<ActionResult> StartParserService()
+        public async Task<ActionResult> Start()
         {
             _logger.LogInformation($"{ApiStatusMessages.ServiceStartedMessage} {DateTime.Now}");
             await _parserBackgroundServiceManager.StartAsync(new CancellationToken());
@@ -25,8 +24,7 @@ namespace Huckster.Bot.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("Stop")]
-        public async Task<ActionResult> StopParserService()
+        public async Task<ActionResult> Stop()
         {
             _logger.LogInformation($"{ApiStatusMessages.ServiceStoppedMessage} {DateTime.Now}");
             await _parserBackgroundServiceManager.StopAsync(new CancellationToken());
