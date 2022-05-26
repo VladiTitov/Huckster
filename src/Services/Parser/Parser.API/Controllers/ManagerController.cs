@@ -1,16 +1,12 @@
-﻿using Parser.API.Constants;
-using Microsoft.AspNetCore.Mvc;
-using Parser.Core.Application.Features.Parser;
+﻿using Parser.API.Controllers;
+using Parser.Core.Application.BackgroundServices.Parser;
 
 namespace Huckster.Bot.WebApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ManagerController : ControllerBase
+    public class ManagerController : BaseController
     {
         private readonly ILogger<ManagerController> _logger;
         private readonly ParserBackgroundServiceManager _parserBackgroundServiceManager;
-
 
         public ManagerController(ILogger<ManagerController> logger,
             ParserBackgroundServiceManager parserWorkerService)
@@ -20,8 +16,7 @@ namespace Huckster.Bot.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("Start")]
-        public async Task<ActionResult> StartParserService()
+        public async Task<ActionResult> Start()
         {
             _logger.LogInformation($"{ApiStatusMessages.ServiceStartedMessage} {DateTime.Now}");
             await _parserBackgroundServiceManager.StartAsync(new CancellationToken());
@@ -29,8 +24,7 @@ namespace Huckster.Bot.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("Stop")]
-        public async Task<ActionResult> StopParserService()
+        public async Task<ActionResult> Stop()
         {
             _logger.LogInformation($"{ApiStatusMessages.ServiceStoppedMessage} {DateTime.Now}");
             await _parserBackgroundServiceManager.StopAsync(new CancellationToken());

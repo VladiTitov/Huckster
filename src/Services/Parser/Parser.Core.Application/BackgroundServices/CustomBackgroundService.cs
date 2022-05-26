@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Parser.Core.Application.Features
+namespace Parser.Core.Application.BackgroundServices
 {
     public abstract class CustomBackgroundService : BackgroundService
     {

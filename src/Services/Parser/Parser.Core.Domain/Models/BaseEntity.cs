@@ -1,7 +1,7 @@
 ﻿namespace Parser.Core.Domain.Models
 {
-    public class BaseEntity
+    public class BaseEntity : IBaseEntity
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
     }
 }

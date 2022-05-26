@@ -2,6 +2,6 @@
 {
     public interface IAdHandlerService
     {
-        Task Execute(CancellationToken cancellationToken);
+        void AdHandler(SiteDescription siteDescription);
     }
 }

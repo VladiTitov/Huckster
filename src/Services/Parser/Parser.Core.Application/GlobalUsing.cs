@@ -1,0 +1,9 @@
+﻿global using AutoMapper;
+global using FluentValidation;
+global using Parser.Core.Domain.Models;
+global using Parser.Core.Application.Mappings;
+global using MediatR;
+global using AutoMapper.QueryableExtensions;
+global using Microsoft.EntityFrameworkCore;
+global using Parser.Core.Application.Exceptions;
+global using Parser.Infrastructure.Persistence.Interfaces;

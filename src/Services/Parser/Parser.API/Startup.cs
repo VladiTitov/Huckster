@@ -1,7 +1,4 @@
-﻿using Parser.API.Configuration.Ioc;
-using Parser.API.Configuration.Swagger;
-
-namespace Huckster.Bot.WebApi
+﻿namespace Huckster.Bot.WebApi
 {
     public class Startup
     {
@@ -26,7 +23,10 @@ namespace Huckster.Bot.WebApi
             }
 
             app.UseRouting();
+            app.UseHttpsRedirection();
             app.ConfigureSwagger();
+            app.UseAllowAllCors();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
