@@ -1,7 +1,7 @@
 ﻿namespace Parser.Infrastructure.HtmlAgilityPackService.Interfaces
 {
-    public interface IParserService
+    public interface IParserService<T> where T : BaseEntity
     {
-        IEnumerable<T> GetData<T>(SiteDescription siteDescription);
+        IEnumerable<T> GetData(SiteDescription siteDescription);
     }
 }

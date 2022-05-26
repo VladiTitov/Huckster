@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Parser.Core.Application.Mappings;
+﻿using Parser.Core.Application.Mappings;
 using Parser.Core.Application.Features.SiteDescriptions.Commands.CreateSiteDescription;
 
 namespace Parser.API.Models
@@ -25,9 +24,7 @@ namespace Parser.API.Models
                 .ForMember(siteDescription => siteDescription.SiteSelector,
                 opt => opt.MapFrom(siteDescriptionDto => siteDescriptionDto.SiteSelector))
                 .ForMember(siteDescription => siteDescription.SiteModelTypeName,
-                opt => opt.MapFrom(siteDescriptionDto => siteDescriptionDto.SiteModelTypeName))
-                .ForMember(siteDescription => siteDescription.SiteModelSolutionName,
-                opt => opt.MapFrom(siteDescriptionDto => siteDescriptionDto.SiteModelSolutionName));
+                opt => opt.MapFrom(siteDescriptionDto => siteDescriptionDto.SiteModelTypeName));
         }
     }
 }

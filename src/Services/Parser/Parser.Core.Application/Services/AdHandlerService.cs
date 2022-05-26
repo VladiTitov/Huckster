@@ -6,12 +6,12 @@ namespace Parser.Core.Application.Services
 {
     public class AdHandlerService : IAdHandlerService
     {
-        private readonly IParserService _parserService;
+        private readonly IParserService<AdModel> _parserService;
         private readonly IServiceProvider _serviceProvider;
         private readonly IMessageBusService _messageBusService;
 
         public AdHandlerService(
-            IParserService parserService,
+            IParserService<AdModel> parserService,
             IServiceProvider serviceProvider,
             IMessageBusService messageBusService)
         {
@@ -35,7 +35,6 @@ namespace Parser.Core.Application.Services
             }
         }
         private IEnumerable<AdModel> GetAdList(SiteDescription siteDescription)
-            => _parserService
-                .GetData<AdModel>(siteDescription);
+            => _parserService.GetData(siteDescription);
     }
 }

@@ -13,9 +13,6 @@
                 .NotEmpty();
             RuleFor(_ => _.SiteModelTypeName)
                 .NotEmpty();
-            RuleFor(_ => _.SiteModelSolutionName)
-                .NotEmpty();
-
         }
     }
 }

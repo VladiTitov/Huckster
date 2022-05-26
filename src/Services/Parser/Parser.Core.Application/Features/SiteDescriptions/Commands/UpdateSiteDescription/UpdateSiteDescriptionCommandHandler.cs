@@ -21,7 +21,6 @@
                 Description = request.Description,
                 SiteUrl = request.SiteUrl,
                 SiteSelector = request.SiteSelector,
-                SiteModelSolutionName = request.SiteModelSolutionName,
                 SiteModelTypeName = request.SiteModelTypeName
             };
 

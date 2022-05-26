@@ -7,10 +7,5 @@
         string? SiteUrl { get; set; }
         string? SiteSelector { get; set; }
         string? SiteModelTypeName { get; set; }
-        string? SiteModelSolutionName { get; set; }
-
-        [JsonIgnore]
-        public Type SiteModelType =>
-            Type.GetType($"{SiteModelSolutionName}.{SiteModelTypeName}, {SiteModelSolutionName}")!;
     }
 }

@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-
-namespace Parser.Core.Application.Mappings
+﻿namespace Parser.Core.Application.Mappings
 {
     public interface IMapWith<T>
     {

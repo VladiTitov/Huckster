@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Parser.Infrastructure.HtmlAgilityPackService.Services;
-using Parser.Infrastructure.HtmlAgilityPackService.Interfaces;
 
 namespace Parser.Infrastructure.HtmlAgilityPackService
 {
@@ -8,6 +7,6 @@ namespace Parser.Infrastructure.HtmlAgilityPackService
     {
         public static IServiceCollection AddParserInfrastructure(this IServiceCollection services)
             => services
-                .AddSingleton<IParserService, ParserService>();
+                .AddSingleton(typeof(IParserService<>), typeof(ParserService<>));
     }
 }
