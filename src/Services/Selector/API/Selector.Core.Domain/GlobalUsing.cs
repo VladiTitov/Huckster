@@ -1,0 +1,1 @@
+﻿global using Selector.Core.Domain.Interfaces;

@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Selector.Core.Application\Selector.Core.Application.csproj" />
-    <ProjectReference Include="..\Selector.Infrastructure.TelagramBackgroundService\Selector.Infrastructure.TelagramBackgroundService.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,6 @@
-﻿using Telegram.Bot;
-using Telegram.Bot.Extensions.Polling;
-
-namespace Selector.Core.Application.Services
+﻿namespace Selector.BackgroundTasks.TelegramService.Services
 {
-    public class TelegramBotHandlerService : ITelegramBotHandlerService
+    internal class TelegramBotHandlerService : ITelegramBotHandlerService
     {
         private ITelegramBotClient _telegramBotClient;
         private readonly IErrorTelegramHandler _errorHandler;

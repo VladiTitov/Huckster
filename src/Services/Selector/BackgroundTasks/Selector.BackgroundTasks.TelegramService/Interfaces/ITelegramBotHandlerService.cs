@@ -1,4 +1,4 @@
-﻿namespace Selector.Core.Application.Interfaces
+﻿namespace Selector.BackgroundTasks.TelegramService.Interfaces
 {
     public interface ITelegramBotHandlerService
     {
