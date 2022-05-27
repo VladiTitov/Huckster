@@ -4,20 +4,23 @@ namespace Selector.BackgroundTasks.TelegramService
     {
         private readonly ILogger<Worker> _logger;
         private readonly ITelegramBotHandlerService _telegramBotHandler;
+        private readonly string _token;
 
         public Worker(ILogger<Worker> logger,
-            ITelegramBotHandlerService telegramBotHandler)
+            ITelegramBotHandlerService telegramBotHandler,
+            IConfiguration configuration)
         {
             _logger = logger;
             _telegramBotHandler = telegramBotHandler;
+            _token = configuration.GetTelegramToken();
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            string token = "5234612082:AAHEthD2BBF0Kkd1Q72ap9cLyTsVFBLqlcA";
+            if (_token is null) throw new ArgumentNullException(nameof(_token));
             _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
             await _telegramBotHandler.StartReceiving(
-                telegramToken: token,
+                telegramToken: _token,
                 cancellationToken: stoppingToken);
         }
     }

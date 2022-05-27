@@ -1,6 +1,4 @@
-﻿
-
-namespace Selector.Infrastructure.Persistence.Context
+﻿namespace Selector.Infrastructure.Persistence.Context
 {
     public class ApplicationDbContext : DbContext
     {

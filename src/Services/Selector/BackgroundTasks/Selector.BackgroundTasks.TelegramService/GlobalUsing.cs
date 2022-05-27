@@ -6,4 +6,5 @@ global using Telegram.Bot.Extensions.Polling;
 global using Selector.BackgroundTasks.TelegramService.Handlers;
 global using Selector.BackgroundTasks.TelegramService.Services;
 global using Selector.BackgroundTasks.TelegramService.Interfaces;
+global using Selector.BackgroundTasks.TelegramService.Extensions;
 global using Selector.BackgroundTasks.TelegramService.Configuration.Ioc;

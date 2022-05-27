@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Features\SearchCriteries\Commands\" />
+    <Folder Include="Features\SearchCriteries\Queries\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Services\" />
   </ItemGroup>
