@@ -1,4 +1,7 @@
-﻿namespace Selector.API.Controllers
+﻿using Selector.Core.Application.Features.SearchCriteries.Queries.GetAllSearchCriteries;
+using Selector.Core.Application.Features.SearchCriteries.Queries.GetSearchCriteriaById;
+
+namespace Selector.API.Controllers
 {
     public class SearchCriteriaController : BaseController
     {
@@ -11,15 +14,26 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var query = new GetAllSearchCriteriesQuery();
+            return await Mediator.Send(query, cancellationToken) is IReadOnlyList<SearchCriteriaModel> data
+                ? Ok(data)
+                : NoContent();
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(Guid id)
+        public async Task<IActionResult> GetById(
+            Guid id,
+            CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var query = new GetSearchCriteriaByIdQuery
+            {
+                Id = id
+            };
+            return await Mediator.Send(query, cancellationToken) is SearchCriteriaModel model
+                ? Ok(model)
+                : NotFound();
         }
 
         [HttpPut]
