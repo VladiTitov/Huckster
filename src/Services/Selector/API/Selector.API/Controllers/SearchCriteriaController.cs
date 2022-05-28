@@ -1,4 +1,7 @@
-﻿using Selector.Core.Application.Features.SearchCriteries.Queries.GetAllSearchCriteries;
+﻿using Selector.Core.Application.Features.SearchCriteries.Commands.CreateSearchCriteria;
+using Selector.Core.Application.Features.SearchCriteries.Commands.DeleteSearchCriteria;
+using Selector.Core.Application.Features.SearchCriteries.Commands.UpdateSearchCriteria;
+using Selector.Core.Application.Features.SearchCriteries.Queries.GetAllSearchCriteries;
 using Selector.Core.Application.Features.SearchCriteries.Queries.GetSearchCriteriaById;
 
 namespace Selector.API.Controllers
@@ -37,21 +40,33 @@ namespace Selector.API.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update()
+        public async Task<IActionResult> Update(
+            [FromBody] UpdateSearchCriteriaCommand command,
+            CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await Mediator.Send(command, cancellationToken) is SearchCriteriaModel model
+                ? Ok(model)
+                : NotFound();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(
+            [FromBody] CreateSearchCriteriaCommand command,
+            CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await Mediator.Send(command, cancellationToken) is Guid id
+                ? Created("", id)
+                : BadRequest();
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete(
+            [FromBody] DeleteSearchCriteriaCommand command,
+            CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await Mediator.Send(command, cancellationToken)
+                ? NoContent()
+                : NotFound();
         }
     }
 }
