@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\BuildingBlocks\Common\Common.Models\Common.Models.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -3,25 +3,37 @@
     public class CreateSearchCriteriaCommandHandler
          : IRequestHandler<CreateSearchCriteriaCommand, Guid>
     {
-        public readonly ISearchCriteriaRepositoryAsync _searchCriteriaRepository;
+        private readonly ISearchCriteriaRepositoryAsync _searchCriteriaRepository;
+        private readonly IUserRepositoryAsync _userRepository;
 
         public CreateSearchCriteriaCommandHandler(
-            ISearchCriteriaRepositoryAsync searchCriteriaRepository) 
+            ISearchCriteriaRepositoryAsync searchCriteriaRepository,
+            IUserRepositoryAsync userRepository) 
         {
             _searchCriteriaRepository = searchCriteriaRepository;
+            _userRepository = userRepository;
         }
 
         public async Task<Guid> Handle(
             CreateSearchCriteriaCommand request, 
             CancellationToken cancellationToken = default(CancellationToken))
         {
+            var user = new UserModel
+            {
+                UserId = 1,
+                FirstName = "firstName",
+                LastName = "lastName",
+                Username = "username"
+            };
+
+            await _userRepository.AddAsync(user, cancellationToken);
+
             var entity = new SearchCriteriaModel
             {
-                Id = new Guid(),
                 Label = request.Label,
                 MinCost = request.MinCost,
                 MaxCost = request.MaxCost,
-                UserId = request.UserId
+                User = user
             };
 
             await _searchCriteriaRepository.AddAsync(entity, cancellationToken);

@@ -69,9 +69,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Selector.Core.Domain", "Ser
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Selector.API", "Services\Selector\API\Selector.API\Selector.API.csproj", "{47FA7DA9-03E4-4785-A86C-3402FA75F2F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selector.Infrastructure.Persistence", "Services\Selector\API\Selector.Infrastructure.Persistence\Selector.Infrastructure.Persistence.csproj", "{FBAD50A0-7B67-4651-B1F2-A37F91C09F48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Selector.Infrastructure.Persistence", "Services\Selector\API\Selector.Infrastructure.Persistence\Selector.Infrastructure.Persistence.csproj", "{FBAD50A0-7B67-4651-B1F2-A37F91C09F48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selector.BackgroundTasks.SelectorService", "Services\Selector\BackgroundTasks\Selector.BackgroundTasks.SelectorService\Selector.BackgroundTasks.SelectorService.csproj", "{AA7E4568-5E66-41B0-AF7C-0BD7756FA8E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Selector.BackgroundTasks.SelectorService", "Services\Selector\BackgroundTasks\Selector.BackgroundTasks.SelectorService\Selector.BackgroundTasks.SelectorService.csproj", "{AA7E4568-5E66-41B0-AF7C-0BD7756FA8E7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositories", "Repositories", "{F26F3B3E-9FAE-42E2-84B0-299C88BBE754}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository.Base", "Repository.Base", "{A9B9F4DF-5589-47D7-B9ED-88282E50D602}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Base", "BuildingBlocks\Repositories\Repository.Base\Repository.Base.csproj", "{B4C471DE-B895-4950-A9FC-782FB9AA655A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{3B175EA3-F1C8-483E-B224-1196B192BD82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Models", "BuildingBlocks\Common\Common.Models\Common.Models.csproj", "{F5FEBD02-B1DE-493A-8B5E-2720D45BC01F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,6 +145,14 @@ Global
 		{AA7E4568-5E66-41B0-AF7C-0BD7756FA8E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA7E4568-5E66-41B0-AF7C-0BD7756FA8E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA7E4568-5E66-41B0-AF7C-0BD7756FA8E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4C471DE-B895-4950-A9FC-782FB9AA655A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4C471DE-B895-4950-A9FC-782FB9AA655A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4C471DE-B895-4950-A9FC-782FB9AA655A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4C471DE-B895-4950-A9FC-782FB9AA655A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5FEBD02-B1DE-493A-8B5E-2720D45BC01F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5FEBD02-B1DE-493A-8B5E-2720D45BC01F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5FEBD02-B1DE-493A-8B5E-2720D45BC01F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5FEBD02-B1DE-493A-8B5E-2720D45BC01F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -173,6 +191,11 @@ Global
 		{47FA7DA9-03E4-4785-A86C-3402FA75F2F1} = {A35CF56C-D482-4C33-BC7F-F8B3FA8369DA}
 		{FBAD50A0-7B67-4651-B1F2-A37F91C09F48} = {0DA0C90C-FC46-469A-9DFB-93550A0F3B98}
 		{AA7E4568-5E66-41B0-AF7C-0BD7756FA8E7} = {E56FEA4E-4185-4E52-BFA0-B018E6B8A203}
+		{F26F3B3E-9FAE-42E2-84B0-299C88BBE754} = {115C2ED5-F3ED-437C-AB0B-883B7204D2FD}
+		{A9B9F4DF-5589-47D7-B9ED-88282E50D602} = {F26F3B3E-9FAE-42E2-84B0-299C88BBE754}
+		{B4C471DE-B895-4950-A9FC-782FB9AA655A} = {A9B9F4DF-5589-47D7-B9ED-88282E50D602}
+		{3B175EA3-F1C8-483E-B224-1196B192BD82} = {115C2ED5-F3ED-437C-AB0B-883B7204D2FD}
+		{F5FEBD02-B1DE-493A-8B5E-2720D45BC01F} = {3B175EA3-F1C8-483E-B224-1196B192BD82}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F3D4D1B3-2881-4E73-BAB2-00D5C0CC3BC9}

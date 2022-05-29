@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\BuildingBlocks\Repositories\Repository.Base\Repository.Base.csproj" />
     <ProjectReference Include="..\Selector.Core.Domain\Selector.Core.Domain.csproj" />
   </ItemGroup>
 

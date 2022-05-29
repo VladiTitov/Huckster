@@ -3,8 +3,8 @@ using Selector.Core.Domain.Models;
 
 namespace Selector.Infrastructure.Persistence.Interfaces
 {
-    public interface ISearchCriteriaRepositoryAsync 
-        : IGenericBaseRepositoryAsync<SearchCriteriaModel>
+    public interface IUserRepositoryAsync
+        : IGenericBaseRepositoryAsync<UserModel>
     {
     }
 }

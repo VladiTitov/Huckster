@@ -6,6 +6,5 @@
         public string Label { get; set; }
         public double MinCost { get; set; }
         public double MaxCost { get; set; }
-        public long UserId { get; set; }
     }
 }

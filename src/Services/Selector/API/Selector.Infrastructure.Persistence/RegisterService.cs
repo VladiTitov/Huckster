@@ -11,8 +11,8 @@ namespace Selector.Infrastructure.Persistence
             var connectionString = configuration.GetConnectionString("MyWebApiConection");
             return services
                 .AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString))
-                .AddScoped(typeof(IGenericBaseRepositoryAsync<>), typeof(GenericBaseRepositoryAsync<>))
-                .AddScoped<ISearchCriteriaRepositoryAsync, SearchCriteriaRepositoryAsync>();
+                .AddScoped<ISearchCriteriaRepositoryAsync, SearchCriteriaRepositoryAsync>()
+                .AddScoped<IUserRepositoryAsync, UserRepositoryAsync>();
         }
     }
 }

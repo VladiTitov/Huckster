@@ -1,4 +1,6 @@
-﻿namespace Selector.Infrastructure.Persistence.Repository
+﻿
+
+namespace Selector.Infrastructure.Persistence.Repository
 {
     internal class SearchCriteriaRepositoryAsync 
         : GenericBaseRepositoryAsync<SearchCriteriaModel>, ISearchCriteriaRepositoryAsync

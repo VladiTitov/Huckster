@@ -1,1 +1,1 @@
-﻿global using Selector.Core.Domain.Interfaces;
+﻿global using Common.Models;
