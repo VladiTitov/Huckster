@@ -8,16 +8,8 @@ namespace Selector.API.Controllers
 {
     public class SearchCriteriaController : BaseController
     {
-        private readonly ILogger<SearchCriteriaController> _logger;
-
-        public SearchCriteriaController(
-            ILogger<SearchCriteriaController> logger)
-        {
-            _logger = logger;
-        }
-
         [HttpGet]
-        public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
+        public async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken)
         {
             var query = new GetAllSearchCriteriesQuery();
             return await Mediator.Send(query, cancellationToken) is IReadOnlyList<SearchCriteriaModel> data
@@ -26,7 +18,7 @@ namespace Selector.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(
+        public async Task<IActionResult> GetByIdAsync(
             Guid id,
             CancellationToken cancellationToken)
         {
@@ -40,7 +32,7 @@ namespace Selector.API.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(
+        public async Task<IActionResult> UpdateAsync(
             [FromBody] UpdateSearchCriteriaCommand command,
             CancellationToken cancellationToken)
         {
@@ -50,7 +42,7 @@ namespace Selector.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(
+        public async Task<IActionResult> CreateAsync(
             [FromBody] CreateSearchCriteriaCommand command,
             CancellationToken cancellationToken)
         {
@@ -60,7 +52,7 @@ namespace Selector.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(
+        public async Task<IActionResult> DeleteAsync(
             [FromBody] DeleteSearchCriteriaCommand command,
             CancellationToken cancellationToken)
         {
