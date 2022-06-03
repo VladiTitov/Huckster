@@ -1,9 +1,10 @@
 ﻿namespace Selector.BackgroundTasks.TelegramService.Interfaces
 {
-    public interface ITelegramBotHandlerService
+    public interface IMessageTelegramHandler
     {
-        Task StartReceiving(
-            string telegramToken,
+        Task Handle(
+            ITelegramBotClient botClient,
+            Message message,
             CancellationToken cancellationToken = default(CancellationToken));
     }
 }

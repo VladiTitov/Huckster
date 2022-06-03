@@ -10,24 +10,44 @@
             _dbContext = dbContext;
         }
 
-        public async Task<IReadOnlyList<T>> GetAllAsync(
+        public IQueryable<T> AsQueryable()
+            => _dbContext
+                .Set<T>()
+                .AsQueryable();
+
+        public virtual async Task<IReadOnlyList<T>> GetAllAsync(
             CancellationToken cancellationToken = default(CancellationToken))
          => await _dbContext
-                .Set<T>()
+                .Set<T>()       
                 .ToListAsync(cancellationToken);
 
-        public async Task<T?> GetByIdAsync(
+        public virtual async Task<IReadOnlyList<T>> GetAllByFilterAsync(
+            Expression<Func<T, bool>> filter,
+            CancellationToken cancellationToken = default(CancellationToken))
+            => await _dbContext
+                .Set<T>()
+                .AsQueryable()
+                .Where(filter)
+                .ToListAsync(cancellationToken);
+
+        public virtual async Task<T?> GetByIdAsync(
             Guid id, 
             CancellationToken cancellationToken = default(CancellationToken))
-        {
-            var data = _dbContext.Set<T>().AsQueryable();
+            => await _dbContext
+                .Set<T>()
+                .AsQueryable()
+                .SingleOrDefaultAsync(
+                    predicate: i => i.Id.Equals(id),
+                    cancellationToken: cancellationToken);
 
-            return await data.SingleOrDefaultAsync(
-                predicate: i => i.Id.Equals(id),
-                cancellationToken: cancellationToken);
-        }
+        public virtual async Task<T?> GetByFilterAsync(
+            Expression<Func<T, bool>> filter,
+            CancellationToken cancellationToken = default(CancellationToken))
+            => await _dbContext
+                .Set<T>()
+                .FindAsync(filter, cancellationToken);
 
-        public async Task<T> AddAsync(
+        public virtual async Task<T> AddAsync(
             T entity, 
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -36,7 +56,7 @@
             return entity;
         }
 
-        public async Task UpdateAsync(
+        public virtual async Task UpdateAsync(
             T entity, 
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -44,7 +64,7 @@
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task DeleteAsync(
+        public virtual async Task DeleteAsync(
             T entity, 
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -52,11 +72,14 @@
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<bool> IsContainsAsync(
-            T entity, 
+        public virtual async Task<bool> IsContainsAsync(
+            Func<T, bool> predicate,
             CancellationToken cancellationToken = default(CancellationToken))
-            => await _dbContext
-                .Set<T>()
-                .ContainsAsync(entity, cancellationToken);
+        {
+            var entity = await _dbContext.Set<T>().FindAsync(predicate, cancellationToken);
+            if (entity != null) return true;
+            return false;
+        }
+
     }
 }

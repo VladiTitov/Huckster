@@ -1,14 +1,17 @@
 ﻿namespace Selector.BackgroundTasks.TelegramService.Handlers
 {
-    internal class UpdateTelegramHandler : IUpdateTelegramHandler
+    internal class TelegramBotHandler : ITelegramBotHandler
     {
+        private readonly ILogger<TelegramBotHandler> _logger;
         private readonly IMessageTelegramHandler _messageHandler;
         private readonly ICallbackQueryHandler _callbackQueryHandler;
 
-        public UpdateTelegramHandler(
+        public TelegramBotHandler(
+            ILogger<TelegramBotHandler> logger,
             IMessageTelegramHandler messageHandler,
             ICallbackQueryHandler callbackQueryHandler)
         {
+            _logger = logger;
             _messageHandler = messageHandler;
             _callbackQueryHandler = callbackQueryHandler;
         }
@@ -23,7 +26,7 @@
                 case UpdateType.Message:
                     await _messageHandler.Handle(
                         botClient: botClient,
-                        message: update.Message, 
+                        message: update.Message,
                         cancellationToken: cancellationToken);
                     break;
                 case UpdateType.CallbackQuery:
@@ -33,6 +36,21 @@
                         cancellationToken: cancellationToken);
                     break;
             }
+        }
+
+        public Task HandleErrorAsync(
+            ITelegramBotClient botClient,
+            Exception exception,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var errorMessage = exception switch
+            {
+                ApiRequestException apiRequestException => $"Telegram API Error:\n[{apiRequestException.ErrorCode}]\n{apiRequestException.Message}",
+                _ => exception.ToString()
+            };
+
+            _logger.LogError(errorMessage);
+            return Task.CompletedTask;
         }
     }
 }

@@ -16,8 +16,8 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfiguration(new SiteDescriptionConfiguration());
-            builder.ApplyConfiguration(new AdModelConfiguration());
+            builder.ApplyConfiguration(new SearchCriteriaConfigurations());
+            builder.ApplyConfiguration(new Use());
             base.OnModelCreating(builder);
         }
     }

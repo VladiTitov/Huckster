@@ -8,8 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ardalis.GuardClauses" Version="4.0.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
     <PackageReference Include="Telegram.Bot" Version="17.0.0" />
     <PackageReference Include="Telegram.Bot.Extensions.Polling" Version="1.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\API\Selector.Core.Domain\Selector.Core.Domain.csproj" />
+    <ProjectReference Include="..\..\API\Selector.Infrastructure.Persistence\Selector.Infrastructure.Persistence.csproj" />
   </ItemGroup>
 </Project>

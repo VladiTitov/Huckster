@@ -1,10 +1,10 @@
 ﻿namespace Selector.BackgroundTasks.TelegramService.Interfaces
 {
-    internal interface IErrorTelegramHandler
+    internal interface ICallbackQueryHandler
     {
-        Task HandleErrorAsync(
+        Task Handle(
             ITelegramBotClient botClient,
-            Exception exception,
+            CallbackQuery callbackQuery,
             CancellationToken cancellationToken = default(CancellationToken));
     }
 }

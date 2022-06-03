@@ -7,10 +7,12 @@ namespace Selector.API.Configuration.Ioc
     {
         public static IServiceCollection ConfigureServices(this IServiceCollection services,
             IConfiguration configuration)
-            => services
-                .AddPersistenceInfrastructure(configuration)
+        {
+            return services
                 .AddApplicationInfrastructure()
                 .AddEndpointsApiExplorer()
+                .AddPersistenceInfrastructure(configuration)
                 .RegisterSwagger();
+        }
     }
 }
