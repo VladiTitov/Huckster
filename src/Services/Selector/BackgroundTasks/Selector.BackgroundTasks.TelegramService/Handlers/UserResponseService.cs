@@ -1,6 +1,4 @@
-﻿using Selector.BackgroundTasks.TelegramService.Constants;
-
-namespace Selector.BackgroundTasks.TelegramService.Handlers
+﻿namespace Selector.BackgroundTasks.TelegramService.Handlers
 {
     internal class UserResponseService : IUserResponseService
     {
@@ -29,7 +27,7 @@ namespace Selector.BackgroundTasks.TelegramService.Handlers
                 cancellationToken: cancellationToken);
 
             var responseModel = GetUserResponse(
-                message: "Привет, давай приступим к работе!",
+                message: MessageLabelsConstants.StartLabel,
                 replyMarkup: _keyboardService
                     .GetReplyMarkup(ButtonNamesConstants.StartStateButtons));
 

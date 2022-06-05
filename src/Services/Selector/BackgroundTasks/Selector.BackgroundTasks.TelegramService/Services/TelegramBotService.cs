@@ -14,7 +14,7 @@
             _logger = logger;
             _telegramBotHandler = telegramBotHandler;
             string token = configuration.GetTelegramToken();
-            _telegramClient = GetTelegramBotClient(token);
+            _telegramClient = token.GetTelegramBotClient();
         }
 
         public Task StartReceiving(
@@ -34,14 +34,6 @@
                 cancellationToken: cancellationToken);
 
             return Task.CompletedTask;
-        }
-
-        private ITelegramBotClient GetTelegramBotClient(string token)
-        {
-            Guard.Against.NullOrEmpty(token, nameof(token));
-            var botClient = new TelegramBotClient(token);
-            Guard.Against.CanConnect(botClient, nameof(token));
-            return botClient;
         }
     }
 }

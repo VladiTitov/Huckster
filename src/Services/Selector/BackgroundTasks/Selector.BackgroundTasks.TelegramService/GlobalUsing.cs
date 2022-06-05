@@ -16,3 +16,4 @@ global using Selector.BackgroundTasks.TelegramService.Configuration.Ioc;
 global using Selector.BackgroundTasks.TelegramService.Abstractions;
 global using Selector.Infrastructure.Persistence.Interfaces;
 global using System.Linq.Expressions;
+global using Selector.BackgroundTasks.TelegramService.Constants;

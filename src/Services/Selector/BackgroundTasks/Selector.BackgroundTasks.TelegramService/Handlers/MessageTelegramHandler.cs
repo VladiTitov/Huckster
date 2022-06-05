@@ -83,7 +83,7 @@
                 {
                     new UserResponseModel
                     {
-                        Message = "Я не такой умный как Вы, давайте продолжим на моем языке.",
+                        Message = MessageLabelsConstants.DefaultLabel,
                         ReplyMarkup = null
                     }
                 };
