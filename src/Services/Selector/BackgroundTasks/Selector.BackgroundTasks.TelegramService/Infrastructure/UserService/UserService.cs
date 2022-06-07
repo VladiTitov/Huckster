@@ -13,83 +13,7 @@
             _provider = provider;
         }
 
-        public async Task UpdateUserStateAsync(
-            Chat chat,
-            int state,
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            await CheckUserRegistrationAsync(
-                chat: chat,
-                cancellationToken: cancellationToken);
-
-            using var scope = _provider.CreateScope();
-            var repository = scope.ServiceProvider.GetService<IUserRepositoryAsync>();
-
-            var userId = chat.Id;
-            var user = await repository.GetByFilterAsync(
-                filter: _ => _.UserId.Equals(userId),
-                cancellationToken: cancellationToken);
-
-            user.UserMenuState = state;
-
-            await repository.UpdateAsync(user, cancellationToken);
-            _logger.LogInformation($"User {user.UserId} state updated");
-        }
-
-        public async Task DeleteSearchCriteriaAsync(
-            Chat chat,
-            Guid criteriaId,
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            await CheckUserRegistrationAsync(
-                chat: chat,
-                cancellationToken: cancellationToken);
-
-
-        }
-
-        public async Task AddSearchCriteriaAsync(
-            Chat chat,
-            SearchCriteriaModel model, 
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            await CheckUserRegistrationAsync(
-                chat: chat,
-                cancellationToken: cancellationToken);
-
-            var userId = chat.Id;
-            var user = await GetUserAsync(userId);
-
-            model.UserId = user.Id;
-
-            using var scope = _provider.CreateScope();
-            var repository = scope.ServiceProvider.GetService<ISearchCriteriaRepositoryAsync>();
-
-            await repository.AddAsync(
-                entity: model,
-                cancellationToken: cancellationToken);
-        }
-
-        public async Task<IReadOnlyList<SearchCriteriaModel>> GetSearchCriteriaListAsync(
-            Chat chat,
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            await CheckUserRegistrationAsync(
-                chat: chat,
-                cancellationToken: cancellationToken);
-
-            var userId = chat.Id;
-            var user = await GetUserAsync(userId);
-
-            using var scope = _provider.CreateScope();
-            var repository = scope.ServiceProvider.GetService<ISearchCriteriaRepositoryAsync>();
-
-            return await repository.GetAllByFilterAsync(
-                filter: i => i.UserId.Equals(user.Id),
-                cancellationToken: cancellationToken);
-        }
-
-        private async Task<UserModel?> GetUserAsync(
+        public async Task<UserModel?> GetModelByUserIdAsync(
             long userId,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -97,10 +21,19 @@
             var repository = scope.ServiceProvider.GetService<IUserRepositoryAsync>();
             return await repository.GetByFilterAsync(
                 filter: i => i.UserId.Equals(userId),
-                cancellationToken: cancellationToken);
+                cancellationToken: cancellationToken) is UserModel model
+                ? model
+                : throw new NullReferenceException(nameof(UserModel));
         }
 
-        private async Task CheckUserRegistrationAsync(
+        public async Task<Guid> GetIdByUserIdAsync(
+            long userId,
+            CancellationToken cancellationToken = default(CancellationToken))
+            => await GetModelByUserIdAsync(userId, cancellationToken) is UserModel model
+                ? model.Id
+                : throw new NullReferenceException(nameof(UserModel));
+
+        public async Task CheckUserRegistrationAsync(
             Chat chat,
             CancellationToken cancellationToken = default(CancellationToken))
         {

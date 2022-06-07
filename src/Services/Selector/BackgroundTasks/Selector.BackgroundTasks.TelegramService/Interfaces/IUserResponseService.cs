@@ -2,19 +2,12 @@
 {
     internal interface IUserResponseService
     {
-        Task<IEnumerable<IUserResponseModel>> GetDefaultResponseAsync();
+        IEnumerable<IUserResponseModel> GetDefaultResponse();
 
-        Task<IEnumerable<IUserResponseModel>> GetResponseForStartStateAsync(
-            Chat chat,
-            int state,
-            CancellationToken cancellationToken = default(CancellationToken));
-        Task<IEnumerable<IUserResponseModel>> GetResponseForAddFiltetStateAsync(
-            Chat chat,
-            int state,
-            CancellationToken cancellationToken = default(CancellationToken));
+        IEnumerable<IUserResponseModel> GetResponseForStartState();
+        IEnumerable<IUserResponseModel> GetResponseForAddFilterState();
         Task<IEnumerable<IUserResponseModel>> GetResponseForListFiltersStateAsync(
             Chat chat,
-            int state,
             CancellationToken cancellationToken = default(CancellationToken));
     }
 }

@@ -1,22 +1,21 @@
 ﻿namespace Selector.BackgroundTasks.TelegramService.Interfaces
 {
-    internal interface ISearchCriteriaService
+    internal interface IPersistenceService
     {
-        Task UpdateModelAsync(
+        Task UpdateSearchCriteriaAsync(
+            Chat chat,
             SearchCriteriaModel searchCriteria,
             CancellationToken cancellationToken = default(CancellationToken));
-        Task DeleteModelAsync(
-            SearchCriteriaModel searchCriteria,
+        Task DeleteSearchCriteriaAsync(
+            Chat chat,
+            Guid criteriaId,
             CancellationToken cancellationToken = default(CancellationToken));
-        Task<SearchCriteriaModel> GetModelByIdAsync(
-            Guid id,
-            CancellationToken cancellationToken = default(CancellationToken));
-
-        Task AddModelAsync(
+        Task AddSearchCriteriaAsync(
+            Chat chat,
             SearchCriteriaModel model,
             CancellationToken cancellationToken = default(CancellationToken));
-        Task<IReadOnlyList<SearchCriteriaModel>> GetModelListByFilterAsync(
-            Expression<Func<SearchCriteriaModel, bool>> filter,
+        Task<IReadOnlyList<SearchCriteriaModel>> GetSearchCriteriaListAsync(
+            Chat chat,
             CancellationToken cancellationToken = default(CancellationToken));
     }
 }

@@ -2,51 +2,67 @@
 {
     internal class UserResponseService : IUserResponseService
     {
-        private readonly IUserService _userService;
+        private readonly IPersistenceService _persistenceService;
         private readonly IKeyboardService _keyboardService;
         private readonly IInlineKeyboardService _inlineKeyboardService;
 
         public UserResponseService(
-            IUserService userService,
+            IPersistenceService persistenceService,
             IKeyboardService keyboardService,
             IInlineKeyboardService inlineKeyboardService)
         {
-            _userService = userService;
+            _persistenceService = persistenceService;
             _keyboardService = keyboardService;
             _inlineKeyboardService = inlineKeyboardService;
         }
 
-        public async Task<IEnumerable<IUserResponseModel>> GetResponseForStartStateAsync(
-            Chat chat,
-            int state,
-            CancellationToken cancellationToken = default(CancellationToken))
+        public IEnumerable<IUserResponseModel> GetDefaultResponse()
         {
-            await _userService.UpdateUserStateAsync(
-                chat: chat,
-                state: state,
-                cancellationToken: cancellationToken);
+            var responseModel = GetUserResponse();
+            return new List<IUserResponseModel> { responseModel };
+        }
+
+        public IEnumerable<IUserResponseModel> GetResponseForStartState()
+        {
+            var labels = ButtonNamesConstants.StartStateButtons;
+            var response = labels.Select(label => new UserResponseLabel { LabelName = label });
 
             var responseModel = GetUserResponse(
                 message: MessageLabelsConstants.StartLabel,
                 replyMarkup: _keyboardService
-                    .GetReplyMarkup(ButtonNamesConstants.StartStateButtons));
+                    .GetReplyMarkup(response));
+
+            return new List<IUserResponseModel>() { responseModel };
+        }
+
+        public IEnumerable<IUserResponseModel> GetResponseForAddFilterState()
+        {
+            var responseModel = GetUserResponse(
+                message: MessageLabelsConstants.AddFilterLabel);
 
             return new List<IUserResponseModel>() { responseModel };
         }
 
         public async Task<IEnumerable<IUserResponseModel>> GetResponseForListFiltersStateAsync(
             Chat chat,
-            int state,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            await _userService.UpdateUserStateAsync(
-                chat: chat,
-                state: state,
-                cancellationToken: cancellationToken);
-
-            var filters = await _userService.GetSearchCriteriaListAsync(
+            var filters = await _persistenceService.GetSearchCriteriaListAsync(
                         chat: chat,
                         cancellationToken: cancellationToken);
+
+            if (filters.Count.Equals(0))
+                return new List<IUserResponseModel>
+                { 
+                    GetUserResponse(MessageLabelsConstants.FiltersEmpty)
+                };
+
+            var buttonLabel = ButtonNamesConstants.DeleteInlineButton;
+            var response = filters.Select(item => new UserResponseInlineLabel
+            {
+                LabelName = buttonLabel,
+                LabelKey = item.Id.ToString()
+            });
 
             return filters
                 .Select(item =>
@@ -54,31 +70,8 @@
                         message: item.ToString(),
                         replyMarkup: _inlineKeyboardService
                             .GetReplyMarkup(
-                                labels: ButtonNamesConstants.ListFiltersButtons)));
+                                labels: response)));
         }
-
-        public async Task<IEnumerable<IUserResponseModel>> GetResponseForAddFiltetStateAsync(
-            Chat chat,
-            int state,
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            await _userService.UpdateUserStateAsync(
-                chat: chat,
-                state: state,
-                cancellationToken: cancellationToken);
-
-            var responseModel = GetUserResponse(
-                message: MessageLabelsConstants.AddFilterLabel);
-
-            return new List<IUserResponseModel>() { responseModel };
-        }
-
-        public async Task<IEnumerable<IUserResponseModel>> GetDefaultResponseAsync()
-            => await Task.Run(() =>
-            {
-                var responseModel = GetUserResponse();
-                return new List<IUserResponseModel> { responseModel };
-            });
 
         private IUserResponseModel GetUserResponse(
             string message = MessageLabelsConstants.DefaultLabel,

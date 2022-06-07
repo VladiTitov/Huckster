@@ -1,6 +1,4 @@
-﻿using Selector.Infrastructure.Persistence;
-
-namespace Selector.BackgroundTasks.TelegramService.Configuration.Ioc
+﻿namespace Selector.BackgroundTasks.TelegramService.Configuration.Ioc
 {
     public static class RootConfiguration
     {
@@ -8,7 +6,16 @@ namespace Selector.BackgroundTasks.TelegramService.Configuration.Ioc
             IConfiguration configuration)
             => services
                 .AddPersistenceInfrastructure(configuration)
-                .AddHandlersInfrastructure()
+                .AddSingleton<ITelegramBotService, TelegramBotService>()
+                .AddSingleton<ITelegramBotHandler, TelegramBotHandler>()
+                .AddSingleton<IMessageTelegramHandler, MessageTelegramHandler>()
+                .AddSingleton<ICallbackQueryHandler, CallbackQueryHandler>()
+                .AddSingleton<IUserService, UserService>()
+                .AddSingleton<ISearchCriteriaService, SearchCriteriaService>()
+                .AddSingleton<IPersistenceService, PersistenceService>()
+                .AddSingleton<IUserResponseService, UserResponseService>()
+                .AddSingleton<IInlineKeyboardService, InlineKeyboardService>()
+                .AddSingleton<IKeyboardService, KeyboardService>()
                 .AddHostedService<Worker>();
     }
 }

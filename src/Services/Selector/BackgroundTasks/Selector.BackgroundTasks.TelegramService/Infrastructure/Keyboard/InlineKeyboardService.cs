@@ -1,25 +1,22 @@
 ﻿namespace Selector.BackgroundTasks.TelegramService.Infrastructure.Keyboard
 {
-    public class InlineKeyboardService : BaseButtonReplyMarkup, IInlineKeyboardService
+    public class InlineKeyboardService : 
+        BaseButtonReplyMarkup<IUserResponseInlineLabel, InlineKeyboardButton>, 
+        IInlineKeyboardService
     {
         public override IReplyMarkup GetReplyMarkup(
-            IEnumerable<string> labels,
+            IEnumerable<IUserResponseInlineLabel> labels,
             int columnsCount = 2)
         {
-            var buttons = new List<IEnumerable<InlineKeyboardButton>>();
-            var data = GetValuesRange(labels, columnsCount);
-            buttons.AddRange(data.Select(labels => GetRowInlineKeyboardMarkup(
-                labels: labels)));
-            return new InlineKeyboardMarkup(buttons);
-        }
+            var buttons = labels.Select(label =>
+                new InlineKeyboardButton(label.LabelName)
+                {
+                    Text = label.LabelName,
+                    CallbackData = label.LabelKey
+                });
 
-        private IEnumerable<InlineKeyboardButton> GetRowInlineKeyboardMarkup(
-            IEnumerable<string> labels)
-            => labels.Select(label =>
-            new InlineKeyboardButton(label)
-            {
-                Text = label,
-                CallbackData = label
-            });
+            var resultButtons = GetValuesRange(buttons, columnsCount);
+            return new InlineKeyboardMarkup(resultButtons);
+        }
     }
 }

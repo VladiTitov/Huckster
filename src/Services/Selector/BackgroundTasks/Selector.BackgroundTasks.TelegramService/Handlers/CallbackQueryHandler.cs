@@ -2,30 +2,29 @@
 {
     internal class CallbackQueryHandler : ICallbackQueryHandler
     {
+        private readonly IPersistenceService _persistenceService;
+
+        public CallbackQueryHandler(IPersistenceService persistenceService)
+        {
+            _persistenceService = persistenceService;
+        }
+
         public async Task Handle(
             ITelegramBotClient botClient,
             CallbackQuery callbackQuery,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            var callbackQueryText = callbackQuery?.Data;
-            var callbackQueryData = callbackQueryText.Split('_');
-            var query = callbackQueryData.First();
-            var id = callbackQueryData.Last();
-            var message = callbackQuery?.Message;
+            var entityId = callbackQuery?.Data;
 
-            switch (query)
-            {
-                case "Изменить фильтр":
+            await _persistenceService.DeleteSearchCriteriaAsync(
+                chat: callbackQuery.Message.Chat,
+                criteriaId: new Guid(entityId),
+                cancellationToken: cancellationToken);
 
-                    break;
-                case "Удалить фильтр":
-
-                    await botClient.DeleteMessageAsync(
-                        chatId: message.Chat.Id,
-                        messageId: message.MessageId,
-                        cancellationToken: cancellationToken);
-                    break;
-            }
+            await botClient.DeleteMessageAsync(
+                chatId: callbackQuery.Message.Chat.Id,
+                messageId: callbackQuery.Message.MessageId,
+                cancellationToken: cancellationToken);
         }
     }
 }

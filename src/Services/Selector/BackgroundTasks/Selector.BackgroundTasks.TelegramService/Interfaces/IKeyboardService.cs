@@ -1,9 +1,8 @@
 ﻿namespace Selector.BackgroundTasks.TelegramService.Interfaces
 {
-    public interface IKeyboardService
+    public interface IKeyboardService : 
+        IBaseButtonReplyMarkup<IUserResponseLabel, KeyboardButton>
     {
-        IReplyMarkup GetReplyMarkup(
-            IEnumerable<string> labels,
-            int columnsCount = 2);
+        
     }
 }

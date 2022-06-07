@@ -1,12 +1,14 @@
 ﻿namespace Selector.BackgroundTasks.TelegramService.Interfaces
 {
-    internal interface IBaseButtonReplyMarkup
+    public interface IBaseButtonReplyMarkup<TUserResponseLabel, TKeyboardButton> 
+        where TUserResponseLabel : IUserResponseLabel 
+        where TKeyboardButton : IKeyboardButton
     {
         IReplyMarkup GetReplyMarkup(
-            IEnumerable<string> labels,
+            IEnumerable<TUserResponseLabel> labels,
             int columnsCount = 2);
-        IEnumerable<IEnumerable<string>> GetValuesRange(
-            IEnumerable<string> labels, 
+        IEnumerable<IEnumerable<TKeyboardButton>> GetValuesRange(
+            IEnumerable<TKeyboardButton> labels, 
             int columns);
     }
 }

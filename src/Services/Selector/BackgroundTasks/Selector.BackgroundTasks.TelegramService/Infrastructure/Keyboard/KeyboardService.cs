@@ -1,21 +1,19 @@
 ﻿namespace Selector.BackgroundTasks.TelegramService.Infrastructure.Keyboard
 {
-    public class KeyboardService : BaseButtonReplyMarkup, IKeyboardService
+    public class KeyboardService : 
+        BaseButtonReplyMarkup<IUserResponseLabel, KeyboardButton>,
+        IKeyboardService
     {
         public override IReplyMarkup GetReplyMarkup(
-            IEnumerable<string> labels, 
+            IEnumerable<IUserResponseLabel> labels, 
             int columnsCount = 2)
         {
-            var buttons = new List<IEnumerable<KeyboardButton>>();
-            var data = GetValuesRange(labels, columnsCount);
-            buttons.AddRange(data.Select(labels => GetRowKeyboardMarkup(labels)));
-            return new ReplyKeyboardMarkup(buttons)
+            var buttons = labels.Select(label => new KeyboardButton(label.LabelName));
+            var resultButtons = GetValuesRange(buttons, columnsCount);
+            return new ReplyKeyboardMarkup(resultButtons)
             {
                 ResizeKeyboard = true
             };
         }
-
-        private IEnumerable<KeyboardButton> GetRowKeyboardMarkup(IEnumerable<string> labels)
-            => labels.Select(_ => new KeyboardButton(_));
     }
 }

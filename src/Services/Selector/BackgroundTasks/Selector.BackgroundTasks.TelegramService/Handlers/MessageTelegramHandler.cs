@@ -3,17 +3,17 @@
     internal class MessageTelegramHandler : IMessageTelegramHandler
     {
         private readonly ILogger<MessageTelegramHandler> _logger;
-        private readonly IMenuStateHandler _menuStateHandler;
-        private readonly IUserService _userService;
+        private readonly IPersistenceService _persistenceService;
+        private readonly IUserResponseService _userResponseService;
 
         public MessageTelegramHandler(
             ILogger<MessageTelegramHandler> logger,
-            IMenuStateHandler menuStateHandler,
-            IUserService userService)
+            IPersistenceService persistenceService,
+            IUserResponseService userResponseService)
         {
             _logger = logger;
-            _menuStateHandler = menuStateHandler;
-            _userService = userService;
+            _persistenceService = persistenceService;
+            _userResponseService = userResponseService;
         }
 
         public async Task Handle(
@@ -38,37 +38,23 @@
             CancellationToken cancellationToken = default(CancellationToken))
         {
             var messageText = message?.Text;
-
             switch (messageText)
             {
                 case "/start":
-                    return await _menuStateHandler
-                        .HandleAsync(
-                            MenuState.Start, 
-                            message,
-                            cancellationToken);
-                case "/filters":
-                    return await _menuStateHandler
-                        .HandleAsync(
-                            MenuState.ListFilters,
-                            message,
-                            cancellationToken);
+                    return _userResponseService.GetResponseForStartState();
                 case "Показать фильтры":
-                    return await _menuStateHandler
-                        .HandleAsync(
-                            MenuState.ListFilters,
-                            message,
-                            cancellationToken);
+                    return await _userResponseService
+                        .GetResponseForListFiltersStateAsync(
+                            chat: message.Chat,
+                            cancellationToken: cancellationToken);
                 case "Добавить фильтр":
-                    return await _menuStateHandler
-                        .HandleAsync(
-                            MenuState.AddFilter,
-                            message,
-                            cancellationToken);
+                    return _userResponseService.GetResponseForAddFilterState();
+                case null:
+                    return await GetDefaultAnswer(cancellationToken);
                 default:
                     return await MessageTextHandlerAsync(
-                        message,
-                        cancellationToken);
+                        message: message,
+                        cancellationToken: cancellationToken);
             }
         }
 
@@ -78,26 +64,39 @@
         {
             var messageText = message?.Text;
             var data = messageText.Split('-');
-            if (!data.Length.Equals(3))
-                return new List<IUserResponseModel>
+            return data.Length.Equals(3)
+                ? await GetAnswerAsync(
+                    chat: message.Chat,
+                    searchCriteria: new SearchCriteriaModel
+                        {
+                            Label = data[0],
+                            MinCost = data[1].ConvertToDouble(),
+                            MaxCost = data[2].ConvertToDouble()
+                        },
+                    cancellationToken: cancellationToken)
+                : await GetDefaultAnswer(cancellationToken);
+        }
+
+        private async Task<IReadOnlyList<IUserResponseModel>> GetDefaultAnswer(
+            CancellationToken cancellationToken = default(CancellationToken))
+            => await Task.Run(() => new List<IUserResponseModel>
                 {
                     new UserResponseModel
                     {
                         Message = MessageLabelsConstants.DefaultLabel,
                         ReplyMarkup = null
                     }
-                };
+                },
+                cancellationToken: cancellationToken);
 
-            var searchCriteria = new SearchCriteriaModel
-            {
-                Label = data[0],
-                MinCost = data[1].ConvertToDouble(),
-                MaxCost = data[2].ConvertToDouble()
-            };
-
-            await _userService.AddSearchCriteriaAsync(
-                chat: message.Chat, 
-                model: searchCriteria, 
+        private async Task<IReadOnlyList<IUserResponseModel>> GetAnswerAsync(
+            Chat chat,
+            SearchCriteriaModel searchCriteria,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            await _persistenceService.AddSearchCriteriaAsync(
+                chat: chat,
+                model: searchCriteria,
                 cancellationToken: cancellationToken);
 
             return new List<IUserResponseModel>

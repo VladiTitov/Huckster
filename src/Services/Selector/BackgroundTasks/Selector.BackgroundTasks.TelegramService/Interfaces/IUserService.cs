@@ -2,16 +2,16 @@
 {
     internal interface IUserService
     {
-        Task<IReadOnlyList<SearchCriteriaModel>> GetSearchCriteriaListAsync(
-            Chat chat,
+        Task<UserModel?> GetModelByUserIdAsync(
+            long userId,
             CancellationToken cancellationToken = default(CancellationToken));
-        Task UpdateUserStateAsync(
-            Chat chat,
-            int state,
+
+        Task<Guid> GetIdByUserIdAsync(
+            long userId,
             CancellationToken cancellationToken = default(CancellationToken));
-        Task AddSearchCriteriaAsync(
+
+        Task CheckUserRegistrationAsync(
             Chat chat,
-            SearchCriteriaModel model,
             CancellationToken cancellationToken = default(CancellationToken));
     }
 }

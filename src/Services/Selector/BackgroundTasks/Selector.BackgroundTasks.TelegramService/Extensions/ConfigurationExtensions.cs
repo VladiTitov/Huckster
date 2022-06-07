@@ -3,8 +3,7 @@
     public static class ConfigurationExtensions
     {
         public static string GetTelegramToken(this IConfiguration configuration)
-        {
-            return configuration.GetValue<string>("Token");
-        }
+            => configuration
+                .GetValue<string>("Token");
     }
 }
