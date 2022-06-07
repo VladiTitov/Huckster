@@ -10,6 +10,13 @@
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.ApplyConfiguration(new SearchCriteriaConfigurations());
+            builder.ApplyConfiguration(new UserConfigurations());
+            base.OnModelCreating(builder);
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

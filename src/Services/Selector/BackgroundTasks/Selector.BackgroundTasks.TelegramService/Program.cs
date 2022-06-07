@@ -1,8 +1,10 @@
 IHost host = Host.CreateDefaultBuilder(args)
-    .ConfigureServices(services =>
+    .ConfigureServices((hostBuilder, services) =>
     {
-        services.ConfigureServices();
+        services.ConfigureServices(hostBuilder.Configuration);
     })
     .Build();
+
+host.DatabaseMigrations();
 
 await host.RunAsync();
