@@ -8,6 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Fastenshtein" Version="1.0.0.8" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\BuildingBlocks\Common\Common.Models\Common.Models.csproj" />
+    <ProjectReference Include="..\..\..\..\BuildingBlocks\EventBus\EventBus.RabbitMq\EventBus.RabbitMq.csproj" />
+    <ProjectReference Include="..\..\API\Selector.Core.Domain\Selector.Core.Domain.csproj" />
+    <ProjectReference Include="..\..\API\Selector.Infrastructure.Persistence\Selector.Infrastructure.Persistence.csproj" />
   </ItemGroup>
 </Project>
