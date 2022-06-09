@@ -1,7 +1,6 @@
-﻿namespace Selector.BackgroundTasks.TelegramService.Abstractions
+﻿namespace Selector.BackgroundTasks.TelegramService.Infrastructure.Keyboard
 {
     public abstract class BaseButtonReplyMarkup<TUserResponseLabel, TKeyboardButton> 
-        : IBaseButtonReplyMarkup<TUserResponseLabel, TKeyboardButton>
         where TUserResponseLabel : IUserResponseLabel
         where TKeyboardButton : IKeyboardButton
     {

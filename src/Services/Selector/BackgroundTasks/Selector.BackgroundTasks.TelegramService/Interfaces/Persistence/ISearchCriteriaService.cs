@@ -1,4 +1,4 @@
-﻿namespace Selector.BackgroundTasks.TelegramService.Interfaces
+﻿namespace Selector.BackgroundTasks.TelegramService.Interfaces.Persistence
 {
     internal interface ISearchCriteriaService
     {

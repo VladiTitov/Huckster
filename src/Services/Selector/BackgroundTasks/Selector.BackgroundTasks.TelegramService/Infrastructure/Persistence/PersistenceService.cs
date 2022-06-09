@@ -1,4 +1,4 @@
-﻿namespace Selector.BackgroundTasks.TelegramService.Infrastructure.UserService
+﻿namespace Selector.BackgroundTasks.TelegramService.Infrastructure.Persistence
 {
     internal class PersistenceService : IPersistenceService
     {
@@ -11,6 +11,15 @@
         {
             _userService = userService;
             _searchCriteriaService = searchCriteriaService;
+        }
+
+        public async Task<UserModel?> GetUserModelById(
+            Guid id,
+            CancellationToken cancellationToken = default(CancellationToken)) 
+        {
+            return await _userService.GetModelByIdAsync(
+                id: id,
+                cancellationToken: cancellationToken);
         }
 
         public async Task UpdateSearchCriteriaAsync(

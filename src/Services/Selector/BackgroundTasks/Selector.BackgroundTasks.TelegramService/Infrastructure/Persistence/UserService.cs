@@ -1,4 +1,4 @@
-﻿namespace Selector.BackgroundTasks.TelegramService.Infrastructure.UserService
+﻿namespace Selector.BackgroundTasks.TelegramService.Infrastructure.Persistence
 {
     internal class UserService : IUserService
     {
@@ -11,6 +11,19 @@
         {
             _logger = logger;
             _provider = provider;
+        }       
+
+        public async Task<UserModel?> GetModelByIdAsync(
+            Guid id,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using var scope = _provider.CreateScope();
+            var repository = scope.ServiceProvider.GetService<IUserRepositoryAsync>();
+            return await repository.GetByIdAsync(
+                id: id, 
+                cancellationToken: cancellationToken) is UserModel model
+                ? model
+                : throw new NullReferenceException(nameof(UserModel));
         }
 
         public async Task<UserModel?> GetModelByUserIdAsync(
@@ -32,7 +45,7 @@
             => await GetModelByUserIdAsync(userId, cancellationToken) is UserModel model
                 ? model.Id
                 : throw new NullReferenceException(nameof(UserModel));
-
+        
         public async Task CheckUserRegistrationAsync(
             Chat chat,
             CancellationToken cancellationToken = default(CancellationToken))
