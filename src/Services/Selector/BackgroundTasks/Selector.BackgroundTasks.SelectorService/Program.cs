@@ -1,8 +1,7 @@
-using Selector.BackgroundTasks.SelectorService;
-
 IHost host = Host.CreateDefaultBuilder(args)
-    .ConfigureServices(services =>
+    .ConfigureServices((hostBuilder, services) =>
     {
+        services.ConfigureServices(hostBuilder.Configuration);
         services.AddHostedService<Worker>();
     })
     .Build();
