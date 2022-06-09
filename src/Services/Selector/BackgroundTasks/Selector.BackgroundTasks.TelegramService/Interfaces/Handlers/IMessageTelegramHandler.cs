@@ -1,4 +1,4 @@
-﻿namespace Selector.BackgroundTasks.TelegramService.Interfaces
+﻿namespace Selector.BackgroundTasks.TelegramService.Interfaces.Handlers
 {
     public interface IMessageTelegramHandler
     {

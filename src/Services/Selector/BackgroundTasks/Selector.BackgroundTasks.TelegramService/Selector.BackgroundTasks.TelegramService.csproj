@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\BuildingBlocks\EventBus\EventBus.RabbitMq\EventBus.RabbitMq.csproj" />
     <ProjectReference Include="..\..\API\Selector.Core.Domain\Selector.Core.Domain.csproj" />
     <ProjectReference Include="..\..\API\Selector.Infrastructure.Persistence\Selector.Infrastructure.Persistence.csproj" />
   </ItemGroup>

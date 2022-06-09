@@ -1,7 +1,10 @@
-﻿namespace Selector.BackgroundTasks.TelegramService.Interfaces
+﻿namespace Selector.BackgroundTasks.TelegramService.Interfaces.Persistence
 {
     internal interface IUserService
     {
+        Task<UserModel?> GetModelByIdAsync(
+            Guid id,
+            CancellationToken cancellationToken = default(CancellationToken));
         Task<UserModel?> GetModelByUserIdAsync(
             long userId,
             CancellationToken cancellationToken = default(CancellationToken));

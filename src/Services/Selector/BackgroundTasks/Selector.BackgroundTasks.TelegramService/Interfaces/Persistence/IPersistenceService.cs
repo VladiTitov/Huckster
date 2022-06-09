@@ -1,7 +1,10 @@
-﻿namespace Selector.BackgroundTasks.TelegramService.Interfaces
+﻿namespace Selector.BackgroundTasks.TelegramService.Interfaces.Persistence
 {
     internal interface IPersistenceService
     {
+        Task<UserModel?> GetUserModelById(
+            Guid id,
+            CancellationToken cancellationToken = default(CancellationToken));
         Task UpdateSearchCriteriaAsync(
             Chat chat,
             SearchCriteriaModel searchCriteria,

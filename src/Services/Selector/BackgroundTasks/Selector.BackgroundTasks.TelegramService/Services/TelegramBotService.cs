@@ -1,20 +1,24 @@
-﻿namespace Selector.BackgroundTasks.TelegramService.Services
+﻿using EventBus.RabbitMq.Interfaces;
+
+namespace Selector.BackgroundTasks.TelegramService.Services
 {
     internal class TelegramBotService : ITelegramBotService
     {
         private readonly ILogger<TelegramBotService> _logger;
-        private readonly ITelegramBotClient _telegramClient;
+        private readonly ITelegramBotContext _telegramBotContext;
         private readonly ITelegramBotHandler _telegramBotHandler;
-        
+        private readonly IRabbitMqSubscriber _eventBusSubscriber;
+
         public TelegramBotService(
             ILogger<TelegramBotService> logger,
             ITelegramBotHandler telegramBotHandler,
-            IConfiguration configuration)
+            ITelegramBotContext telegramBotContext,
+            IRabbitMqSubscriber eventBusSubscriber)
         {
             _logger = logger;
             _telegramBotHandler = telegramBotHandler;
-            string token = configuration.GetTelegramToken();
-            _telegramClient = token.GetTelegramBotClient();
+            _telegramBotContext = telegramBotContext;
+            _eventBusSubscriber = eventBusSubscriber;
         }
 
         public Task StartReceiving(
@@ -27,11 +31,14 @@
                 AllowedUpdates = { }
             };
 
-            _telegramClient.StartReceiving(
+            _telegramBotContext.BotClient.StartReceiving(
                 updateHandler: _telegramBotHandler.HandleUpdateAsync,
                 errorHandler: _telegramBotHandler.HandleErrorAsync,
                 receiverOptions: receiverOptions,
                 cancellationToken: cancellationToken);
+
+            _logger.LogInformation("EventBus subscriber started");
+            _eventBusSubscriber.StartService();
 
             return Task.CompletedTask;
         }
