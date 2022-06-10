@@ -1,6 +1,4 @@
-﻿using RabbitMQ.Client;
-
-namespace EventBus.RabbitMq.Interfaces
+﻿namespace EventBus.RabbitMq.Interfaces
 {
     public interface IRabbitMqContext
     {

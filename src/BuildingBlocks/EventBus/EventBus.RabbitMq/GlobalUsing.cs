@@ -1,0 +1,9 @@
+﻿global using RabbitMQ.Client;
+global using RabbitMQ.Client.Events;
+global using EventBus.RabbitMq.Models;
+global using EventBus.RabbitMq.Context;
+global using EventBus.RabbitMq.Services;
+global using EventBus.RabbitMq.Interfaces;
+global using EventBus.RabbitMq.Extensions;
+global using EventBus.RabbitMq.Models.Abstractions;
+global using EventBus.RabbitMq.Services.Abstractions;

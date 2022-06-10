@@ -1,9 +1,4 @@
 ﻿using System.Text;
-using RabbitMQ.Client;
-using RabbitMQ.Client.Events;
-using EventBus.RabbitMq.Models;
-using EventBus.RabbitMq.Interfaces;
-using EventBus.RabbitMq.Services.Abstractions;
 using Microsoft.Extensions.Logging;
 
 namespace EventBus.RabbitMq.Services
@@ -24,13 +19,14 @@ namespace EventBus.RabbitMq.Services
             _configurations = configurations;
         }
 
-        public void StopService()
+        public Task StopService()
         {
             _logger.LogInformation($"Subscriber service stopping at: {DateTime.Now}");
             base.Dispose();
+            return Task.CompletedTask;
         }
 
-        public async void StartService()
+        public async Task StartService()
         {
             foreach (var configuration in _configurations)
             {

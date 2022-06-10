@@ -2,7 +2,7 @@
 {
     public interface IRabbitMqSubscriber
     {
-        void StopService();
-        void StartService();
+        Task StopService();
+        Task StartService();
     }
 }

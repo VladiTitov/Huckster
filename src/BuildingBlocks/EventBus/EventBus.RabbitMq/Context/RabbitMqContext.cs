@@ -1,6 +1,4 @@
-﻿using RabbitMQ.Client;
-using EventBus.RabbitMq.Models;
-using EventBus.RabbitMq.Interfaces;
+﻿using EventBus.RabbitMq.Exceptions;
 using Microsoft.Extensions.Options;
 
 namespace EventBus.RabbitMq.Context
@@ -38,9 +36,9 @@ namespace EventBus.RabbitMq.Context
 
                 connection = factory.CreateConnection();
             }
-            catch (Exception)
+            catch
             {
-                throw;
+                throw new ServerIsNotAvailable($"{_rabbitMqConfiguration.Hostname}:{_rabbitMqConfiguration.Port}");
             }
 
             return connection;

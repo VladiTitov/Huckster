@@ -1,8 +1,4 @@
-﻿using RabbitMQ.Client;
-using EventBus.RabbitMq.Interfaces;
-using EventBus.RabbitMq.Models.Abstractions;
-
-namespace EventBus.RabbitMq.Services.Abstractions
+﻿namespace EventBus.RabbitMq.Services.Abstractions
 {
     public class RabbitMqBase : IDisposable
     {

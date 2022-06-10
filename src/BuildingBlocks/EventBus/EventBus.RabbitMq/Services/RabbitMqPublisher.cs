@@ -1,10 +1,6 @@
 ﻿using System.Text;
-using RabbitMQ.Client;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using EventBus.RabbitMq.Models;
-using EventBus.RabbitMq.Interfaces;
-using EventBus.RabbitMq.Services.Abstractions;
 
 namespace EventBus.RabbitMq.Services
 {
