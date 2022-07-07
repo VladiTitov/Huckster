@@ -1,6 +1,4 @@
-﻿using Microsoft.OpenApi.Models;
-
-namespace Gateway.Web.Control.Cofiguration.Swagger
+﻿namespace Gateway.Web.Control.Cofiguration.Swagger
 {
     public static class SwaggerConfiguration
     {

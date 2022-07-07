@@ -1,4 +1,4 @@
-﻿namespace Gateway.Web.Control.Cofiguration.Ioc
+﻿namespace Gateway.Web.Control.Configuration.Ioc
 {
     public static class RootConfiguration
     {

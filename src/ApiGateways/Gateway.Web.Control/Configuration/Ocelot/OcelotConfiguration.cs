@@ -1,4 +1,4 @@
-﻿namespace Gateway.Web.Control.Cofiguration.Ocelot
+﻿namespace Gateway.Web.Control.Configuration.Ocelot
 {
     public static class OcelotConfiguration
     {
