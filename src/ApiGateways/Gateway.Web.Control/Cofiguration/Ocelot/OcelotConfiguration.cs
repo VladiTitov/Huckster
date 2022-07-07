@@ -2,13 +2,13 @@
 {
     public static class OcelotConfiguration
     {
-        public static IServiceCollection AddOcelotServices(this IServiceCollection services)
+        public static IServiceCollection RegisterOcelot(this IServiceCollection services)
         {
             services.AddOcelot();
             return services;
         }
 
-        public static IConfigurationBuilder AddOcelotConfigurations(this IConfigurationBuilder configuration)
+        public static IConfigurationBuilder ConfigureOcelot(this IConfigurationBuilder configuration)
             => configuration
                 .AddJsonFile(
                     path: "ocelot.json", 

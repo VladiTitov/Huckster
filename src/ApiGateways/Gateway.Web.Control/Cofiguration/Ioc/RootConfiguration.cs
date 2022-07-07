@@ -1,15 +1,16 @@
-﻿using Gateway.Web.Control.Cofiguration.Ocelot;
-
-namespace Gateway.Web.Control.Cofiguration.Ioc
+﻿namespace Gateway.Web.Control.Cofiguration.Ioc
 {
     public static class RootConfiguration
     {
-        public static IServiceCollection AddServices(this IServiceCollection services)
+        public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
             => services
-                .AddOcelotServices();
+                .AddEndpointsApiExplorer()
+                .RegisterSwagger(configuration)
+                .RegisterOcelot();
+                
 
         public static IConfigurationBuilder AddConfigurations(this IConfigurationBuilder configuration)
             => configuration
-                .AddOcelotConfigurations();
+                .ConfigureOcelot();
     }
 }

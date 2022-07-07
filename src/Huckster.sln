@@ -85,7 +85,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Models", "BuildingBl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway.Web.Control", "Gateway.Web.Control", "{CD5B2C81-CB7B-493A-8A7E-1573A37A0B02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gateway.Web.Control", "ApiGateways\Gateway.Web.Control\Gateway.Web.Control.csproj", "{0E8CBF27-76BC-4F0C-A8BF-AA9AB47F443A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway.Web.Control", "ApiGateways\Gateway.Web.Control\Gateway.Web.Control.csproj", "{0E8CBF27-76BC-4F0C-A8BF-AA9AB47F443A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

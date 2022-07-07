@@ -10,7 +10,8 @@
         }
       ],
       "UpstreamPathTemplate": "/gateway/SiteDescription",
-      "UpstreamHttpMethod": [ "GET", "PUT", "POST" ]
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST" ],
+      "SwaggerKey": "SiteDescription"
     },
     {
       "DownstreamPathTemplate": "/api/SiteDescription/{id}",
@@ -22,7 +23,8 @@
         }
       ],
       "UpstreamPathTemplate": "/gateway/SiteDescription/{id}",
-      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "DELETE" ],
+      "SwaggerKey": "SiteDescription"
     },
     {
       "DownstreamPathTemplate": "/api/SearchCriteria",
@@ -34,7 +36,8 @@
         }
       ],
       "UpstreamPathTemplate": "/gateway/SearchCriteria",
-      "UpstreamHttpMethod": [ "GET", "PUT", "POST" ]
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST" ],
+      "SwaggerKey": "SearchCriteria"
     },
     {
       "DownstreamPathTemplate": "/api/SearchCriteria/{id}",
@@ -46,7 +49,30 @@
         }
       ],
       "UpstreamPathTemplate": "/gateway/SearchCriteria/{id}",
-      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "DELETE" ],
+      "SwaggerKey": "SearchCriteria"
+    }
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "SiteDescription",
+      "Config": [
+        {
+          "Name": "Huckster.Parser.Api",
+          "Version": "v1",
+          "Url": "https://localhost:44388/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "SearchCriteria",
+      "Config": [
+        {
+          "Name": "Huckster.Selector.Api",
+          "Version": "v1",
+          "Url": "https://localhost:44378/swagger/v1/swagger.json"
+        }
+      ]
     }
   ]
 }
