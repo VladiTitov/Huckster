@@ -1,0 +1,24 @@
+{
+  "SwaggerEndPoints": [
+    {
+      "Key": "siteDescription",
+      "Config": [
+        {
+          "Name": "Huckster.Parser.Api",
+          "Version": "v1",
+          "Url": "https://localhost:5001/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "searchCriteria",
+      "Config": [
+        {
+          "Name": "Huckster.Selector.Api",
+          "Version": "v1",
+          "Url": "https://localhost:5011/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ]
+}
