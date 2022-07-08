@@ -7,10 +7,9 @@
                 .AddEndpointsApiExplorer()
                 .RegisterSwagger(configuration)
                 .RegisterOcelot();
-                
 
-        public static IConfigurationBuilder AddConfigurations(this IConfigurationBuilder configuration)
+        public static IConfigurationBuilder AddConfigurations(this IConfigurationBuilder configuration, IWebHostEnvironment hostEnvironment)
             => configuration
-                .ConfigureOcelot();
+                .ConfigureOcelot(hostEnvironment);
     }
 }

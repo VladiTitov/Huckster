@@ -1,4 +1,6 @@
-﻿namespace Gateway.Web.Control.Configuration.Ocelot
+﻿using MMLib.SwaggerForOcelot.DependencyInjection;
+
+namespace Gateway.Web.Control.Configuration.Ocelot
 {
     public static class OcelotConfiguration
     {
@@ -8,11 +10,9 @@
             return services;
         }
 
-        public static IConfigurationBuilder ConfigureOcelot(this IConfigurationBuilder configuration)
+        public static IConfigurationBuilder ConfigureOcelot(this IConfigurationBuilder configuration, IWebHostEnvironment hostingEnvironment)
             => configuration
-                .AddJsonFile(
-                    path: "ocelot.json", 
-                    optional: false, 
-                    reloadOnChange: true);
+                .SetBasePath(hostingEnvironment.ContentRootPath)
+                .AddOcelotWithSwaggerSupport(o => o.Folder = "Jsons");
     }
 }

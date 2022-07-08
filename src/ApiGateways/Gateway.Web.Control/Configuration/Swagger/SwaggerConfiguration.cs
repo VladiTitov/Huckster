@@ -8,12 +8,11 @@
                 .AddSwaggerGen();
 
         public static IApplicationBuilder ConfigureSwagger(this IApplicationBuilder app)
-            =>
-                app
-                    .UseSwagger()
-                    .UseSwaggerForOcelotUI(opt =>
-                    {
-                        opt.PathToSwaggerGenerator = "/swagger/docs";
-                    });
+            => app
+                .UseSwagger()
+                .UseSwaggerForOcelotUI(opt =>
+                {
+                    opt.PathToSwaggerGenerator = "/swagger/docs";
+                });
     }
 }
