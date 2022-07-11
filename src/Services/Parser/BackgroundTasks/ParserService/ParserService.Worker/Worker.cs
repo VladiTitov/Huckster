@@ -17,7 +17,12 @@ namespace ParserService.Worker
         protected override async Task ExecuteAsync(CancellationToken cancellationToken)
         {
             _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-            await _parserBackgroundService.ExecuteAsync(cancellationToken);
+            while (!cancellationToken.IsCancellationRequested)
+            {
+                await _parserBackgroundService.ExecuteAsync(cancellationToken);
+                await Task.Delay(15000, cancellationToken);
+            }
+            
         }
     }
 }

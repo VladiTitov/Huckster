@@ -12,7 +12,7 @@
 
         public async Task<Guid> Handle(
             CreateSiteDescriptionCommand request,
-            CancellationToken cancellationToken)
+            CancellationToken cancellationToken = default)
         {
             var siteDescription = new SiteDescription
             {

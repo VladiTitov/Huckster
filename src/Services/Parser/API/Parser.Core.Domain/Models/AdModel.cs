@@ -1,6 +1,6 @@
 ﻿namespace Parser.Core.Domain.Models
 {
-    public class AdModel : BaseEntity
+    public class AdModel : BaseAdModel
     {
         private string _urlId;
         public string UrlId
@@ -8,9 +8,6 @@
             get => _urlId;
             set => _urlId = value == null ? "" : GetId(value);
         }
-
-        public string Link { get; set; }
-        public string Label { get; set; }
 
         private string _cost;
         public string Cost

@@ -3,6 +3,7 @@ using Parser.Core.Application.Features.SiteDescriptions.Commands.DeleteSiteDescr
 using Parser.Core.Application.Features.SiteDescriptions.Commands.UpdateSiteDescription;
 using Parser.Core.Application.Features.SiteDescriptions.Queries.GetSiteDescriptionList;
 using Parser.Core.Application.Features.SiteDescriptions.Queries.GetSiteDescriptionDetails;
+using Common.Models;
 
 namespace Parser.API.Controllers
 {

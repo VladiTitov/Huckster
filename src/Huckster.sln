@@ -85,8 +85,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parser.API", "Services\Pars
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parser.Infrastructure.Persistence", "Services\Parser\API\Parser.Infrastructure.Persistence\Parser.Infrastructure.Persistence.csproj", "{AD8D3326-3BCC-40E8-BEC6-1696CF1240B1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parser.Infrastructure.HtmlAgilityPackService", "Services\Parser\API\Parser.Infrastructure.ParserService\Parser.Infrastructure.HtmlAgilityPackService.csproj", "{984EFC4C-7E7D-4CAA-8FD5-053E0EC450B7}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parser.Core.Domain", "Services\Parser\API\Parser.Core.Domain\Parser.Core.Domain.csproj", "{70C6B5C3-5B6A-47E3-A97B-38CFB85C0F13}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parser.Core.Application", "Services\Parser\API\Parser.Core.Application\Parser.Core.Application.csproj", "{D9BEA43F-49FF-4266-BD59-9B49B6CF6DA6}"
@@ -101,11 +99,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{E277A789-E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{2B6E2A20-E817-4359-9F85-81A559C7A3C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParserService.Core.Domain", "Services\Parser\BackgroundTasks\ParserService\ParserService.Core.Domain\ParserService.Core.Domain.csproj", "{13001F0F-D58B-4970-9C89-DDF28AC2C346}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParserService.Core.Domain", "Services\Parser\BackgroundTasks\ParserService\ParserService.Core.Domain\ParserService.Core.Domain.csproj", "{13001F0F-D58B-4970-9C89-DDF28AC2C346}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParserService.Core.Application", "Services\Parser\BackgroundTasks\ParserService\ParserService.Core.Application\ParserService.Core.Application.csproj", "{D9AC8315-BBCD-4E0F-A176-466BFFACCCF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParserService.Core.Application", "Services\Parser\BackgroundTasks\ParserService\ParserService.Core.Application\ParserService.Core.Application.csproj", "{D9AC8315-BBCD-4E0F-A176-466BFFACCCF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParserService.Infrastructure.HtmlAgilityPackService", "Services\Parser\BackgroundTasks\ParserService\ParserService.Infrastructure.HtmlAgilityPackService\ParserService.Infrastructure.HtmlAgilityPackService.csproj", "{7A5D67D7-B2E6-4C10-9D6C-32EDCC339D2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParserService.Infrastructure.HtmlAgilityPackService", "Services\Parser\BackgroundTasks\ParserService\ParserService.Infrastructure.HtmlAgilityPackService\ParserService.Infrastructure.HtmlAgilityPackService.csproj", "{7A5D67D7-B2E6-4C10-9D6C-32EDCC339D2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParserService.Infrastructure.Persistence", "Services\Parser\BackgroundTasks\ParserService\ParserService.Infrastructure.Persistence\ParserService.Infrastructure.Persistence.csproj", "{A9360709-EE45-4E2F-B853-C88D1F7A5370}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -169,10 +169,6 @@ Global
 		{AD8D3326-3BCC-40E8-BEC6-1696CF1240B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD8D3326-3BCC-40E8-BEC6-1696CF1240B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD8D3326-3BCC-40E8-BEC6-1696CF1240B1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{984EFC4C-7E7D-4CAA-8FD5-053E0EC450B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{984EFC4C-7E7D-4CAA-8FD5-053E0EC450B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{984EFC4C-7E7D-4CAA-8FD5-053E0EC450B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{984EFC4C-7E7D-4CAA-8FD5-053E0EC450B7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{70C6B5C3-5B6A-47E3-A97B-38CFB85C0F13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{70C6B5C3-5B6A-47E3-A97B-38CFB85C0F13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70C6B5C3-5B6A-47E3-A97B-38CFB85C0F13}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -197,6 +193,10 @@ Global
 		{7A5D67D7-B2E6-4C10-9D6C-32EDCC339D2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A5D67D7-B2E6-4C10-9D6C-32EDCC339D2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A5D67D7-B2E6-4C10-9D6C-32EDCC339D2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9360709-EE45-4E2F-B853-C88D1F7A5370}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9360709-EE45-4E2F-B853-C88D1F7A5370}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9360709-EE45-4E2F-B853-C88D1F7A5370}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9360709-EE45-4E2F-B853-C88D1F7A5370}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -241,7 +241,6 @@ Global
 		{8E1C5D85-F576-4300-93B0-876CBADEFCA0} = {9F13A973-1E31-4D66-8E11-A06D2E628522}
 		{97F1F417-5841-4116-8D68-E8546B16DCE1} = {9A10C0A8-C72C-4A52-A283-B37D6E494967}
 		{AD8D3326-3BCC-40E8-BEC6-1696CF1240B1} = {21212645-D182-484E-A6FB-6A12998057CC}
-		{984EFC4C-7E7D-4CAA-8FD5-053E0EC450B7} = {21212645-D182-484E-A6FB-6A12998057CC}
 		{70C6B5C3-5B6A-47E3-A97B-38CFB85C0F13} = {61E3F8FD-048B-4DEF-A5AA-E9F7464B9EFA}
 		{D9BEA43F-49FF-4266-BD59-9B49B6CF6DA6} = {61E3F8FD-048B-4DEF-A5AA-E9F7464B9EFA}
 		{CC936CC6-8060-4E30-9C30-4367FF94E877} = {8E1C5D85-F576-4300-93B0-876CBADEFCA0}
@@ -252,6 +251,7 @@ Global
 		{13001F0F-D58B-4970-9C89-DDF28AC2C346} = {E277A789-ED1F-413E-922D-E00C24F345E4}
 		{D9AC8315-BBCD-4E0F-A176-466BFFACCCF5} = {E277A789-ED1F-413E-922D-E00C24F345E4}
 		{7A5D67D7-B2E6-4C10-9D6C-32EDCC339D2D} = {2B6E2A20-E817-4359-9F85-81A559C7A3C7}
+		{A9360709-EE45-4E2F-B853-C88D1F7A5370} = {2B6E2A20-E817-4359-9F85-81A559C7A3C7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F3D4D1B3-2881-4E73-BAB2-00D5C0CC3BC9}

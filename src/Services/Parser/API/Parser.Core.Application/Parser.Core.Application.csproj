@@ -18,8 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\BuildingBlocks\EventBus\EventBus.RabbitMq\EventBus.RabbitMq.csproj" />
-    <ProjectReference Include="..\Parser.Infrastructure.ParserService\Parser.Infrastructure.HtmlAgilityPackService.csproj" />
-    <ProjectReference Include="..\Parser.Infrastructure.Persistence\Parser.Infrastructure.Persistence.csproj" />
+    <ProjectReference Include="..\..\..\..\BuildingBlocks\Repositories\Repository.Base\Repository.Base.csproj" />
   </ItemGroup>
 
 </Project>

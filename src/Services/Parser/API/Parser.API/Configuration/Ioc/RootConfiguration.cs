@@ -1,9 +1,8 @@
-﻿using Parser.Core.Application;
+﻿using EventBus.RabbitMq;
+using Parser.Core.Application;
+using Parser.Infrastructure.Persistence;
 using Parser.API.Configuration.AutoMapper;
 using Parser.API.Configuration.AppSettings;
-using Parser.Infrastructure.Persistence;
-using Parser.Infrastructure.HtmlAgilityPackService;
-using EventBus.RabbitMq;
 
 namespace Parser.API.Configuration.Ioc
 {
@@ -13,11 +12,10 @@ namespace Parser.API.Configuration.Ioc
             => services
             .AppSettingsSectionsRegister(configuration)
             .AddPersistenceInfrastructure(configuration)
-            .RegisterAutoMapper()
             .RegisterCors()
-            .AddApplicationInfrastructure()
-            .AddParserInfrastructure()
+            .RegisterSwagger()
+            .RegisterAutoMapper()
             .AddEventBusBuildingBlock()
-            .RegisterSwagger();
+            .AddApplicationInfrastructure();
     }
 }

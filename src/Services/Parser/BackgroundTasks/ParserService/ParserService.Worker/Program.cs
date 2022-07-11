@@ -1,10 +1,11 @@
-using ParserService.Worker;
+var hostBuilder = Host.CreateDefaultBuilder(args);
 
-IHost host = Host.CreateDefaultBuilder(args)
-    .ConfigureServices(services =>
-    {
-        services.AddHostedService<Worker>();
-    })
-    .Build();
+hostBuilder.ConfigureServices((context, services) =>
+{
+    services.ConfigureServices(context.Configuration);
+    services.AddHostedService<Worker>();
+});
+
+var host = hostBuilder.Build();
 
 await host.RunAsync();

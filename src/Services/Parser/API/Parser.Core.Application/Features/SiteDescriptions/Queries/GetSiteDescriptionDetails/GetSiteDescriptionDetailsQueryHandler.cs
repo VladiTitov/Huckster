@@ -3,20 +3,16 @@
     public class GetSiteDescriptionDetailsQueryHandler
         : IRequestHandler<GetSiteDescriptionDetailsQuery, SiteDescription>
     {
-        private readonly IMapper _mapper;
         private readonly ISiteDescriptionRepositoryAsync _repository;
         
-        public GetSiteDescriptionDetailsQueryHandler(
-            IMapper mapper,
-            ISiteDescriptionRepositoryAsync repository)
+        public GetSiteDescriptionDetailsQueryHandler(ISiteDescriptionRepositoryAsync repository)
         {
             _repository = repository;
-            _mapper = mapper;
         }
 
         public async Task<SiteDescription> Handle(
             GetSiteDescriptionDetailsQuery request,
-            CancellationToken cancellationToken)
+            CancellationToken cancellationToken = default)
             => await _repository
                 .GetByIdAsync(request.Id, cancellationToken) is SiteDescription entity
                 ? entity

@@ -3,8 +3,7 @@
     public class SiteDescriptionRepositoryAsync 
         : GenericBaseRepositoryAsync<SiteDescription>, ISiteDescriptionRepositoryAsync
     {
-        public SiteDescriptionRepositoryAsync(ApplicationDbContext dbContext) : base(dbContext)
-        {
-        }
+        public SiteDescriptionRepositoryAsync(ApplicationDbContext dbContext) 
+            : base(dbContext) { }
     }
 }

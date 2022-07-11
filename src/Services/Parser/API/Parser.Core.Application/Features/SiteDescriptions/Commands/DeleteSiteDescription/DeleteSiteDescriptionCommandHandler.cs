@@ -12,11 +12,11 @@
 
         public async Task<bool> Handle(
             DeleteSiteDescriptionCommand request,
-            CancellationToken cancellationToken)
+            CancellationToken cancellationToken = default)
         {
-            var entityForDelete = await _repository.GetByIdAsync(request.Id);
+            var entityForDelete = await _repository.GetByIdAsync(request.Id, cancellationToken);
             if (entityForDelete is null) return false;
-            await _repository.DeleteAsync(entityForDelete);
+            await _repository.DeleteAsync(entityForDelete, cancellationToken);
             return true;
         }
     }

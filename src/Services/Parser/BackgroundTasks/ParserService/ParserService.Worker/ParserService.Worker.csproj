@@ -13,5 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ParserService.Core.Application\ParserService.Core.Application.csproj" />
+    <ProjectReference Include="..\ParserService.Infrastructure.HtmlAgilityPackService\ParserService.Infrastructure.HtmlAgilityPackService.csproj" />
+    <ProjectReference Include="..\ParserService.Infrastructure.Persistence\ParserService.Infrastructure.Persistence.csproj" />
   </ItemGroup>
 </Project>

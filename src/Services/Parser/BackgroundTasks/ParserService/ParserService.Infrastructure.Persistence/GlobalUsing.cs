@@ -1,0 +1,9 @@
+﻿global using Common.Models;
+global using Repository.Base;
+global using ParserService.Core.Domain.Models;
+global using ParserService.Infrastructure.Persistence.Context;
+global using ParserService.Infrastructure.Persistence.EntityTypeConfigurations;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using ParserService.Core.Application.Interfaces.Repositories;
+global using ParserService.Infrastructure.Persistence.Repositories;

@@ -1,6 +1,6 @@
-﻿namespace Parser.Infrastructure.Persistence.EntityTypeConfigurations
+﻿namespace ParserService.Infrastructure.Persistence.EntityTypeConfigurations
 {
-    public class AdModelConfiguration 
+    public class AdModelConfiguration
         : IEntityTypeConfiguration<AdModel>
     {
         public void Configure(EntityTypeBuilder<AdModel> builder)
