@@ -1,17 +1,15 @@
 ﻿using System.Text.Json;
 using Microsoft.Extensions.DependencyInjection;
-using ParserService.Core.Application.Interfaces;
-using ParserService.Core.Application.Interfaces.Repositories;
 
-namespace ParserService.Core.Application.Services
+namespace ParserService.Core.Application.Handlers
 {
-    public class AdHandlerService : IAdHandlerService
+    public class AdHandler : IAdHandler
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly IRabbitMqPublisher _rabbitMqPublisher;
         private readonly IParserService<AdModel> _parserService;
 
-        public AdHandlerService(
+        public AdHandler(
             IServiceProvider serviceProvider,
             IRabbitMqPublisher rabbitMqPublisher,
             IParserService<AdModel> parserService)
@@ -21,7 +19,7 @@ namespace ParserService.Core.Application.Services
             _rabbitMqPublisher = rabbitMqPublisher;
         }
 
-        public async Task AdHandlerAsync(
+        public async Task HandleAsync(
             SiteDescription siteDescription,
             CancellationToken cancellationToken = default)
         {

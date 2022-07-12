@@ -1,8 +1,8 @@
 ﻿namespace ParserService.Core.Application.Interfaces
 {
-    public interface IAdHandlerService
+    public interface IAdHandler
     {
-        Task AdHandlerAsync(
+        Task HandleAsync(
             SiteDescription siteDescription,
             CancellationToken cancellationToken = default);
     }
