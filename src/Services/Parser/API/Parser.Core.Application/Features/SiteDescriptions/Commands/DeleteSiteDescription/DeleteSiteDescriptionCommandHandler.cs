@@ -1,7 +1,7 @@
 ﻿namespace Parser.Core.Application.Features.SiteDescriptions.Commands.DeleteSiteDescription
 {
     public class DeleteSiteDescriptionCommandHandler
-        : IRequestHandler<DeleteSiteDescriptionCommand, bool>
+        : IRequestHandler<DeleteSiteDescriptionCommand, Response<bool>>
     {
         private readonly ISiteDescriptionRepositoryAsync _repository;
 
@@ -10,14 +10,23 @@
             _repository = repository;
         }
 
-        public async Task<bool> Handle(
+        public async Task<Response<bool>> Handle(
             DeleteSiteDescriptionCommand request,
             CancellationToken cancellationToken = default)
+            => await _repository.GetByIdAsync(request.Id, cancellationToken) is SiteDescription entityForDelete
+                ? await DeleteEntityAsync(entityForDelete, cancellationToken)
+                : new Response<bool>(
+                    data: false,
+                    message: "Not deleted");
+
+        private async Task<Response<bool>> DeleteEntityAsync(
+            SiteDescription siteDescription,
+            CancellationToken cancellationToken = default)
         {
-            var entityForDelete = await _repository.GetByIdAsync(request.Id, cancellationToken);
-            if (entityForDelete is null) return false;
-            await _repository.DeleteAsync(entityForDelete, cancellationToken);
-            return true;
+            await _repository.DeleteAsync(siteDescription, cancellationToken);
+            return new Response<bool>(
+                data: true,
+                message: "Deleted");
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Parser.Core.Application.Features.SiteDescriptions.Commands.UpdateSiteDescription
 {
-    public class UpdateSiteDescriptionCommand : IRequest<SiteDescription>
+    public class UpdateSiteDescriptionCommand : IRequest<Response<SiteDescription>>
     {
         public Guid Id { get; set; }
         public string? SiteName { get; set; }

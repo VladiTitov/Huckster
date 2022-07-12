@@ -1,6 +1,6 @@
 ﻿namespace Parser.Core.Application.Features.SiteDescriptions.Queries.GetSiteDescriptionList
 {
-    public class SiteDescriptionLookupDto : IMapWith<SiteDescription>
+    public class SiteDescriptionLookupDto //: IMapWith<SiteDescription>
     {
         public Guid Id { get; set; }
         public string? SiteName { get; set; }

@@ -5,8 +5,6 @@
     {
         public CreateSiteDescriptionValidator()
         {
-            RuleFor(_ => _.Id)
-                .NotEqual(Guid.Empty);
             RuleFor(_ => _.SiteUrl)
                 .NotEmpty();
             RuleFor(_ => _.SiteSelector)

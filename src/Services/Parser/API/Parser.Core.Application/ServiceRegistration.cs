@@ -8,8 +8,9 @@ namespace Parser.Core.Application
     {
         public static IServiceCollection AddApplicationInfrastructure(this IServiceCollection services)
             => services
-            .AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>))
             .AddMediatR(Assembly.GetExecutingAssembly())
+            .AddAutoMapper(Assembly.GetExecutingAssembly())
+            .AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>))
             .AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
     }
 }

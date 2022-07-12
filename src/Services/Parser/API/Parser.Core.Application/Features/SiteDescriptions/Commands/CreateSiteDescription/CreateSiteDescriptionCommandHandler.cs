@@ -1,31 +1,29 @@
 ﻿namespace Parser.Core.Application.Features.SiteDescriptions.Commands.CreateSiteDescription
 {
     public class CreateSiteDescriptionCommandHandler
-        : IRequestHandler<CreateSiteDescriptionCommand, Guid>
+        : IRequestHandler<CreateSiteDescriptionCommand, Response<Guid>>
     {
+        private readonly IMapper _mapper;
         private readonly ISiteDescriptionRepositoryAsync _repository;
 
-        public CreateSiteDescriptionCommandHandler(ISiteDescriptionRepositoryAsync repository)
+        public CreateSiteDescriptionCommandHandler(
+            IMapper mapper,
+            ISiteDescriptionRepositoryAsync repository)
         {
+            _mapper = mapper;
             _repository = repository;
         }
 
-        public async Task<Guid> Handle(
+        public async Task<Response<Guid>> Handle(
             CreateSiteDescriptionCommand request,
             CancellationToken cancellationToken = default)
         {
-            var siteDescription = new SiteDescription
-            {
-                Id = request.Id,
-                SiteName = request.SiteName,
-                Description = request.Description,
-                SiteUrl = request.SiteUrl,
-                SiteSelector = request.SiteSelector,
-                SiteModelTypeName = request.SiteModelTypeName
-            };
-            await _repository.AddAsync(siteDescription, cancellationToken);
-
-            return siteDescription.Id;
+            var entity = _mapper.Map<SiteDescription>(request);
+            return await _repository.AddAsync(
+                entity: entity,
+                cancellationToken: cancellationToken) is SiteDescription result
+                ? new Response<Guid>(data: entity.Id, message: "Created")
+                : throw new InvalidOperationException(nameof(CreateSiteDescriptionCommand));
         }
     }
 }

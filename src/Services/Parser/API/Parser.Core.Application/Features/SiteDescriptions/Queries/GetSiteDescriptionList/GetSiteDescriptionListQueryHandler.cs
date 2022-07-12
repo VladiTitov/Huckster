@@ -1,7 +1,7 @@
 ﻿namespace Parser.Core.Application.Features.SiteDescriptions.Queries.GetSiteDescriptionList
 {
     public class GetSiteDescriptionListQueryHandler
-        : IRequestHandler<GetSiteDescriptionListQuery, IReadOnlyList<SiteDescription>>
+        : IRequestHandler<GetSiteDescriptionListQuery, Response<IReadOnlyList<SiteDescription>>>
     {
         private readonly ISiteDescriptionRepositoryAsync _repository;
 
@@ -10,13 +10,14 @@
             _repository = repository;
         }
 
-        public async Task<IReadOnlyList<SiteDescription>> Handle(
+        public async Task<Response<IReadOnlyList<SiteDescription>>> Handle(
             GetSiteDescriptionListQuery request, 
             CancellationToken cancellationToken = default)
         {
-            return await _repository.GetAllAsync(cancellationToken) is IReadOnlyList<SiteDescription> data
-                ? data
-                : throw new NotFoundException(nameof(SiteDescription), request);
+            var data = await _repository.GetAllAsync(cancellationToken);
+            return new Response<IReadOnlyList<SiteDescription>>(
+                data: data,
+                message: "Success");
         }
     }
 }

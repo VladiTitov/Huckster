@@ -11,7 +11,7 @@
             _validators = validators;
         }
 
-        public Task<TResponse> Handle(TRequest request, 
+        public async Task<TResponse> Handle(TRequest request, 
             CancellationToken cancellationToken, 
             RequestHandlerDelegate<TResponse> next)
         {
@@ -20,23 +20,20 @@
                 try
                 {
                     var context = new ValidationContext<TRequest>(request);
-                    var failtures = _validators
-                        .Select(validator => validator.Validate(context))
-                        .SelectMany(result => result.Errors)
-                        .Where(failture => failture != null)
+                    var validationResults = await Task.WhenAll(_validators.Select(v => v.ValidateAsync(context, cancellationToken)));
+                    var failures = validationResults
+                        .SelectMany(r => r.Errors)
+                        .Where(f => f != null)
                         .ToList();
-                    if (failtures.Count != 0)
-                    {
-                        throw new ValidationException(failtures);
-                    }
+                    if (failures.Any())
+                        throw new ValidationException(failures);
                 }
                 catch (Exception ex)
                 {
                     throw new ValidationException(ex.Message);
                 }
-                
             }
-            return next();
+            return await next();
         }
     }
 }

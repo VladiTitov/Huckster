@@ -6,3 +6,4 @@ global using FluentValidation;
 global using Parser.Core.Application.Mappings;
 global using Parser.Core.Application.Exceptions;
 global using Parser.Core.Application.Interfaces;
+global using Parser.Core.Application.Wrappers;

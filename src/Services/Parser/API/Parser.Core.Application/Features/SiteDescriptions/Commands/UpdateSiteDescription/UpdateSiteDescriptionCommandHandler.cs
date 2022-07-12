@@ -1,32 +1,35 @@
 ﻿namespace Parser.Core.Application.Features.SiteDescriptions.Commands.UpdateSiteDescription
 {
     public class UpdateSiteDescriptionCommandHandler
-        : IRequestHandler<UpdateSiteDescriptionCommand, SiteDescription>
+        : IRequestHandler<UpdateSiteDescriptionCommand, Response<SiteDescription>>
     {
+        private readonly IMapper _mapper;
         private readonly ISiteDescriptionRepositoryAsync _repository;
 
-        public UpdateSiteDescriptionCommandHandler(ISiteDescriptionRepositoryAsync repository)
+        public UpdateSiteDescriptionCommandHandler(
+            IMapper mapper,
+            ISiteDescriptionRepositoryAsync repository)
         {
+            _mapper = mapper;
             _repository = repository;
         }
 
-        public async Task<SiteDescription> Handle(
+        public async Task<Response<SiteDescription>> Handle(
             UpdateSiteDescriptionCommand request,
             CancellationToken cancellationToken = default)
         {
-            var siteDescription = new SiteDescription
+            try
             {
-                Id = request.Id,
-                SiteName = request.SiteName,
-                Description = request.Description,
-                SiteUrl = request.SiteUrl,
-                SiteSelector = request.SiteSelector,
-                SiteModelTypeName = request.SiteModelTypeName
-            };
-
-            await _repository.UpdateAsync(siteDescription, cancellationToken);
-
-            return siteDescription;
+                var entity = _mapper.Map<SiteDescription>(request);
+                await _repository.UpdateAsync(entity, cancellationToken);
+                return new Response<SiteDescription>(
+                    data: entity,
+                    message: "Updated");
+            }
+            catch
+            {
+                throw new InvalidOperationException(nameof(UpdateSiteDescriptionCommand));
+            }
         }
     }
 }
