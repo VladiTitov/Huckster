@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\BuildingBlocks\Common\Common.Models\Common.Models.csproj" />
+    <ProjectReference Include="..\..\..\..\..\BuildingBlocks\Repositories\Repository.Base\Repository.Base.csproj" />
+    <ProjectReference Include="..\ParserService.Core.Application\ParserService.Core.Application.csproj" />
+    <ProjectReference Include="..\ParserService.Core.Domain\ParserService.Core.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

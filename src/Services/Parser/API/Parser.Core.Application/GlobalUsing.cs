@@ -1,0 +1,9 @@
+﻿global using Common.Models;
+global using Repository.Base;
+global using MediatR;
+global using AutoMapper;
+global using FluentValidation;
+global using Parser.Core.Application.Constants;
+global using Parser.Core.Application.Exceptions;
+global using Parser.Core.Application.Interfaces;
+global using Parser.Core.Application.Wrappers;
