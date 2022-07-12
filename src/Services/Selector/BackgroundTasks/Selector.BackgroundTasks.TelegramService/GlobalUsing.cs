@@ -6,7 +6,6 @@ global using Telegram.Bot.Exceptions;
 global using Telegram.Bot.Extensions.Polling;
 global using Selector.Core.Domain.Models;
 global using Selector.Infrastructure.Persistence;
-global using Selector.Infrastructure.Persistence.Interfaces;
 global using Selector.BackgroundTasks.TelegramService.Models;
 global using Selector.BackgroundTasks.TelegramService.Handlers;
 global using Selector.BackgroundTasks.TelegramService.Context;

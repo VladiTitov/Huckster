@@ -7,9 +7,9 @@
         {
         }
 
-        public override async Task<bool> IsContainsAsync(
-            Func<UserModel, bool> predicate,
-            CancellationToken cancellationToken = default(CancellationToken))
+        public override async Task<bool> IsContainsByFilterAsync(
+            Expression<Func<UserModel, bool>> predicate, 
+            CancellationToken cancellationToken = default)
         {
             var query = AsQueryable();
             return await Task.Run(() => query.Where(predicate).Any());

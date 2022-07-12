@@ -1,6 +1,4 @@
-﻿using Selector.Infrastructure.Persistence.Interfaces;
-
-namespace Selector.Core.Application.Features.SearchCriteries.Queries.GetAllSearchCriteries
+﻿namespace Selector.Core.Application.Features.SearchCriteries.Queries.GetAllSearchCriteries
 {
     public class GetAllSearchCriteriesQueryHandler
         : IRequestHandler<GetAllSearchCriteriesQuery, IReadOnlyList<SearchCriteriaModel>>

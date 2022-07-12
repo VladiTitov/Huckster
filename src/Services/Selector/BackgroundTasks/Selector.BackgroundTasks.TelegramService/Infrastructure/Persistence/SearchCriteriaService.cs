@@ -1,4 +1,6 @@
-﻿namespace Selector.BackgroundTasks.TelegramService.Infrastructure.Persistence
+﻿using Selector.Core.Application.Interfaces;
+
+namespace Selector.BackgroundTasks.TelegramService.Infrastructure.Persistence
 {
     internal class SearchCriteriaService : ISearchCriteriaService
     {

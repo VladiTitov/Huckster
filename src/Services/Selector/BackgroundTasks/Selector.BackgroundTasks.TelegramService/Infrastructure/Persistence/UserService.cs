@@ -1,4 +1,6 @@
-﻿namespace Selector.BackgroundTasks.TelegramService.Infrastructure.Persistence
+﻿using Selector.Core.Application.Interfaces;
+
+namespace Selector.BackgroundTasks.TelegramService.Infrastructure.Persistence
 {
     internal class UserService : IUserService
     {
@@ -55,8 +57,8 @@
 
             var userId = chat.Id;
 
-            if (await repository.IsContainsAsync(
-                predicate: _ => _.UserId.Equals(userId),
+            if (await repository.IsContainsByFilterAsync(
+                filter: _ => _.UserId.Equals(userId),
                 cancellationToken: cancellationToken)) return;
 
             await repository.AddAsync(

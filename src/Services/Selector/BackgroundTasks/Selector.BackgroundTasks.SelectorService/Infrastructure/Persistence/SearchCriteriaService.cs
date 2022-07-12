@@ -1,4 +1,6 @@
-﻿namespace Selector.BackgroundTasks.SelectorService.Infrastructure.Persistence
+﻿using Selector.Core.Application.Interfaces;
+
+namespace Selector.BackgroundTasks.SelectorService.Infrastructure.Persistence
 {
     internal class SearchCriteriaService : ISearchCriteriaService
     {

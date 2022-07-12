@@ -8,11 +8,9 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.ConfigureSwagger();
-    app.DatabaseMigrations();
 }
 
 app.UseHttpsRedirection();
-
-app.MapControllers();
+app.MapSearchCriteriaEndpoints();
 
 app.Run();

@@ -5,6 +5,4 @@ IHost host = Host.CreateDefaultBuilder(args)
     })
     .Build();
 
-host.DatabaseMigrations();
-
 await host.RunAsync();

@@ -5,7 +5,6 @@ global using Selector.BackgroundTasks.SelectorService.Configuration.Ioc;
 global using Selector.BackgroundTasks.SelectorService.Handlers;
 global using Selector.BackgroundTasks.SelectorService.Extensions;
 global using Selector.BackgroundTasks.SelectorService.Models;
-global using Selector.Infrastructure.Persistence.Interfaces;
 global using Selector.BackgroundTasks.SelectorService.Infrastructure.Persistence;
 global using Selector.BackgroundTasks.SelectorService.Configuration.AppSettings;
 global using Selector.Infrastructure.Persistence;

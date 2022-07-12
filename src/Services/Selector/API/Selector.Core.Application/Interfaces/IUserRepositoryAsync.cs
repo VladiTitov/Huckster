@@ -1,4 +1,4 @@
-﻿namespace Selector.Infrastructure.Persistence.Interfaces
+﻿namespace Selector.Core.Application.Interfaces
 {
     public interface IUserRepositoryAsync
         : IGenericBaseRepositoryAsync<UserModel>
