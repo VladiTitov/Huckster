@@ -13,5 +13,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseAllowAllCors();
+app.UseErrorHandlingMiddleware();
 app.MapSiteDescriptionEndpoints();
 app.Run();

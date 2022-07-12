@@ -1,8 +1,12 @@
 ﻿global using MediatR;
-global using AutoMapper;
 global using Common.Models;
+global using System.Net;
+global using System.Text.Json;
+global using FluentValidation;
+global using Parser.API.Middlewares;
 global using Parser.API.Endpoints;
-global using Microsoft.AspNetCore.Mvc;
 global using Parser.API.Configuration.Cors;
 global using Parser.API.Configuration.Ioc;
 global using Parser.API.Configuration.Swagger;
+global using Parser.API.Configuration.Middlewares;
+global using Parser.Core.Application.Wrappers;
