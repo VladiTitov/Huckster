@@ -22,7 +22,9 @@
             return await _repository.AddAsync(
                 entity: entity,
                 cancellationToken: cancellationToken) is SiteDescription result
-                ? new Response<Guid>(data: entity.Id, message: "Created")
+                ? new Response<Guid>(
+                    data: entity.Id, 
+                    message: ResponseMessages.EntitySuccessfullyCreated)
                 : throw new InvalidOperationException(nameof(CreateSiteDescriptionCommand));
         }
     }

@@ -5,7 +5,7 @@
         public GetSiteDescriptionDetailsQueryValidator()
         {
             RuleFor(_ => _.Id)
-                .NotEqual(Guid.Empty);
+                .NotEqual(Guid.Empty).WithMessage(ValidationMessages.ValueIsRequired);
         }
     }
 }

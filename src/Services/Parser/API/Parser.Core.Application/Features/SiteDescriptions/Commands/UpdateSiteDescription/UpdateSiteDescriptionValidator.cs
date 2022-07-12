@@ -6,13 +6,13 @@
         public UpdateSiteDescriptionValidator()
         {
             RuleFor(_ => _.Id)
-                .NotEqual(Guid.Empty);
+                .NotEqual(Guid.Empty).WithMessage(ValidationMessages.ValueIsRequired);
             RuleFor(_ => _.SiteUrl)
-                .NotEmpty();
+                .NotEmpty().WithMessage(ValidationMessages.ValueIsRequired); ;
             RuleFor(_ => _.SiteSelector)
-                .NotEmpty();
+                .NotEmpty().WithMessage(ValidationMessages.ValueIsRequired); ;
             RuleFor(_ => _.SiteModelTypeName)
-                .NotEmpty();
+                .NotEmpty().WithMessage(ValidationMessages.ValueIsRequired); ;
         }
     }
 }

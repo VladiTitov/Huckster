@@ -18,7 +18,7 @@
                 cancellationToken: cancellationToken) is SiteDescription entity
                 ? new Response<SiteDescription>(
                     data: entity,
-                    message: "Success")
+                    message: ResponseMessages.EntitySuccessfullFinded)
                 : throw new NotFoundException(nameof(SiteDescription), request.Id);
     }
 }

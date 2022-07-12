@@ -1,6 +1,4 @@
-﻿using Parser.Core.Application.Wrappers;
-
-namespace Parser.API.Endpoints
+﻿namespace Parser.API.Endpoints
 {
     public static class SiteDescriptionEndpoints
     {

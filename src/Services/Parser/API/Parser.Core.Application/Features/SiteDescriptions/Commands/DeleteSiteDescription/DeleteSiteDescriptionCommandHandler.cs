@@ -26,7 +26,7 @@
             await _repository.DeleteAsync(siteDescription, cancellationToken);
             return new Response<bool>(
                 data: true,
-                message: "Deleted");
+                message: ResponseMessages.EntitySuccessfullyDeleted);
         }
     }
 }

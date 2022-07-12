@@ -17,7 +17,7 @@
             var data = await _repository.GetAllAsync(cancellationToken);
             return new Response<IReadOnlyList<SiteDescription>>(
                 data: data,
-                message: "Success");
+                message: ResponseMessages.EntitiesSuccessfullFinded);
         }
     }
 }

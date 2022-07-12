@@ -24,7 +24,7 @@
                 await _repository.UpdateAsync(entity, cancellationToken);
                 return new Response<SiteDescription>(
                     data: entity,
-                    message: "Updated");
+                    message: ResponseMessages.EntitySuccessfullyUpdated);
             }
             catch
             {

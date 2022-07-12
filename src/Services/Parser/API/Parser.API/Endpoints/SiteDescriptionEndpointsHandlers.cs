@@ -1,9 +1,8 @@
 ﻿using Parser.Core.Application.Features.SiteDescriptions.Commands.CreateSiteDescription;
 using Parser.Core.Application.Features.SiteDescriptions.Commands.DeleteSiteDescription;
 using Parser.Core.Application.Features.SiteDescriptions.Commands.UpdateSiteDescription;
-using Parser.Core.Application.Features.SiteDescriptions.Queries.GetSiteDescriptionDetails;
 using Parser.Core.Application.Features.SiteDescriptions.Queries.GetSiteDescriptionList;
-using Parser.Core.Application.Wrappers;
+using Parser.Core.Application.Features.SiteDescriptions.Queries.GetSiteDescriptionDetails;
 
 namespace Parser.API.Endpoints
 {
