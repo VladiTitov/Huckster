@@ -12,5 +12,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.MapSearchCriteriaEndpoints();
+app.MapUserEndpoints();
 
 app.Run();

@@ -1,4 +1,4 @@
-﻿namespace Selector.API.Endpoints
+﻿namespace Selector.API.Endpoints.SearchCriteria
 {
     internal static class SearchCriteriaEndpoints
     {
@@ -9,40 +9,40 @@
                 handler: SearchCriteriaEndpointsHandlers.GetAllAsync)
                 .Produces<IReadOnlyList<SearchCriteriaModel>>(StatusCodes.Status200OK)
                 .Produces(StatusCodes.Status204NoContent)
-                .WithName("GetAllEntities")
-                .WithTags("EntityQueries");
+                .WithName("GetAllSearchCriterias")
+                .WithTags("SearchCriteriaQueries");
 
             app.MapGet(
                 pattern: "api/searchCriteria/{id}",
                 handler: SearchCriteriaEndpointsHandlers.GetByidAsync)
                 .Produces<SearchCriteriaModel>(StatusCodes.Status200OK)
                 .Produces(StatusCodes.Status404NotFound)
-                .WithName("GetEntityById")
-                .WithTags("EntityQueries");
+                .WithName("GetSearchCriteriaById")
+                .WithTags("SearchCriteriaQueries");
 
             app.MapPut(
                 pattern: "api/searchCriteria",
                 handler: SearchCriteriaEndpointsHandlers.UpdateAsync)
                 .Produces<SearchCriteriaModel>(StatusCodes.Status200OK)
                 .Produces(StatusCodes.Status404NotFound)
-                .WithName("UpdateEntity")
-                .WithTags("EntityCommands");
+                .WithName("UpdateSearchCriteria")
+                .WithTags("SearchCriteriaCommands");
 
             app.MapPost(
                 pattern: "api/searchCriteria",
                 handler: SearchCriteriaEndpointsHandlers.CreateAsync)
                 .Produces<string>(StatusCodes.Status201Created)
                 .Produces(StatusCodes.Status400BadRequest)
-                .WithName("CreateEntity")
-                .WithTags("EntityCommands");
+                .WithName("CreateSearchCriteria")
+                .WithTags("SearchCriteriaCommands");
 
             app.MapDelete(
                 pattern: "api/searchCriteria/{id}",
                 handler: SearchCriteriaEndpointsHandlers.DeleteAsync)
                 .Produces(StatusCodes.Status204NoContent)
                 .Produces(StatusCodes.Status404NotFound)
-                .WithName("DeleteEntity")
-                .WithTags("EntityCommands");
+                .WithName("DeleteSearchCriteria")
+                .WithTags("SearchCriteriaCommands");
         }
     }
 }
