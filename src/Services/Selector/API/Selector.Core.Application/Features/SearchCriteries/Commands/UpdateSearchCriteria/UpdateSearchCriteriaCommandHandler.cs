@@ -1,30 +1,35 @@
 ﻿namespace Selector.Core.Application.Features.SearchCriteries.Commands.UpdateSearchCriteria
 {
     public class UpdateSearchCriteriaCommandHandler
-        : IRequestHandler<UpdateSearchCriteriaCommand, SearchCriteriaModel>
+        : IRequestHandler<UpdateSearchCriteriaCommand, Response<SearchCriteria>>
     {
-        private readonly ISearchCriteriaRepositoryAsync _searchCriteriaRepository;
+        private readonly IMapper _mapper;
+        private readonly ISearchCriteriaRepositoryAsync _repository;
 
         public UpdateSearchCriteriaCommandHandler(
-            ISearchCriteriaRepositoryAsync searchCriteriaRepository)
+            IMapper mapper,
+            ISearchCriteriaRepositoryAsync repository)
         {
-            _searchCriteriaRepository = searchCriteriaRepository;
+            _mapper = mapper;
+            _repository = repository;
         }
 
-        public async Task<SearchCriteriaModel> Handle(
+        public async Task<Response<SearchCriteria>> Handle(
             UpdateSearchCriteriaCommand request, 
-            CancellationToken cancellationToken = default(CancellationToken))
+            CancellationToken cancellationToken = default)
         {
-            var updatedEntity = await _searchCriteriaRepository.GetByIdAsync(request.Id);
-            if (updatedEntity is null) throw new ArgumentNullException(nameof(updatedEntity));
-
-            updatedEntity.Label = request.Label;
-            updatedEntity.MinCost = request.MinCost;
-            updatedEntity.MaxCost = request.MaxCost;
-
-            await _searchCriteriaRepository.UpdateAsync(updatedEntity, cancellationToken);
-
-            return updatedEntity;
+            try
+            {
+                var entity = _mapper.Map<SearchCriteria>(request);
+                await _repository.UpdateAsync(entity, cancellationToken);
+                return new Response<SearchCriteria>(
+                    data: entity,
+                    message: ResponseMessages.EntitySuccessfullyUpdated);
+            }
+            catch
+            {
+                throw new InvalidOperationException(nameof(UpdateSearchCriteriaCommand));
+            }
         }
     }
 }

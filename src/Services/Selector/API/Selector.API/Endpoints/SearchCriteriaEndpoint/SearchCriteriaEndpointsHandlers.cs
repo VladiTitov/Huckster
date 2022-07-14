@@ -4,7 +4,7 @@ using Selector.Core.Application.Features.SearchCriteries.Commands.UpdateSearchCr
 using Selector.Core.Application.Features.SearchCriteries.Queries.GetAllSearchCriteries;
 using Selector.Core.Application.Features.SearchCriteries.Queries.GetSearchCriteriaById;
 
-namespace Selector.API.Endpoints.SearchCriteria
+namespace Selector.API.Endpoints.SearchCriteriaEndpoint
 {
     internal class SearchCriteriaEndpointsHandlers
     {
@@ -16,7 +16,7 @@ namespace Selector.API.Endpoints.SearchCriteria
                 request: new GetAllSearchCriteriesQuery(),
                 cancellationToken: cancellationToken);
 
-            return response.Count.Equals(0)
+            return response.Data.Count.Equals(0)
                 ? Results.NoContent()
                 : Results.Ok(response);
         }
@@ -30,8 +30,8 @@ namespace Selector.API.Endpoints.SearchCriteria
                 request: new GetSearchCriteriaByIdQuery { Id = id },
                 cancellationToken: cancellationToken);
 
-            return response is SearchCriteriaModel model
-                ? Results.Ok(model)
+            return response.Data is not null
+                ? Results.Ok(response)
                 : Results.NotFound();
         }
 
@@ -44,8 +44,8 @@ namespace Selector.API.Endpoints.SearchCriteria
                 request: command,
                 cancellationToken: cancellationToken);
 
-            return response is SearchCriteriaModel model
-                ? Results.Ok(model)
+            return response.Data is not null
+                ? Results.Ok(response.Data)
                 : Results.NotFound();
         }
 
@@ -58,7 +58,7 @@ namespace Selector.API.Endpoints.SearchCriteria
                 request: command,
                 cancellationToken: cancellationToken);
 
-            return response is Guid id
+            return response.Data is Guid id
                 ? Results.Created($"api/searchCriteria/{id}", id)
                 : Results.BadRequest();
         }
@@ -72,7 +72,7 @@ namespace Selector.API.Endpoints.SearchCriteria
                 request: new DeleteSearchCriteriaCommand { Id = id },
                 cancellationToken: cancellationToken);
 
-            return response
+            return response.Data
                 ? Results.NoContent()
                 : Results.NotFound();
         }

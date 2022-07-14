@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\**" />
+    <EmbeddedResource Remove="Migrations\**" />
+    <None Remove="Migrations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.4" />
   </ItemGroup>
 
@@ -14,10 +20,6 @@
     <ProjectReference Include="..\..\..\..\BuildingBlocks\Repositories\Repository.Base\Repository.Base.csproj" />
     <ProjectReference Include="..\Selector.Core.Application\Selector.Core.Application.csproj" />
     <ProjectReference Include="..\Selector.Core.Domain\Selector.Core.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

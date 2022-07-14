@@ -1,9 +1,9 @@
 ﻿namespace Selector.Infrastructure.Persistence.EntityTypeConfigurations
 {
     public class SearchCriteriaConfigurations
-        : IEntityTypeConfiguration<SearchCriteriaModel>
+        : IEntityTypeConfiguration<SearchCriteria>
     {
-        public void Configure(EntityTypeBuilder<SearchCriteriaModel> builder)
+        public void Configure(EntityTypeBuilder<SearchCriteria> builder)
         {
             builder
                 .HasKey(_ => _.Id);
@@ -11,6 +11,11 @@
             builder
                 .HasIndex(_ => _.Id)
                 .IsUnique();
+
+            builder
+                .HasOne(searchCriteria => searchCriteria.User)
+                .WithMany(user => user.SearchCriterias)
+                .HasForeignKey(searchCriteria => searchCriteria.UserId);
         }
-    }
+    } 
 }

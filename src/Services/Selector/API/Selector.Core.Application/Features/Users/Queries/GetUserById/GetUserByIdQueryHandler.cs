@@ -1,7 +1,7 @@
 ﻿namespace Selector.Core.Application.Features.Users.Queries.GetUserById
 {
     public class GetUserByIdQueryHandler
-        : IRequestHandler<GetUserByIdQuery, UserModel>
+        : IRequestHandler<GetUserByIdQuery, Response<User>>
     {
         private readonly IUserRepositoryAsync _userRepositoryAsync;
 
@@ -10,12 +10,17 @@
             _userRepositoryAsync = userRepositoryAsync;
         }
 
-        public async Task<UserModel> Handle(
+        public async Task<Response<User>> Handle(
             GetUserByIdQuery request, 
             CancellationToken cancellationToken)
         {
-            var entity = await _userRepositoryAsync.GetByIdAsync(request.Id, cancellationToken);
-            return entity;
+            return await _userRepositoryAsync.GetByIdAsync(
+                id: request.Id,
+                cancellationToken: cancellationToken) is User user
+                ? new Response<User>(
+                    data: user,
+                    message: ResponseMessages.EntitySuccessfullFinded)
+                : new Response<User>(message: ResponseMessages.EntityNotFound);
         }
     }
 }

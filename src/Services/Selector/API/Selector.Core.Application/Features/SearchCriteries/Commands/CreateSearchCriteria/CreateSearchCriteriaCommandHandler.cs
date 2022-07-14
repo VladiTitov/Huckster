@@ -1,44 +1,31 @@
 ﻿namespace Selector.Core.Application.Features.SearchCriteries.Commands.CreateSearchCriteria
 {
     public class CreateSearchCriteriaCommandHandler
-         : IRequestHandler<CreateSearchCriteriaCommand, Guid>
+         : IRequestHandler<CreateSearchCriteriaCommand, Response<Guid>>
     {
+        private readonly IMapper _mapper;
         private readonly ISearchCriteriaRepositoryAsync _searchCriteriaRepository;
-        private readonly IUserRepositoryAsync _userRepository;
 
         public CreateSearchCriteriaCommandHandler(
-            ISearchCriteriaRepositoryAsync searchCriteriaRepository,
-            IUserRepositoryAsync userRepository) 
+            IMapper mapper,
+            ISearchCriteriaRepositoryAsync searchCriteriaRepository) 
         {
+            _mapper = mapper;
             _searchCriteriaRepository = searchCriteriaRepository;
-            _userRepository = userRepository;
         }
 
-        public async Task<Guid> Handle(
+        public async Task<Response<Guid>> Handle(
             CreateSearchCriteriaCommand request, 
-            CancellationToken cancellationToken = default(CancellationToken))
+            CancellationToken cancellationToken = default)
         {
-            var user = new UserModel
-            {
-                UserId = 1,
-                FirstName = "firstName",
-                LastName = "lastName",
-                Username = "username"
-            };
-
-            await _userRepository.AddAsync(user, cancellationToken);
-
-            var entity = new SearchCriteriaModel
-            {
-                Label = request.Label,
-                MinCost = request.MinCost,
-                MaxCost = request.MaxCost,
-                User = user
-            };
-
-            await _searchCriteriaRepository.AddAsync(entity, cancellationToken);
-
-            return entity.Id;
+            var searchCriteria = _mapper.Map<SearchCriteria>(request);
+            return await _searchCriteriaRepository.AddAsync(
+                entity: searchCriteria,
+                cancellationToken: cancellationToken) is SearchCriteria criteriaModel
+                ? new Response<Guid>(
+                    data: criteriaModel.Id,
+                    message: ResponseMessages.EntitySuccessfullyCreated)
+                : throw new InvalidOperationException(nameof(CreateSearchCriteriaCommand));
         }
     }
 }

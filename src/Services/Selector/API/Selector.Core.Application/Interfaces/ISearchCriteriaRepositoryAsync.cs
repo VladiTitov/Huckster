@@ -1,7 +1,6 @@
 ﻿namespace Selector.Core.Application.Interfaces
 {
-    public interface ISearchCriteriaRepositoryAsync
-        : IGenericBaseRepositoryAsync<SearchCriteriaModel>
+    public interface ISearchCriteriaRepositoryAsync : IGenericBaseRepositoryAsync<SearchCriteria>
     {
     }
 }

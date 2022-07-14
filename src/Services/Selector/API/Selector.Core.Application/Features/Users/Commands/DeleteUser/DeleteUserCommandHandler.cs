@@ -1,23 +1,34 @@
 ﻿namespace Selector.Core.Application.Features.Users.Commands.DeleteUser
 {
     public class DeleteUserCommandHandler
-        : IRequestHandler<DeleteUserCommand, bool>
+        : IRequestHandler<DeleteUserCommand, Response<bool>>
     {
-        private readonly IUserRepositoryAsync _userRepositoryAsync;
+        private readonly IUserRepositoryAsync _repository;
 
-        public DeleteUserCommandHandler(IUserRepositoryAsync userRepositoryAsync)
+        public DeleteUserCommandHandler(IUserRepositoryAsync repository)
         {
-            _userRepositoryAsync = userRepositoryAsync;
+            _repository = repository;
         }
 
-        public async Task<bool> Handle(
+        public async Task<Response<bool>> Handle(
             DeleteUserCommand request,
-            CancellationToken cancellationToken = default(CancellationToken))
+            CancellationToken cancellationToken = default)
         {
-            var entityForDelete = await _userRepositoryAsync.GetByIdAsync(request.Id);
-            if (entityForDelete is null) return false;
-            await _userRepositoryAsync.DeleteAsync(entityForDelete);
-            return true;
+            return await _repository.GetByIdAsync(request.Id) is User user
+                ? await DeleteAsync(user)
+                : new Response<bool>(
+                    data: false,
+                    message: ResponseMessages.EntityNotFound);
+        }
+
+        private async Task<Response<bool>> DeleteAsync(
+            User user,
+            CancellationToken cancellationToken = default)
+        {
+            await _repository.DeleteAsync(user, cancellationToken);
+            return new Response<bool>(
+                data: true,
+                message: ResponseMessages.EntitySuccessfullyDeleted);
         }
     }
 }

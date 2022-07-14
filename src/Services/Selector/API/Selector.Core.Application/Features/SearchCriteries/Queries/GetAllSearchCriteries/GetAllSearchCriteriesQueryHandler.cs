@@ -1,20 +1,24 @@
 ﻿namespace Selector.Core.Application.Features.SearchCriteries.Queries.GetAllSearchCriteries
 {
     public class GetAllSearchCriteriesQueryHandler
-        : IRequestHandler<GetAllSearchCriteriesQuery, IReadOnlyList<SearchCriteriaModel>>
+        : IRequestHandler<GetAllSearchCriteriesQuery, Response<IReadOnlyList<SearchCriteria>>>
     {
-        private readonly ISearchCriteriaRepositoryAsync _searchCriteriaRepository;
+        private readonly ISearchCriteriaRepositoryAsync _repository;
 
-        public GetAllSearchCriteriesQueryHandler(ISearchCriteriaRepositoryAsync searchCriteriaRepository)
+        public GetAllSearchCriteriesQueryHandler(
+            ISearchCriteriaRepositoryAsync repository)
         {
-            _searchCriteriaRepository = searchCriteriaRepository;
+            _repository = repository;
         }
 
-        public Task<IReadOnlyList<SearchCriteriaModel>> Handle(
+        public async Task<Response<IReadOnlyList<SearchCriteria>>> Handle(
             GetAllSearchCriteriesQuery request, 
-            CancellationToken cancellationToken = default(CancellationToken))
+            CancellationToken cancellationToken = default)
         {
-            return _searchCriteriaRepository.GetAllAsync();
+            var data = await _repository.GetAllAsync(cancellationToken);
+            return new Response<IReadOnlyList<SearchCriteria>>(
+                data: data,
+                message: ResponseMessages.EntitiesSuccessfullFinded);
         }
     }
 }

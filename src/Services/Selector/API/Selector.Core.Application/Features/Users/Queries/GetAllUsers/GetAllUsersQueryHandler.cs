@@ -1,21 +1,23 @@
 ﻿namespace Selector.Core.Application.Features.Users.Queries.GetAllUsers
 {
     public class GetAllUsersQueryHandler
-        : IRequestHandler<GetAllUsersQuery, IReadOnlyList<UserModel>>
+        : IRequestHandler<GetAllUsersQuery, Response<IReadOnlyList<User>>>
     {
-        private readonly IUserRepositoryAsync _userRepositoryAsync;
+        private readonly IUserRepositoryAsync _repository;
 
-        public GetAllUsersQueryHandler(IUserRepositoryAsync userRepositoryAsync)
+        public GetAllUsersQueryHandler(IUserRepositoryAsync repository)
         {
-            _userRepositoryAsync = userRepositoryAsync;
+            _repository = repository;
         }
 
-        public async Task<IReadOnlyList<UserModel>> Handle(
+        public async Task<Response<IReadOnlyList<User>>> Handle(
             GetAllUsersQuery request, 
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            var data = await _userRepositoryAsync.GetAllAsync(cancellationToken);
-            return data;
+            var data = await _repository.GetAllAsync(cancellationToken);
+            return new Response<IReadOnlyList<User>>(
+                data: data,
+                message: ResponseMessages.EntitiesSuccessfullFinded);
         }
     }
 }

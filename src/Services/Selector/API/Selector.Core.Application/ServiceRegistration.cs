@@ -6,6 +6,7 @@ namespace Selector.Core.Application
     {
         public static IServiceCollection AddApplicationInfrastructure(this IServiceCollection services)
             => services
-                .AddMediatR(Assembly.GetExecutingAssembly());
+                .AddMediatR(Assembly.GetExecutingAssembly())
+                .AddAutoMapper(Assembly.GetExecutingAssembly());
     }
 }

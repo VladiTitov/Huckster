@@ -2,8 +2,8 @@
 {
     public class ApplicationDbContext : DbContext
     {
-        public DbSet<UserModel> Users { get; set; }
-        public DbSet<SearchCriteriaModel> SearchCriteries { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<SearchCriteria> SearchCriteries { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

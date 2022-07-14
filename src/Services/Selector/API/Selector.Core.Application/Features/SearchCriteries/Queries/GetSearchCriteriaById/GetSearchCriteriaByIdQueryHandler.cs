@@ -1,21 +1,25 @@
 ﻿namespace Selector.Core.Application.Features.SearchCriteries.Queries.GetSearchCriteriaById
 {
     public class GetSearchCriteriaByIdQueryHandler
-        : IRequestHandler<GetSearchCriteriaByIdQuery, SearchCriteriaModel>
+        : IRequestHandler<GetSearchCriteriaByIdQuery, Response<SearchCriteria>>
     {
         private readonly ISearchCriteriaRepositoryAsync _searchCriteriaRepository;
-        public GetSearchCriteriaByIdQueryHandler(ISearchCriteriaRepositoryAsync searchCriteriaRepository)
+        public GetSearchCriteriaByIdQueryHandler(
+            ISearchCriteriaRepositoryAsync searchCriteriaRepository)
         {
             _searchCriteriaRepository = searchCriteriaRepository;
         }
 
-        public async Task<SearchCriteriaModel> Handle(
-            GetSearchCriteriaByIdQuery request, 
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            return await _searchCriteriaRepository.GetByIdAsync(
+        public async Task<Response<SearchCriteria>> Handle(
+            GetSearchCriteriaByIdQuery request,
+            CancellationToken cancellationToken = default)
+        => await _searchCriteriaRepository.GetByIdAsync(
                 id: request.Id,
-                cancellationToken: cancellationToken);
-        }
+                cancellationToken: cancellationToken) is SearchCriteria entity
+            ? new Response<SearchCriteria>(
+                data: entity,
+                message: ResponseMessages.EntitySuccessfullFinded)
+            : new Response<SearchCriteria>(message: ResponseMessages.EntityNotFound);
     }
 }
+
