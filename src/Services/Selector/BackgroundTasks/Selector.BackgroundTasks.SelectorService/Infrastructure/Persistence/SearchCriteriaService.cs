@@ -11,7 +11,7 @@ namespace Selector.BackgroundTasks.SelectorService.Infrastructure.Persistence
             _serviceProvider = serviceProvider;
         }
 
-        public async Task<IEnumerable<SearchCriteriaModel>> GetModelsAsync(
+        public async Task<IEnumerable<SearchCriteria>> GetModelsAsync(
             CancellationToken cancellationToken = default(CancellationToken))
         {
             using var scope = _serviceProvider.CreateScope();

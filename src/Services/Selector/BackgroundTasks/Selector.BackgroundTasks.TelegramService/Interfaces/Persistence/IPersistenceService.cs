@@ -2,12 +2,12 @@
 {
     internal interface IPersistenceService
     {
-        Task<UserModel?> GetUserModelById(
+        Task<Core.Domain.Models.User?> GetUserModelById(
             Guid id,
             CancellationToken cancellationToken = default(CancellationToken));
         Task UpdateSearchCriteriaAsync(
             Chat chat,
-            SearchCriteriaModel searchCriteria,
+            SearchCriteria searchCriteria,
             CancellationToken cancellationToken = default(CancellationToken));
         Task DeleteSearchCriteriaAsync(
             Chat chat,
@@ -15,9 +15,9 @@
             CancellationToken cancellationToken = default(CancellationToken));
         Task AddSearchCriteriaAsync(
             Chat chat,
-            SearchCriteriaModel model,
+            SearchCriteria model,
             CancellationToken cancellationToken = default(CancellationToken));
-        Task<IReadOnlyList<SearchCriteriaModel>> GetSearchCriteriaListAsync(
+        Task<IReadOnlyList<SearchCriteria>> GetSearchCriteriaListAsync(
             Chat chat,
             CancellationToken cancellationToken = default(CancellationToken));
     }

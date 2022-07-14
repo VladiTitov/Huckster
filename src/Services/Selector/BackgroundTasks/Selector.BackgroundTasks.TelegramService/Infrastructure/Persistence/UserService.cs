@@ -15,7 +15,7 @@ namespace Selector.BackgroundTasks.TelegramService.Infrastructure.Persistence
             _provider = provider;
         }       
 
-        public async Task<UserModel?> GetModelByIdAsync(
+        public async Task<Core.Domain.Models.User?> GetModelByIdAsync(
             Guid id,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -23,12 +23,12 @@ namespace Selector.BackgroundTasks.TelegramService.Infrastructure.Persistence
             var repository = scope.ServiceProvider.GetService<IUserRepositoryAsync>();
             return await repository.GetByIdAsync(
                 id: id, 
-                cancellationToken: cancellationToken) is UserModel model
+                cancellationToken: cancellationToken) is Core.Domain.Models.User model
                 ? model
-                : throw new NullReferenceException(nameof(UserModel));
+                : throw new NullReferenceException(nameof(Core.Domain.Models.User));
         }
 
-        public async Task<UserModel?> GetModelByUserIdAsync(
+        public async Task<Core.Domain.Models.User?> GetModelByUserIdAsync(
             long userId,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -36,17 +36,17 @@ namespace Selector.BackgroundTasks.TelegramService.Infrastructure.Persistence
             var repository = scope.ServiceProvider.GetService<IUserRepositoryAsync>();
             return await repository.GetByFilterAsync(
                 filter: i => i.UserId.Equals(userId),
-                cancellationToken: cancellationToken) is UserModel model
+                cancellationToken: cancellationToken) is Core.Domain.Models.User model
                 ? model
-                : throw new NullReferenceException(nameof(UserModel));
+                : throw new NullReferenceException(nameof(Core.Domain.Models.User));
         }
 
         public async Task<Guid> GetIdByUserIdAsync(
             long userId,
             CancellationToken cancellationToken = default(CancellationToken))
-            => await GetModelByUserIdAsync(userId, cancellationToken) is UserModel model
+            => await GetModelByUserIdAsync(userId, cancellationToken) is Core.Domain.Models.User model
                 ? model.Id
-                : throw new NullReferenceException(nameof(UserModel));
+                : throw new NullReferenceException(nameof(Core.Domain.Models.User));
         
         public async Task CheckUserRegistrationAsync(
             Chat chat,
@@ -62,7 +62,7 @@ namespace Selector.BackgroundTasks.TelegramService.Infrastructure.Persistence
                 cancellationToken: cancellationToken)) return;
 
             await repository.AddAsync(
-                entity: new UserModel 
+                entity: new Core.Domain.Models.User 
                 {
                     UserId = userId,
                     Username = chat.Username,

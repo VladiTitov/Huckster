@@ -27,7 +27,7 @@ namespace Selector.BackgroundTasks.SelectorService.Handlers
 
         private async Task AdHandlerAsync(
             AdModel adModel,
-            IEnumerable<SearchCriteriaModel> searchCriteriaModels,
+            IEnumerable<SearchCriteria> searchCriteriaModels,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             foreach (var searchCriteria in searchCriteriaModels)

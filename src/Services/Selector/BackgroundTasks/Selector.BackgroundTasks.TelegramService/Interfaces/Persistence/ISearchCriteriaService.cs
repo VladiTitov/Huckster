@@ -3,20 +3,20 @@
     internal interface ISearchCriteriaService
     {
         Task UpdateModelAsync(
-            SearchCriteriaModel searchCriteria,
+            SearchCriteria searchCriteria,
             CancellationToken cancellationToken = default(CancellationToken));
         Task DeleteModelAsync(
-            SearchCriteriaModel searchCriteria,
+            SearchCriteria searchCriteria,
             CancellationToken cancellationToken = default(CancellationToken));
-        Task<SearchCriteriaModel> GetModelByIdAsync(
+        Task<SearchCriteria> GetModelByIdAsync(
             Guid id,
             CancellationToken cancellationToken = default(CancellationToken));
 
         Task AddModelAsync(
-            SearchCriteriaModel model,
+            SearchCriteria model,
             CancellationToken cancellationToken = default(CancellationToken));
-        Task<IReadOnlyList<SearchCriteriaModel>> GetModelListByFilterAsync(
-            Expression<Func<SearchCriteriaModel, bool>> filter,
+        Task<IReadOnlyList<SearchCriteria>> GetModelListByFilterAsync(
+            Expression<Func<SearchCriteria, bool>> filter,
             CancellationToken cancellationToken = default(CancellationToken));
     }
 }

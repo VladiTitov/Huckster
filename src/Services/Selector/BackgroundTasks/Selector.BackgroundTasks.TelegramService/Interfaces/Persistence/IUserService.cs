@@ -2,10 +2,10 @@
 {
     internal interface IUserService
     {
-        Task<UserModel?> GetModelByIdAsync(
+        Task<Core.Domain.Models.User?> GetModelByIdAsync(
             Guid id,
             CancellationToken cancellationToken = default(CancellationToken));
-        Task<UserModel?> GetModelByUserIdAsync(
+        Task<Core.Domain.Models.User?> GetModelByUserIdAsync(
             long userId,
             CancellationToken cancellationToken = default(CancellationToken));
 

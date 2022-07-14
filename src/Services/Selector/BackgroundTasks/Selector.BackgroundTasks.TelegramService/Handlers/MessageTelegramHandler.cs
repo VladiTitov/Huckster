@@ -67,7 +67,7 @@
             return data.Length.Equals(3)
                 ? await GetAnswerAsync(
                     chat: message.Chat,
-                    searchCriteria: new SearchCriteriaModel
+                    searchCriteria: new SearchCriteria
                         {
                             Label = data[0],
                             MinCost = data[1].ConvertToDouble(),
@@ -91,7 +91,7 @@
 
         private async Task<IReadOnlyList<IUserResponseModel>> GetAnswerAsync(
             Chat chat,
-            SearchCriteriaModel searchCriteria,
+            SearchCriteria searchCriteria,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             await _persistenceService.AddSearchCriteriaAsync(

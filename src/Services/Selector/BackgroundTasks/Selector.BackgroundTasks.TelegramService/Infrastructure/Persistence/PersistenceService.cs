@@ -13,7 +13,7 @@
             _searchCriteriaService = searchCriteriaService;
         }
 
-        public async Task<UserModel?> GetUserModelById(
+        public async Task<Core.Domain.Models.User?> GetUserModelById(
             Guid id,
             CancellationToken cancellationToken = default(CancellationToken)) 
         {
@@ -24,7 +24,7 @@
 
         public async Task UpdateSearchCriteriaAsync(
             Chat chat,
-            SearchCriteriaModel searchCriteria,
+            SearchCriteria searchCriteria,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             await _userService.CheckUserRegistrationAsync(
@@ -56,7 +56,7 @@
 
         public async Task AddSearchCriteriaAsync(
             Chat chat,
-            SearchCriteriaModel model,
+            SearchCriteria model,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             await _userService.CheckUserRegistrationAsync(
@@ -74,7 +74,7 @@
                 cancellationToken: cancellationToken);
         }
 
-        public async Task<IReadOnlyList<SearchCriteriaModel>> GetSearchCriteriaListAsync(
+        public async Task<IReadOnlyList<SearchCriteria>> GetSearchCriteriaListAsync(
             Chat chat,
             CancellationToken cancellationToken = default(CancellationToken))
         {

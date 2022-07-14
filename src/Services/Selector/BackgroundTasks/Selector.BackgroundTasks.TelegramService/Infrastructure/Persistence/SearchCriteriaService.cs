@@ -12,7 +12,7 @@ namespace Selector.BackgroundTasks.TelegramService.Infrastructure.Persistence
         }
 
         public async Task UpdateModelAsync(
-            SearchCriteriaModel searchCriteria,
+            SearchCriteria searchCriteria,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             using var scope = _serviceProvider.CreateScope();
@@ -32,7 +32,7 @@ namespace Selector.BackgroundTasks.TelegramService.Infrastructure.Persistence
         }
 
         public async Task DeleteModelAsync(
-            SearchCriteriaModel searchCriteria,
+            SearchCriteria searchCriteria,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             using var scope = _serviceProvider.CreateScope();
@@ -40,19 +40,19 @@ namespace Selector.BackgroundTasks.TelegramService.Infrastructure.Persistence
             await repository.DeleteAsync(searchCriteria, cancellationToken);
         }
 
-        public async Task<SearchCriteriaModel> GetModelByIdAsync(
+        public async Task<SearchCriteria> GetModelByIdAsync(
             Guid id,
             CancellationToken cancellationToken = default(CancellationToken)) 
         {
             using var scope = _serviceProvider.CreateScope();
             var repository = scope.ServiceProvider.GetService<ISearchCriteriaRepositoryAsync>();
-            return await repository.GetByIdAsync(id, cancellationToken) is SearchCriteriaModel model
+            return await repository.GetByIdAsync(id, cancellationToken) is SearchCriteria model
                 ? model
-                : throw new ArgumentNullException(nameof(SearchCriteriaModel));
+                : throw new ArgumentNullException(nameof(SearchCriteria));
         }
 
         public async Task AddModelAsync(
-            SearchCriteriaModel model, 
+            SearchCriteria model, 
             CancellationToken cancellationToken = default(CancellationToken))
         {
             using var scope = _serviceProvider.CreateScope();
@@ -63,8 +63,8 @@ namespace Selector.BackgroundTasks.TelegramService.Infrastructure.Persistence
                 cancellationToken: cancellationToken);
         }
 
-        public async Task<IReadOnlyList<SearchCriteriaModel>> GetModelListByFilterAsync(
-            Expression<Func<SearchCriteriaModel, bool>> filter,
+        public async Task<IReadOnlyList<SearchCriteria>> GetModelListByFilterAsync(
+            Expression<Func<SearchCriteria, bool>> filter,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             using var scope = _serviceProvider.CreateScope();

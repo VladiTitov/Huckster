@@ -2,7 +2,7 @@
 {
     internal interface ISearchCriteriaService
     {
-        Task<IEnumerable<SearchCriteriaModel>> GetModelsAsync(
+        Task<IEnumerable<SearchCriteria>> GetModelsAsync(
             CancellationToken cancellationToken = default(CancellationToken));
     }
 }

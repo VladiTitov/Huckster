@@ -29,7 +29,7 @@
 
         public override bool Equals(object? obj)
         {
-            var searchCriteria = obj as SearchCriteriaModel;
+            var searchCriteria = obj as SearchCriteria;
 
             var cost = Cost.ConvertToDouble();
 
