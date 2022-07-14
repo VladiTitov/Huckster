@@ -1,6 +1,6 @@
 ﻿namespace Selector.Core.Application.Features.SearchCriteries.Queries.GetSearchCriteriaById
 {
-    public class GetSearchCriteriaByIdQueryHandler
+    internal class GetSearchCriteriaByIdQueryHandler
         : IRequestHandler<GetSearchCriteriaByIdQuery, Response<SearchCriteria>>
     {
         private readonly ISearchCriteriaRepositoryAsync _searchCriteriaRepository;

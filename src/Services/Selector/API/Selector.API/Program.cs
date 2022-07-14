@@ -12,6 +12,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.MapSearchCriteriaEndpoints();
+app.UseErrorHandlingMiddleware();
 app.MapUserEndpoints();
 
 app.Run();

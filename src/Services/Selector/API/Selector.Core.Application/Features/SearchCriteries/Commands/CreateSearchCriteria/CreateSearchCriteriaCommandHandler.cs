@@ -1,17 +1,17 @@
 ﻿namespace Selector.Core.Application.Features.SearchCriteries.Commands.CreateSearchCriteria
 {
-    public class CreateSearchCriteriaCommandHandler
+    internal class CreateSearchCriteriaCommandHandler
          : IRequestHandler<CreateSearchCriteriaCommand, Response<Guid>>
     {
         private readonly IMapper _mapper;
-        private readonly ISearchCriteriaRepositoryAsync _searchCriteriaRepository;
+        private readonly ISearchCriteriaRepositoryAsync _repository;
 
         public CreateSearchCriteriaCommandHandler(
             IMapper mapper,
-            ISearchCriteriaRepositoryAsync searchCriteriaRepository) 
+            ISearchCriteriaRepositoryAsync repository) 
         {
             _mapper = mapper;
-            _searchCriteriaRepository = searchCriteriaRepository;
+            _repository = repository;
         }
 
         public async Task<Response<Guid>> Handle(
@@ -19,7 +19,7 @@
             CancellationToken cancellationToken = default)
         {
             var searchCriteria = _mapper.Map<SearchCriteria>(request);
-            return await _searchCriteriaRepository.AddAsync(
+            return await _repository.AddAsync(
                 entity: searchCriteria,
                 cancellationToken: cancellationToken) is SearchCriteria criteriaModel
                 ? new Response<Guid>(

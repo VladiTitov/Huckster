@@ -1,6 +1,6 @@
 ﻿namespace Selector.Core.Application.Features.Users.Queries.GetUserById
 {
-    public class GetUserByIdQueryHandler
+    internal class GetUserByIdQueryHandler
         : IRequestHandler<GetUserByIdQuery, Response<User>>
     {
         private readonly IUserRepositoryAsync _userRepositoryAsync;

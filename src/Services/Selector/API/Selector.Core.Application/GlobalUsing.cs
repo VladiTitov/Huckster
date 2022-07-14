@@ -1,8 +1,10 @@
 ﻿global using MediatR;
 global using AutoMapper;
 global using Repository.Base;
+global using FluentValidation;
 global using Selector.Core.Domain.Models;
 global using Microsoft.Extensions.DependencyInjection;
 global using Selector.Core.Application.Interfaces;
 global using Selector.Core.Application.Wrappers;
 global using Selector.Core.Application.Constants;
+global using Selector.Core.Application.Behaviors;

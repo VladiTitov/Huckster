@@ -1,6 +1,6 @@
 ﻿namespace Selector.Core.Application.Features.SearchCriteries.Commands.UpdateSearchCriteria
 {
-    public class UpdateSearchCriteriaCommandHandler
+    internal class UpdateSearchCriteriaCommandHandler
         : IRequestHandler<UpdateSearchCriteriaCommand, Response<SearchCriteria>>
     {
         private readonly IMapper _mapper;

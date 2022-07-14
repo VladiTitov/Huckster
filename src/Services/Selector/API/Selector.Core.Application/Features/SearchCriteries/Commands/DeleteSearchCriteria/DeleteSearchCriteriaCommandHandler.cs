@@ -1,21 +1,21 @@
 ﻿namespace Selector.Core.Application.Features.SearchCriteries.Commands.DeleteSearchCriteria
 {
-    public class DeleteSearchCriteriaCommandHandler
+    internal class DeleteSearchCriteriaCommandHandler
         : IRequestHandler<DeleteSearchCriteriaCommand, Response<bool>>
     {
-        private readonly ISearchCriteriaRepositoryAsync _searchCriteriaRepository;
+        private readonly ISearchCriteriaRepositoryAsync _repository;
 
         public DeleteSearchCriteriaCommandHandler(
-            ISearchCriteriaRepositoryAsync searchCriteriaRepository)
+            ISearchCriteriaRepositoryAsync repository)
         {
-            _searchCriteriaRepository = searchCriteriaRepository;
+            _repository = repository;
         }
 
         public async Task<Response<bool>> Handle(
             DeleteSearchCriteriaCommand request, 
             CancellationToken cancellationToken = default)
         {
-            return await _searchCriteriaRepository.GetByIdAsync(request.Id) is SearchCriteria model
+            return await _repository.GetByIdAsync(request.Id) is SearchCriteria model
                 ? await DeleteEntityAsync(model, cancellationToken)
                 : new Response<bool>(
                     data: false,
@@ -26,7 +26,7 @@
             SearchCriteria siteDescription,
             CancellationToken cancellationToken = default)
         {
-            await _searchCriteriaRepository.DeleteAsync(siteDescription, cancellationToken);
+            await _repository.DeleteAsync(siteDescription, cancellationToken);
             return new Response<bool>(
                 data: true,
                 message: ResponseMessages.EntitySuccessfullyDeleted);

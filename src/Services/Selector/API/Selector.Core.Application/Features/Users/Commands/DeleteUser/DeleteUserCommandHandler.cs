@@ -1,6 +1,6 @@
 ﻿namespace Selector.Core.Application.Features.Users.Commands.DeleteUser
 {
-    public class DeleteUserCommandHandler
+    internal class DeleteUserCommandHandler
         : IRequestHandler<DeleteUserCommand, Response<bool>>
     {
         private readonly IUserRepositoryAsync _repository;
