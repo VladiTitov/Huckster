@@ -123,17 +123,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Worker", "Worker", "{51EA544E-A363-424E-8186-90F8F87D02A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelectorService.Core.Domain", "Services\Selector\BackgroundTasks\SelectorService\SelectorService.Core.Domain\SelectorService.Core.Domain.csproj", "{423413CC-6EAB-4500-8EAB-E629B01DD970}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelectorService.Core.Domain", "Services\Selector\BackgroundTasks\SelectorService\SelectorService.Core.Domain\SelectorService.Core.Domain.csproj", "{423413CC-6EAB-4500-8EAB-E629B01DD970}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelectorService.Core.Application", "Services\Selector\BackgroundTasks\SelectorService\SelectorService.Core.Application\SelectorService.Core.Application.csproj", "{3AF0C26A-1583-47A0-9D60-722AC05B406C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelectorService.Core.Application", "Services\Selector\BackgroundTasks\SelectorService\SelectorService.Core.Application\SelectorService.Core.Application.csproj", "{3AF0C26A-1583-47A0-9D60-722AC05B406C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelectorService.Worker", "Services\Selector\BackgroundTasks\SelectorService\SelectorService.Worker\SelectorService.Worker.csproj", "{82924920-9379-4F09-8D71-6D4BC26EC859}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelectorService.Worker", "Services\Selector\BackgroundTasks\SelectorService\SelectorService.Worker\SelectorService.Worker.csproj", "{82924920-9379-4F09-8D71-6D4BC26EC859}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelegramService.Core.Domain", "Services\Selector\BackgroundTasks\TelegramService\TelegramService.Core.Domain\TelegramService.Core.Domain.csproj", "{D35A12B4-A463-45E0-B05B-069C94B06B43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelegramService.Core.Domain", "Services\Selector\BackgroundTasks\TelegramService\TelegramService.Core.Domain\TelegramService.Core.Domain.csproj", "{D35A12B4-A463-45E0-B05B-069C94B06B43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelegramService.Core.Application", "Services\Selector\BackgroundTasks\TelegramService\TelegramService.Core.Application\TelegramService.Core.Application.csproj", "{7B88F86A-AAFE-48BE-A41F-6F5B3C6272EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelegramService.Core.Application", "Services\Selector\BackgroundTasks\TelegramService\TelegramService.Core.Application\TelegramService.Core.Application.csproj", "{7B88F86A-AAFE-48BE-A41F-6F5B3C6272EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelegramService.Worker", "Services\Selector\BackgroundTasks\TelegramService\TelegramService.Worker\TelegramService.Worker.csproj", "{0599E33A-7888-410F-A2AF-088DFD6D41FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelegramService.Worker", "Services\Selector\BackgroundTasks\TelegramService\TelegramService.Worker\TelegramService.Worker.csproj", "{0599E33A-7888-410F-A2AF-088DFD6D41FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelectorService.Infrastructure.Persistence", "Services\Selector\BackgroundTasks\SelectorService\SelectorService.Infrastructure.Persistence\SelectorService.Infrastructure.Persistence.csproj", "{6388112F-6B5B-4FC0-8F5A-9619AB817368}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -249,6 +251,10 @@ Global
 		{0599E33A-7888-410F-A2AF-088DFD6D41FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0599E33A-7888-410F-A2AF-088DFD6D41FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0599E33A-7888-410F-A2AF-088DFD6D41FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6388112F-6B5B-4FC0-8F5A-9619AB817368}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6388112F-6B5B-4FC0-8F5A-9619AB817368}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6388112F-6B5B-4FC0-8F5A-9619AB817368}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6388112F-6B5B-4FC0-8F5A-9619AB817368}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -318,6 +324,7 @@ Global
 		{D35A12B4-A463-45E0-B05B-069C94B06B43} = {83EA3B9C-052E-4E58-A51C-1D9EF2FFB030}
 		{7B88F86A-AAFE-48BE-A41F-6F5B3C6272EB} = {83EA3B9C-052E-4E58-A51C-1D9EF2FFB030}
 		{0599E33A-7888-410F-A2AF-088DFD6D41FE} = {51EA544E-A363-424E-8186-90F8F87D02A4}
+		{6388112F-6B5B-4FC0-8F5A-9619AB817368} = {2C52BB50-7199-41F5-B4BF-2E0E6B0E650E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F3D4D1B3-2881-4E73-BAB2-00D5C0CC3BC9}
