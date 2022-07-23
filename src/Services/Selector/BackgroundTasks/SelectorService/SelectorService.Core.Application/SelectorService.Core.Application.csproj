@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\BuildingBlocks\EventBus\EventBus.RabbitMq\EventBus.RabbitMq.csproj" />
     <ProjectReference Include="..\..\..\..\..\BuildingBlocks\Repositories\Repository.Base\Repository.Base.csproj" />
+    <ProjectReference Include="..\..\..\..\Parser\BackgroundTasks\ParserService\ParserService.Core.Domain\ParserService.Core.Domain.csproj" />
     <ProjectReference Include="..\SelectorService.Core.Domain\SelectorService.Core.Domain.csproj" />
   </ItemGroup>
 

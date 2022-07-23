@@ -10,4 +10,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SelectorService.Core.Application\SelectorService.Core.Application.csproj" />
+    <ProjectReference Include="..\SelectorService.Infrastructure.Persistence\SelectorService.Infrastructure.Persistence.csproj" />
+  </ItemGroup>
 </Project>
