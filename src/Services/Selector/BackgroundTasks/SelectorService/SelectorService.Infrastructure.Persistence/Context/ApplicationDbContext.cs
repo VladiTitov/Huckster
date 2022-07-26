@@ -1,6 +1,6 @@
 ﻿namespace SelectorService.Infrastructure.Persistence.Context
 {
-    internal class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<SearchCriteria> SearchCriteries { get; set; }

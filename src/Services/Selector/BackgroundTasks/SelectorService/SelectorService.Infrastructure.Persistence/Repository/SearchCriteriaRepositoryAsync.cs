@@ -2,7 +2,7 @@
 {
     internal class SearchCriteriaRepositoryAsync : GenericBaseRepositoryAsync<SearchCriteria>, ISearchCriteriaRepositoryAsync
     {
-        public SearchCriteriaRepositoryAsync(DbContext dbContext) : base(dbContext)
+        public SearchCriteriaRepositoryAsync(ApplicationDbContext dbContext) : base(dbContext)
         {
         }
     }
