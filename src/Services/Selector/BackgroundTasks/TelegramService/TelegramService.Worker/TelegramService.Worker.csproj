@@ -10,4 +10,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TelegramService.Core.Application\TelegramService.Core.Application.csproj" />
+    <ProjectReference Include="..\TelegramService.Infrastructure.Persistence\TelegramService.Infrastructure.Persistence.csproj" />
+    <ProjectReference Include="..\TelegramService.Infrastructure.TelegramBot\TelegramService.Infrastructure.TelegramBot.csproj" />
+  </ItemGroup>
 </Project>

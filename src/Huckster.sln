@@ -135,7 +135,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelegramService.Core.Applic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelegramService.Worker", "Services\Selector\BackgroundTasks\TelegramService\TelegramService.Worker\TelegramService.Worker.csproj", "{0599E33A-7888-410F-A2AF-088DFD6D41FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelectorService.Infrastructure.Persistence", "Services\Selector\BackgroundTasks\SelectorService\SelectorService.Infrastructure.Persistence\SelectorService.Infrastructure.Persistence.csproj", "{6388112F-6B5B-4FC0-8F5A-9619AB817368}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelectorService.Infrastructure.Persistence", "Services\Selector\BackgroundTasks\SelectorService\SelectorService.Infrastructure.Persistence\SelectorService.Infrastructure.Persistence.csproj", "{6388112F-6B5B-4FC0-8F5A-9619AB817368}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelegramService.Infrastructure.Persistence", "Services\Selector\BackgroundTasks\TelegramService\TelegramService.Infrastructure.Persistence\TelegramService.Infrastructure.Persistence.csproj", "{B9C4D352-6E1F-4B0E-B108-4D8C72EF788B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelegramService.Infrastructure.TelegramBot", "Services\Selector\BackgroundTasks\TelegramService\TelegramService.Infrastructure.TelegramBot\TelegramService.Infrastructure.TelegramBot.csproj", "{BA67A12D-55B6-402F-9C82-786329268FA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -255,6 +259,14 @@ Global
 		{6388112F-6B5B-4FC0-8F5A-9619AB817368}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6388112F-6B5B-4FC0-8F5A-9619AB817368}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6388112F-6B5B-4FC0-8F5A-9619AB817368}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9C4D352-6E1F-4B0E-B108-4D8C72EF788B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9C4D352-6E1F-4B0E-B108-4D8C72EF788B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9C4D352-6E1F-4B0E-B108-4D8C72EF788B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9C4D352-6E1F-4B0E-B108-4D8C72EF788B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA67A12D-55B6-402F-9C82-786329268FA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA67A12D-55B6-402F-9C82-786329268FA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA67A12D-55B6-402F-9C82-786329268FA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA67A12D-55B6-402F-9C82-786329268FA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -325,6 +337,8 @@ Global
 		{7B88F86A-AAFE-48BE-A41F-6F5B3C6272EB} = {83EA3B9C-052E-4E58-A51C-1D9EF2FFB030}
 		{0599E33A-7888-410F-A2AF-088DFD6D41FE} = {51EA544E-A363-424E-8186-90F8F87D02A4}
 		{6388112F-6B5B-4FC0-8F5A-9619AB817368} = {2C52BB50-7199-41F5-B4BF-2E0E6B0E650E}
+		{B9C4D352-6E1F-4B0E-B108-4D8C72EF788B} = {AA69B6D1-B21D-434C-9CCD-BA71A4FEB07B}
+		{BA67A12D-55B6-402F-9C82-786329268FA3} = {AA69B6D1-B21D-434C-9CCD-BA71A4FEB07B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F3D4D1B3-2881-4E73-BAB2-00D5C0CC3BC9}

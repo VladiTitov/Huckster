@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\BuildingBlocks\EventBus\EventBus.RabbitMq\EventBus.RabbitMq.csproj" />
-    <ProjectReference Include="..\..\..\..\..\BuildingBlocks\Repositories\Repository.Base\Repository.Base.csproj" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TelegramService.Core.Application\TelegramService.Core.Application.csproj" />
     <ProjectReference Include="..\TelegramService.Core.Domain\TelegramService.Core.Domain.csproj" />
   </ItemGroup>
 

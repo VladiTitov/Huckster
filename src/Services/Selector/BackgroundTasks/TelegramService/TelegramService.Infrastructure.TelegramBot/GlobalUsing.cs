@@ -1,0 +1,15 @@
+﻿global using Ardalis.GuardClauses;
+global using Telegram.Bot;
+global using Telegram.Bot.Types;
+global using Telegram.Bot.Exceptions;
+global using Telegram.Bot.Types.Enums;
+global using Telegram.Bot.Types.ReplyMarkups;
+global using Telegram.Bot.Extensions.Polling;
+global using TelegramService.Core.Domain.Models;
+global using TelegramService.Core.Application.Interfaces;
+global using TelegramService.Infrastructure.TelegramBot.Models;
+global using TelegramService.Infrastructure.TelegramBot.Constants;
+global using TelegramService.Infrastructure.TelegramBot.Extensions;
+global using TelegramService.Infrastructure.TelegramBot.Interfaces;
+global using TelegramService.Infrastructure.TelegramBot.Wrappers;
+global using TelegramService.Infrastructure.TelegramBot.Services;
